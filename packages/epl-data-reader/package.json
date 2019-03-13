@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-data-reader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "list tags for the given dependency",
   "main": "dist/index.js",
   "repository": {
