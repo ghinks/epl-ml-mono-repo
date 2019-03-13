@@ -41,8 +41,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "@babel/runtime": "^7.3.1",
-    "integration-tests": "1.0.0"
+    "@babel/runtime": "^7.3.1"
   },
   "babel": {
     "include": [
