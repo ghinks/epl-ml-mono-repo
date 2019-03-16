@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "target": "esnext"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
+}
