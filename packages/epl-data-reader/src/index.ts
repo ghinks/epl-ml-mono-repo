@@ -25,3 +25,4 @@ const findMatchesInPath = async (dataPath: string): Promise<MatchResult[]> => {
 };
 
 export default findMatchesInPath;
+export { MatchResult } from "./matchResult"

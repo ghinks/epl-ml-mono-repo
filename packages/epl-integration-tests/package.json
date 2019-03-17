@@ -12,8 +12,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Unlicense",
   "dependencies": {
-    "@gvhinks/epl-data-reader": "1.0.1"
+    "@gvhinks/epl-data-reader": "1.0.1",
+    "@gvhinks/epl-data-to-db": "1.0.1"
   }
 }
