@@ -113,3 +113,9 @@ The interface takes a path and all the json files in that path are read from and
 ]
 
 ```
+
+
+### appendix
+
+webstorm registry changed jest.test.tree.use.jasmine.reporter to run
+jest tests in IDE.

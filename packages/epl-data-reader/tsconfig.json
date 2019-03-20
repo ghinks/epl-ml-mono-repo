@@ -5,7 +5,8 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "declaration": true,
-    "target": "esnext"
+    "target": "esnext",
+    "sourceMap": true
   },
   "include": [
     "src/**/*"

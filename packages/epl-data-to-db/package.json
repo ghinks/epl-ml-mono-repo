@@ -117,6 +117,7 @@
     "testMatch": [
       "**/*.test.ts"
     ],
+    "coverageReporters": ["text", "html"],
     "testEnvironment": "node"
   }
 }
