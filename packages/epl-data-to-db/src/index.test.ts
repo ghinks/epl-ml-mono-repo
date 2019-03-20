@@ -37,7 +37,8 @@ describe("Raw Data Transformations", () => {
             createCollection: () =>
               Promise.resolve({
                 insertMany: () => Promise.resolve(true)
-              })
+              }),
+            dropCollection: () => Promise.resolve(true)
           };
         }
       });

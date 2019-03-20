@@ -61,6 +61,7 @@ const writeToDB = async (games: MatchResult[]): Promise<boolean> => {
     const client: MongoClient = await MongoClient.connect(url, {
       useNewUrlParser: true
     });
+    await client.db(dbName).dropCollection("matches");
     const matches = await client.db(dbName).createCollection("matches");
     await matches.insertMany(renameProps(games));
     client.close();
