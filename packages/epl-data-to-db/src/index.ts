@@ -1,10 +1,10 @@
 import { MongoClient } from "mongodb";
-import {MatchResult} from "@gvhinks/epl-data-reader";
+import { MatchResult } from "@gvhinks/epl-data-reader";
 
-const url = 'mongodb://localhost:27017';
-const dbName = 'epl-scores';
+const url = "mongodb://localhost:27017";
+const dbName = "epl-scores";
 
-export interface MatchData{
+export interface MatchData {
   awayTeamCorners: number;
   awayTeamFouls: number;
   awayTeamReds: number;
@@ -27,7 +27,7 @@ export interface MatchData{
   homeTeamYellowCards: number;
   homeTeam: string;
   referee: string;
-};
+}
 
 const renameProps = (games: MatchResult[]): MatchData[] => {
   return games.map(g => ({
@@ -58,7 +58,9 @@ const renameProps = (games: MatchResult[]): MatchData[] => {
 
 const writeToDB = async (games: MatchResult[]): Promise<boolean> => {
   try {
-    const client: MongoClient = await MongoClient.connect(url, { useNewUrlParser: true });
+    const client: MongoClient = await MongoClient.connect(url, {
+      useNewUrlParser: true
+    });
     const matches = await client.db(dbName).createCollection("matches");
     await matches.insertMany(renameProps(games));
     client.close();
@@ -66,5 +68,5 @@ const writeToDB = async (games: MatchResult[]): Promise<boolean> => {
   } catch (e) {
     return false;
   }
-}
+};
 export { writeToDB as default, renameProps };

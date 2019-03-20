@@ -1,7 +1,7 @@
 import writeToDB, { renameProps, MatchData } from "./index";
-import {MatchResult} from "@gvhinks/epl-data-reader";
+import { MatchResult } from "@gvhinks/epl-data-reader";
 import mongodb from "mongodb";
-jest.mock('mongodb');
+jest.mock("mongodb");
 
 describe("Raw Data Transformations", () => {
   const rawMatchResult: MatchResult = {
@@ -27,18 +27,19 @@ describe("Raw Data Transformations", () => {
     HY: 2,
     HomeTeam: "Man United",
     Referee: "A Marriner"
-  }
+  };
   describe("Passing tests", () => {
     beforeAll(() => {
       mongodb.MongoClient.connect.mockResolvedValue({
         close: () => null,
         db: () => {
           return {
-            createCollection: () => Promise.resolve({
-              insertMany: () => Promise.resolve(true),
-            })
-          }
-        },
+            createCollection: () =>
+              Promise.resolve({
+                insertMany: () => Promise.resolve(true)
+              })
+          };
+        }
       });
     });
     afterAll(() => {
@@ -51,11 +52,13 @@ describe("Raw Data Transformations", () => {
     test("expect to get MatchData from MatchResult", () => {
       const result: MatchData[] = renameProps([rawMatchResult]);
       expect(result[0].homeTeam).toBe("Man United");
-    })
+    });
   });
   describe("Failing tests", () => {
     beforeAll(() => {
-      mongodb.MongoClient.connect.mockImplementation(() => Promise.reject(new Error("Simulated Error")));
+      mongodb.MongoClient.connect.mockImplementation(() =>
+        Promise.reject(new Error("Simulated Error"))
+      );
     });
     afterAll(() => {
       jest.clearAllMocks();
@@ -63,7 +66,6 @@ describe("Raw Data Transformations", () => {
     test("expect to get an error", async () => {
       const result = await writeToDB([rawMatchResult]);
       expect(result).toBe(false);
-    })
+    });
   });
-
 });
