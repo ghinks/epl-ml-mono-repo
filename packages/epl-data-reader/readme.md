@@ -1,6 +1,12 @@
-# match reader
+# EPL-DATA-READER
 
 Data is provided for the [English Premier League](http://www.football-data.co.uk/) via a [zip](https://datahub.io/sports-data/english-premier-league#data)
+
+## Purpose
+The data is stored statically in the data folder in the form of raw json. This module's 
+purpose is to retrieve the data and present an array of MatchResults. The **MatchResult**
+type is described as follows.
+
 
 The data is read from file in the format 
 
