@@ -8,7 +8,7 @@
     "type": "git"
   },
   "scripts": {
-    "test": "jest"
+    "integration": "jest"
   },
   "keywords": [],
   "author": "",
