@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-integration-tests",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "index.js",
   "repository": {
@@ -14,8 +14,8 @@
   "author": "",
   "license": "Unlicense",
   "dependencies": {
-    "@gvhinks/epl-data-reader": "^1.0.4",
-    "@gvhinks/epl-data-to-db": "^1.0.4"
+    "@gvhinks/epl-data-reader": "^1.0.6",
+    "@gvhinks/epl-data-to-db": "^1.0.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
