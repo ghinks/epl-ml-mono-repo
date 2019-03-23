@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-data-to-db",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "list tags for the given dependency",
   "main": "dist/index.js",
   "repository": {
@@ -43,8 +43,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "mongodb": "^3.1.13",
-    "@gvhinks/epl-data-reader": "1.0.1"
+    "@gvhinks/epl-data-reader": "^1.0.2",
+    "mongodb": "^3.1.13"
   },
   "babel": {
     "include": [
@@ -117,7 +117,10 @@
     "testMatch": [
       "**/*.test.ts"
     ],
-    "coverageReporters": ["text", "html"],
+    "coverageReporters": [
+      "text",
+      "html"
+    ],
     "testEnvironment": "node"
   }
 }
