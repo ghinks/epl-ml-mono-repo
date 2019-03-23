@@ -1,0 +1,11 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "packages/epl-data-reader/package.json",
+        "packages/epl-data-to-db/package.json"
+      ]
+    }
+  }
+}
