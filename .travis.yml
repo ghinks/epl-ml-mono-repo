@@ -7,3 +7,13 @@ node_js:
 
 script:
   - npm test
+before_script:
+  - greenkeeper-lockfile-update
+after_script:
+  - greenkeeper-lockfile-upload
+
+before_install:
+  - npm install -g greenkeeper-lockfile@2
+install:
+  - npm install
+
