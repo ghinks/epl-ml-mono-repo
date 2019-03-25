@@ -3,6 +3,7 @@ import { MatchResult } from "@gvhinks/epl-data-reader";
 
 const url = "mongodb://localhost:27017";
 const dbName = "epl-scores";
+const collectionName = "matches";
 
 export interface MatchData {
   awayTeamCorners: number;
@@ -61,8 +62,8 @@ const writeToDB = async (games: MatchResult[]): Promise<boolean> => {
     const client: MongoClient = await MongoClient.connect(url, {
       useNewUrlParser: true
     });
-    await client.db(dbName).dropCollection("matches");
-    const matches = await client.db(dbName).createCollection("matches");
+    await client.db(dbName).dropCollection(collectionName);
+    const matches = await client.db(dbName).createCollection(collectionName);
     await matches.insertMany(renameProps(games));
     client.close();
     return true;

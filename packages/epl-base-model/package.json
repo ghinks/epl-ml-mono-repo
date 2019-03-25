@@ -1,7 +1,7 @@
 {
-  "name": "@gvhinks/epl-data-to-db",
-  "version": "1.0.6",
-  "description": "take EPL match results and write to a DB",
+  "name": "@gvhinks/epl-base-model",
+  "version": "1.0.0",
+  "description": "initial base model",
   "main": "dist/index.js",
   "repository": {
     "url": "https://github.com/ghinks/epl-ml-mono-repo.git",
@@ -10,7 +10,6 @@
   "scripts": {
     "clean": "rimraf dist && rimraf definitions",
     "build": "babel src --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
-    "build:watch": "babel --watch src --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
     "postbuild": "tsc --emitDeclarationOnly --outDir definitions && cp definitions/index.d.ts dist/",
     "test": "cross-env NODE_ENV=test jest src",
     "lint": "eslint \"src/**/*.ts\"",
@@ -42,7 +41,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "@gvhinks/epl-data-reader": "^1.0.6",
+    "@tensorflow/tfjs-node": "^1.0.2",
     "mongodb": "^3.1.13"
   },
   "babel": {
@@ -115,10 +114,6 @@
     "collectCoverage": true,
     "testMatch": [
       "**/*.test.ts"
-    ],
-    "coverageReporters": [
-      "text",
-      "html"
     ],
     "testEnvironment": "node"
   }

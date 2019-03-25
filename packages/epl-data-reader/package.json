@@ -1,7 +1,7 @@
 {
   "name": "@gvhinks/epl-data-reader",
   "version": "1.0.6",
-  "description": "list tags for the given dependency",
+  "description": "read data from json files with EPL match results",
   "main": "dist/index.js",
   "repository": {
     "url": "https://github.com/ghinks/epl-ml-mono-repo.git",
