@@ -6,11 +6,17 @@ const dbName = "epl-scores";
 const collectionName = "matches";
 
 export interface BaseResult {
-  homeTeam: string;
-  result: string;
+  team: string;
+  win: boolean;
+  draw: boolean;
+  loose: boolean;
 };
 
 const getCollection = client => client.db(dbName).collection(collectionName);
+
+const isWin = (result, team) =>
+  (result.homeTeam === team ) && result.fullTimeResult === "H" ||
+  (result.awayTeam === team ) && result.fullTimeResult === "A" ? true : false;
 
 const getData = async (team: string): Promise<BaseResult[]> => {
   try {
@@ -18,10 +24,12 @@ const getData = async (team: string): Promise<BaseResult[]> => {
       useNewUrlParser: true
     });
     const collection = getCollection(client);
-    const results = await collection.find({homeTeam: team}).toArray();
+    const results = await collection.find({$or: [ {homeTeam: team}, {awayTeam: team} ]}).toArray();
     return results.map(r => ({
-      homeTeam: r.homeTeam,
-      result: r.fullTimeResult
+      team: team,
+      win: isWin(r, team),
+      loose: !isWin(r, team),
+      draw: r.fullTimeResult === "D" ? true : false
     }));
   } catch (e) {
     console.error(e.message);

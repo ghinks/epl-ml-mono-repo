@@ -12,7 +12,7 @@ export interface MatchData {
   awayTeamShots: number;
   awayTeamShotsOnTarget: number;
   awayTeamYellowCards: number;
-  AwayTeam: string;
+  awayTeam: string;
   Date: string;
   fullTimeAwayGoals: number;
   fullTimeHomeGoals: number;
@@ -38,7 +38,7 @@ const renameProps = (games: MatchResult[]): MatchData[] => {
     awayTeamShots: g.AS,
     awayTeamShotsOnTarget: g.AST,
     awayTeamYellowCards: g.AY,
-    AwayTeam: g.AwayTeam,
+    awayTeam: g.AwayTeam,
     Date: g.Date,
     fullTimeAwayGoals: g.FTAG,
     fullTimeHomeGoals: g.FTHG,
