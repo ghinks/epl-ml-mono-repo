@@ -13,6 +13,8 @@ after_script:
 
 before_install:
   - npm install -g greenkeeper-lockfile@2
-install:
-  - npm install
+# there is an issue with lerna and npm ci so we
+# working around this with a piece of code taken
+# from https://github.com/greenkeeperio/greenkeeper-lockfile/issues/156
+install: case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
 
