@@ -8,6 +8,7 @@
   "scripts": {
     "lerna-version": "lerna version --conventional-commits --yes",
     "pretest": "lerna bootstrap",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "wipelock": "find ./ -name \"package-lock.json\" -not -path \"*node_modules*\" -print -exec rm {} \\;"
   }
 }
