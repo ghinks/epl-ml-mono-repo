@@ -18,3 +18,4 @@ before_install:
 # working around this with a piece of code taken
 # from https://github.com/greenkeeperio/greenkeeper-lockfile/issues/156
 # install: case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
+install: npm i
