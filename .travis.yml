@@ -17,4 +17,4 @@ before_install:
 # there is an issue with lerna and npm ci so we
 # working around this with a piece of code taken
 # from https://github.com/greenkeeperio/greenkeeper-lockfile/issues/156
-# install: case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
+install: case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
