@@ -1,5 +1,4 @@
 import { MongoClient } from "mongodb";
-import { renameProps } from "../../../epl-data-to-db/src";
 
 const url = "mongodb://localhost:27017";
 const dbName = "epl-scores";

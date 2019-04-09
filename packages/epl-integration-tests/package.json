@@ -16,7 +16,8 @@
   "license": "Unlicense",
   "dependencies": {
     "@gvhinks/epl-data-reader": "^1.0.7",
-    "@gvhinks/epl-data-to-db": "^1.0.7"
+    "@gvhinks/epl-data-to-db": "^1.0.7",
+    "@gvhinks/epl-base-model": "^1.0.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
