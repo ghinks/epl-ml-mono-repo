@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-base-model",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "initial base model",
   "main": "dist/index.js",
   "repository": {
