@@ -3,7 +3,7 @@ import { MatchResult } from "@gvhinks/epl-data-reader";
 import mongodb from "mongodb";
 jest.mock("mongodb");
 
-describe("Raw Data Transformations", () => {
+describe("Raw Data Transformations", (): void => {
   const rawMatchResult: MatchResult = {
     AC: 5,
     AF: 8,
@@ -28,43 +28,56 @@ describe("Raw Data Transformations", () => {
     HomeTeam: "Man United",
     Referee: "A Marriner"
   };
-  describe("Passing tests", () => {
-    beforeAll(() => {
+  interface MockInsertMany {
+    insertMany(): Promise<boolean>;
+  };
+  interface MockCreateCollection {
+    createCollection(): MockInsertMany;
+  };
+  interface MockDropCollection {
+    dropCollection(): Promise<boolean>;
+  };
+  interface MockDB {
+    createCollection(): Promise<MockInsertMany>;
+    dropCollection(): Promise<boolean>;
+  };
+  describe("Passing tests", (): void => {
+    beforeAll((): void => {
       mongodb.MongoClient.connect.mockResolvedValue({
-        close: () => null,
-        db: () => {
+        close: (): void => null,
+        db: (): MockDB => {
           return {
-            createCollection: () =>
+            createCollection: (): Promise<MockInsertMany> =>
               Promise.resolve({
-                insertMany: () => Promise.resolve(true)
+                insertMany: (): Promise<boolean> => Promise.resolve(true)
               }),
-            dropCollection: () => Promise.resolve(true)
+            dropCollection: (): Promise<boolean> => Promise.resolve(true)
           };
         }
       });
     });
-    afterAll(() => {
+    afterAll((): void => {
       jest.clearAllMocks();
     });
-    test("expect to write data", async () => {
+    test("expect to write data", async (): Promise<void> => {
       const result = await writeToDB([rawMatchResult]);
       expect(result).toBe(true);
     });
-    test("expect to get MatchData from MatchResult", () => {
+    test("expect to get MatchData from MatchResult", (): void => {
       const result: MatchData[] = renameProps([rawMatchResult]);
       expect(result[0].homeTeam).toBe("Man United");
     });
   });
-  describe("Failing tests", () => {
-    beforeAll(() => {
-      mongodb.MongoClient.connect.mockImplementation(() =>
+  describe("Failing tests", (): void => {
+    beforeAll((): void => {
+      mongodb.MongoClient.connect.mockImplementation((): Promise<Error> =>
         Promise.reject(new Error("Simulated Error"))
       );
     });
-    afterAll(() => {
+    afterAll((): void => {
       jest.clearAllMocks();
     });
-    test("expect to get an error", async () => {
+    test("expect to get an error", async (): Promise<void> => {
       const result = await writeToDB([rawMatchResult]);
       expect(result).toBe(false);
     });
