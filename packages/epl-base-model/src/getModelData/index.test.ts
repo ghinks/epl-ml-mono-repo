@@ -1,4 +1,5 @@
 import getData, { BaseResult } from "./index";
+// @ts-ignore
 import mongodb from "mongodb";
 jest.mock("mongodb");
 
