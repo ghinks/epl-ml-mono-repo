@@ -74,7 +74,7 @@ describe("Data Retrieval", (): void => {
     });
     afterAll((): void => {
       jest.clearAllMocks();
-      console.error.mockRestore();
+      errorSpy.mockRestore();
     });
     test("expect not to get match results for Accrington Stanley", async (): Promise<void> => {
       const results: BaseResult[] = await getData("Arsenal");
