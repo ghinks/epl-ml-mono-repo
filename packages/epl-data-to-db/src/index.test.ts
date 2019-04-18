@@ -31,12 +31,6 @@ describe("Raw Data Transformations", (): void => {
   interface MockInsertMany {
     insertMany(): Promise<boolean>;
   };
-  interface MockCreateCollection {
-    createCollection(): MockInsertMany;
-  };
-  interface MockDropCollection {
-    dropCollection(): Promise<boolean>;
-  };
   interface MockDB {
     createCollection(): Promise<MockInsertMany>;
     dropCollection(): Promise<boolean>;
