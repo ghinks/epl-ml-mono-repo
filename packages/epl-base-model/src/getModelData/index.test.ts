@@ -57,6 +57,7 @@ describe("Data Retrieval", (): void => {
     interface MockDBResult {
       collection(): MockCollectionResult;
     };
+    let errorSpy;
     beforeAll((): void => {
       mongodb.MongoClient.connect.mockResolvedValue({
         db: (): MockDBResult => {
@@ -69,13 +70,16 @@ describe("Data Retrieval", (): void => {
           };
         }
       });
+      errorSpy = jest.spyOn(console, "error").mockImplementation((): null => null);
     });
     afterAll((): void => {
       jest.clearAllMocks();
+      console.error.mockRestore();
     });
     test("expect not to get match results for Accrington Stanley", async (): Promise<void> => {
       const results: BaseResult[] = await getData("Arsenal");
       expect(results.length).toBe(0);
+      expect(errorSpy).toHaveBeenCalled();
     })
   })
 });
