@@ -93,8 +93,7 @@
     ],
     "env": {
       "node": true,
-      "jest": true,
-      "mocha": true
+      "jest": true
     }
   },
   "nyc": {
