@@ -33,7 +33,7 @@ const flattenResultProps = (rawData: BaseResult[]): FlattenedProps => {
   };
 };
 
-const getData = async (team: string): Promise<BaseResult[]> => {
+const getTrainingData = async (team: string): Promise<BaseResult[]> => {
   try {
     const client: mongodb.MongoClient = await mongodb.MongoClient.connect(url, {
       useNewUrlParser: true
@@ -56,4 +56,4 @@ const getData = async (team: string): Promise<BaseResult[]> => {
   }
 };
 
-export { getData as default, flattenResultProps, isWin };
+export { getTrainingData as default, flattenResultProps, isWin };
