@@ -1,12 +1,13 @@
 import * as mongodb from "mongodb";
 import { TensorLike3D } from "@tensorflow/tfjs-core/dist/types";
+import { MatchData } from "@gvhinks/epl-data-to-db/dist";
 
 const url = "mongodb://localhost:27017";
 const dbName = "epl-scores";
 const collectionName = "matches";
 
 export interface BaseResult {
-  // team: string;
+  opponents: string; // the other team
   win: number;
   draw: number;
   loose: number;
@@ -17,6 +18,10 @@ const getCollection = (client: mongodb.MongoClient): mongodb.Collection => clien
 const isWin = (result, team: string): number =>
   (result.homeTeam === team ) && result.fullTimeResult === "H" ||
   (result.awayTeam === team ) && result.fullTimeResult === "A" ? 1 : 0;
+
+const getOpponents = (team: string, result): string => {
+  return "";
+};
 
 export interface FlattenedProps {
   values: number[];
@@ -39,12 +44,12 @@ const getTrainingData = async (team: string): Promise<BaseResult[]> => {
       useNewUrlParser: true
     });
     const collection = getCollection(client);
-    const results = await collection.find({
+    const results: MatchData[] = await collection.find({
       Date: { $regex: /^20[0-9][0-8].*/ },
       $or: [ {homeTeam: team}, {awayTeam: team} ]
     }).toArray();
     const rawResults = results.map((r): BaseResult => ({
-      // team: team,
+      opponents: team,
       win: isWin(r, team),
       loose: isWin(r, team) === 1 ? 0 : 1,
       draw: r.fullTimeResult === "D" ? 1 : 0

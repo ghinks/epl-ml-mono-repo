@@ -2,8 +2,6 @@ import * as tf from "@tensorflow/tfjs-node";
 import getTrainingData, { BaseResult, flattenResultProps, FlattenedProps } from "./getModelData";
 import { TensorLike3D } from "@tensorflow/tfjs-core/dist/types";
 
-const learningRate: number = 10;
-
 const createModel = async (): Promise<tf.Sequential> => {
   const model: tf.Sequential = tf.sequential();
   model.add(tf.layers.dense({inputShape: [3], units: 1, useBias: true}));
