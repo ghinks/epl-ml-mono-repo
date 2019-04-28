@@ -6,14 +6,14 @@ const findMatchesInPath = async (dataPath: string): Promise<MatchResult[]> => {
   console.log(__dirname);
   try {
     let files: string[] = await findDataFiles(dataPath);
-    files = files.reduce((accum, curr) => {
+    files = files.reduce((accum, curr): string[] => {
       if (curr.match(/.*json/)) {
         accum.push(`${dataPath}/${curr}`);
       }
       return accum;
     }, [])
     // yes an array of promises of arrays of match results
-    const dataProms: Promise<MatchResult[]>[] = files.map(f => readMatchResult(f));
+    const dataProms: Promise<MatchResult[]>[] = files.map((f): Promise<MatchResult[]> => readMatchResult(f));
     const matcheArrs: MatchResult[][] = await Promise.all([...dataProms]);
     const matches = matcheArrs.flatMap(a => a);
     console.log(matches);

@@ -31,7 +31,7 @@ export interface MatchData {
 }
 
 const renameProps = (games: MatchResult[]): MatchData[] => {
-  return games.map(g => ({
+  return games.map((g): MatchData => ({
     awayTeamCorners: g.AC,
     awayTeamFouls: g.AF,
     awayTeamReds: g.AR,

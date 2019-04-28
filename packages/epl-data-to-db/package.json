@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "rimraf dist && rimraf definitions",
     "build": "babel src --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
-    "build:watch": "babel --watch src --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
+    "watch": "babel --watch src --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
     "postbuild": "tsc --emitDeclarationOnly --outDir definitions && cp definitions/index.d.ts dist/",
     "test": "cross-env NODE_ENV=test jest src",
     "lint": "eslint \"src/**/*.ts\"",

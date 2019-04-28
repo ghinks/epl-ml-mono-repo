@@ -1,39 +1,64 @@
-import { MongoClient } from "mongodb";
+import * as mongodb from "mongodb";
+import { TensorLike3D } from "@tensorflow/tfjs-core/dist/types";
+import { MatchData } from "@gvhinks/epl-data-to-db/dist";
 
 const url = "mongodb://localhost:27017";
 const dbName = "epl-scores";
 const collectionName = "matches";
 
 export interface BaseResult {
-  team: string;
-  win: boolean;
-  draw: boolean;
-  loose: boolean;
+  opponents: string; // the other team
+  win: number;
+  draw: number;
+  loose: number;
 };
 
-const getCollection = client => client.db(dbName).collection(collectionName);
+const getCollection = (client: mongodb.MongoClient): mongodb.Collection => client.db(dbName).collection(collectionName);
 
-const isWin = (result, team) =>
+const isWin = (result, team: string): number =>
   (result.homeTeam === team ) && result.fullTimeResult === "H" ||
-  (result.awayTeam === team ) && result.fullTimeResult === "A" ? true : false;
+  (result.awayTeam === team ) && result.fullTimeResult === "A" ? 1 : 0;
 
-const getData = async (team: string): Promise<BaseResult[]> => {
+const getOpponents = (team: string, result): string => {
+  return "";
+};
+
+export interface FlattenedProps {
+  values: number[];
+  tensorCount: number;
+};
+
+const flattenResultProps = (rawData: BaseResult[]): FlattenedProps => {
+  const values: number[] = rawData.reduce((a,c): number[] => {
+    return [...a, ...Object.values(c)];
+  }, [])
+  return {
+    values,
+    tensorCount: rawData.length
+  };
+};
+
+const getTrainingData = async (team: string): Promise<BaseResult[]> => {
   try {
-    const client: MongoClient = await MongoClient.connect(url, {
+    const client: mongodb.MongoClient = await mongodb.MongoClient.connect(url, {
       useNewUrlParser: true
     });
     const collection = getCollection(client);
-    const results = await collection.find({$or: [ {homeTeam: team}, {awayTeam: team} ]}).toArray();
-    return results.map(r => ({
-      team: team,
+    const results: MatchData[] = await collection.find({
+      Date: { $regex: /^20[0-9][0-8].*/ },
+      $or: [ {homeTeam: team}, {awayTeam: team} ]
+    }).toArray();
+    const rawResults = results.map((r): BaseResult => ({
+      opponents: team,
       win: isWin(r, team),
-      loose: !isWin(r, team),
-      draw: r.fullTimeResult === "D" ? true : false
+      loose: isWin(r, team) === 1 ? 0 : 1,
+      draw: r.fullTimeResult === "D" ? 1 : 0
     }));
+    return rawResults;
   } catch (e) {
     console.error(e.message);
     return [];
   }
 };
 
-export default getData;
+export { getTrainingData as default, flattenResultProps, isWin };
