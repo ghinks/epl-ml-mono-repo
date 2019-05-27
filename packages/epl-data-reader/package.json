@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-data-reader",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "read data from json files with EPL match results",
   "main": "dist/index.js",
   "repository": {
