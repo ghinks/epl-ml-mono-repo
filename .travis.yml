@@ -2,7 +2,7 @@ language: node_js
 os:
   - linux
 node_js:
-  - "11"
+  - "latest"
 
 script:
   - npm test
