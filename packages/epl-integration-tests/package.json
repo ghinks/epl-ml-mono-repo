@@ -14,7 +14,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "Unlicense",
+  "license": "MIT",
   "dependencies": {
     "@gvhinks/epl-base-model": "^1.0.9",
     "@gvhinks/epl-data-reader": "^1.0.9",
