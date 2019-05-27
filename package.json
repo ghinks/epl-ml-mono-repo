@@ -9,6 +9,13 @@
     "lerna-version": "lerna version --conventional-commits --yes",
     "pretest": "lerna bootstrap",
     "test": "lerna run test",
-    "wipelock": "find ./ -name \"package-lock.json\" -not -path \"*node_modules*\" -print -exec rm {} \\;"
+    "wipelock": "find ./ -name \"package-lock.json\" -not -path \"*node_modules*\" -print -exec rm {} \\;",
+    "build": "lerna run build",
+    "watch": "lerna run watch --parallel"
+  },
+  "support": {
+    "target": "LTS",
+    "response": "BEST-EFFORT",
+    "backing": "HOBBY"
   }
 }

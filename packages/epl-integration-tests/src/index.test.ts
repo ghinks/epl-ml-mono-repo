@@ -1,8 +1,8 @@
 import findMatchesInPath , { MatchResult } from "@gvhinks/epl-data-reader";
 import writeToDB from "@gvhinks/epl-data-to-db";
-import createModel, { getData, BaseResult } from "@gvhinks/epl-base-model";
+import createModel, { getTrainingData, BaseResult } from "@gvhinks/epl-base-model";
 
-describe("Integration Tests", () => {
+describe("Integration Tests", (): void => {
   test("expect to git stuff back after you push data into the DB", async () => {
     const stuff: MatchResult[] = await findMatchesInPath("/Users/ghinks/dev/match-analysis/packages/epl-data-reader/data");
     expect(stuff.length).toBeGreaterThan(0);
@@ -10,7 +10,7 @@ describe("Integration Tests", () => {
     expect(result).toBe(true);
   });
   test("expect to get the model date", async() => {
-    const results: BaseResult[] = await getData("Arsenal");
+    const results: BaseResult[] = await getTrainingData("Arsenal");
     expect(results.length).toBeGreaterThan(0);
     interface Aggregation {
       winCount: number;
@@ -38,5 +38,5 @@ describe("Integration Tests", () => {
   test("expect to create a model", async () => {
     const model = await createModel();
     expect(model).toBeTruthy();
-  });
+  }, 1000 * 1000);
 });

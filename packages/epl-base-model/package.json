@@ -10,6 +10,7 @@
   "scripts": {
     "clean": "rimraf dist && rimraf definitions",
     "build": "babel src --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
+    "watch": "babel --watch src --verbose  --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
     "postbuild": "tsc --emitDeclarationOnly --outDir dist",
     "test": "cross-env NODE_ENV=test jest src",
     "lint": "eslint \"src/**/*.ts\"",
@@ -34,7 +35,7 @@
     "cross-env": "^5.2.0",
     "eslint": "^5.13.0",
     "jest": "^24.1.0",
-    "prettier": "^1.16.4",
+    "prettier": "^1.17.0",
     "rimraf": "^2.6.3",
     "typescript": "^3.3.3"
   },
@@ -42,7 +43,9 @@
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
     "@tensorflow/tfjs-node": "^1.0.2",
-    "mongodb": "^3.1.13"
+    "@types/mongodb": "^3.1.23",
+    "mongodb": "^3.1.13",
+    "@gvhinks/epl-data-to-db": "^1.0.8"
   },
   "babel": {
     "include": [
@@ -92,8 +95,7 @@
     ],
     "env": {
       "node": true,
-      "jest": true,
-      "mocha": true
+      "jest": true
     }
   },
   "nyc": {
