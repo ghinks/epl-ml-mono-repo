@@ -1,26 +1,15 @@
 import * as mongodb from "mongodb";
-// import { TensorLike3D } from "@tensorflow/tfjs-core/dist/types";
 import { MatchData } from "@gvhinks/epl-data-to-db/dist";
-// import { Labels } from "./getLabels";
-import getLabels from "./getLabels";
-import getFeatures from "./getFeatures";
+import flattenLabels, { Labels } from "./getLabels";
+import flattenFeatures, { Features } from "./getFeatures";
 import { url, dbName, collectionName } from "./constants";
 import getNames from "./getTeams"
 
-// one hot encoding of the team names means that
-// Arsenal would be something like [1,0,0,0,...0]
-export interface Features {
-  homeTeam: number[];
-  awayTeam: number[];
+// export interface BaseResult extends Features, Labels {};
+export interface TrainingData {
+  labelValues: number[][];
+  featureValues: number[][][];
 }
-
-export interface Labels {
-  homeWin: number;
-  awayWin: number;
-  draw: number;
-}
-
-export interface BaseResult extends Features, Labels {};
 
 const getCollection = (client: mongodb.MongoClient): mongodb.Collection =>
   client.db(dbName).collection(collectionName);
@@ -40,48 +29,8 @@ const isDraw = (result): number =>
     ? 1
     : 0;
 
-/*export interface FlattenedProps {
-  labelValues: number[][];
-  featureValues: number[][];
-}*/
-
-const flattenLabels = (rawData: BaseResult[]): number[][] => {
-  const labels = getLabels(rawData);
-  const flattenPropsToArray = <T>(o: T[]): number[][] => o.reduce((a, c): number[] => {
-    return [...a, [...Object.values(c)]];
-  }, []);
-  const labelsArray: number[][]= flattenPropsToArray(labels);
-  return labelsArray;
-};
-
-const flattenFeatures =  (rawData: BaseResult[]): number[][][] => {
-  const features: Features[] = getFeatures(rawData);
-  const flattenPropsToArray = <T>(o: T[]): number[][][] => o.reduce((a, c): number[][] => {
-    return [...a, [...Object.values(c)]];
-  }, []);
-  const featureArray: number[][][]= flattenPropsToArray(features);
-  return featureArray;
-};
-
-/*
-const flattenLabels = (rawData: BaseResult[]): FlattenedProps => {
-  const features = getFeatures(rawData);
-  const labels = getLabels(rawData);
-  const flattenPropsToArray = <T>(o: T[]): number[][] => o.reduce((a, c): number[] => {
-    return [...a, [...Object.values(c)]];
-  }, []);
-  const labelsArray: number[][]= flattenPropsToArray(labels);
-  const featureArray: number[][]= flattenPropsToArray(features);
-  return {
-    labelValues: labelsArray,
-    featureValues: featureArray,
-  };
-};
- */
-
-const getData = async (team?: string): Promise<BaseResult[]> => {
+const getTrainingData = async (team?: string): Promise<TrainingData> => {
   try {
-
     const client: mongodb.MongoClient = await mongodb.MongoClient.connect(url, {
       useNewUrlParser: true
     });
@@ -93,20 +42,36 @@ const getData = async (team?: string): Promise<BaseResult[]> => {
     };
     if (!team) delete query["$or"];
     const results: MatchData[] = await collection.find(query).toArray();
-    const rawResults = results.map(
-      (r): BaseResult => ({
-        homeTeam: teams.get(r.homeTeam),
-        awayTeam: teams.get(r.awayTeam),
+
+    const rawLabels: Labels[] = results.map(
+      (r): Labels => ({
         homeWin: isHomeWin(r),
         awayWin: isAwayWin(r),
         draw: isDraw(r)
       })
     );
-    return rawResults;
+
+    const labelValues: number[][] = flattenLabels(rawLabels);
+
+    const rawFeatures: Features[] = results.map(
+      (r): Features => ({
+        homeTeam: teams.get(r.homeTeam),
+        awayTeam: teams.get(r.awayTeam)
+      })
+    );
+
+    const featureValues: number[][][] = flattenFeatures(rawFeatures);
+    return {
+      labelValues,
+      featureValues,
+    }
   } catch (e) {
     console.error(e.message);
-    return [];
+    return {
+      labelValues: [],
+      featureValues: []
+    }
   }
 };
 
-export { getData as default, flattenLabels, flattenFeatures, isHomeWin, isAwayWin, isDraw };
+export { getTrainingData as default, flattenLabels, flattenFeatures, isHomeWin, isAwayWin, isDraw };

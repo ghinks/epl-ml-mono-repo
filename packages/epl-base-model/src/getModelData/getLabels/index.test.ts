@@ -1,24 +1,19 @@
-import getLabels from "./index";
-import { BaseResult } from "../index";
+import flattenLabels, { Labels } from "./index";
 
 describe("Label extraction from Base Results", (): void => {
-  const testData: BaseResult = {
-    homeTeam: "teamA",
-    awayTeam: "teamB",
+  const testData1: Labels = {
     homeWin: 1,
     awayWin: 0,
     draw: 0
   };
-  test("expect labels", (): void => {
-    const results = getLabels([testData]);
-    expect(results[0]).toMatchObject({
-      homeWin: testData.homeWin,
-      awayWin: testData.awayWin,
-      draw: testData.draw
-    });
-  });
-  test("expect 2 sets of labels", (): void => {
-    const results = getLabels([testData, testData]);
-    expect(results.length).toBe(2);
+  const testData2: Labels = {
+    homeWin: 0,
+    awayWin: 0,
+    draw: 1
+  };
+  test("expect flattened label data to match object properties", (): void => {
+    const results = flattenLabels([testData1, testData2]);
+    expect(results[0]).toMatchObject([1, 0, 0]);
+    expect(results[1][2]).toEqual(1);
   });
 });
