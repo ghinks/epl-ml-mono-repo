@@ -1,10 +1,7 @@
-import getData, {
-  BaseResult,
-  flattenLabels,
+import getTrainingData, {
   isHomeWin,
   isAwayWin,
   isDraw,
-  flattenFeatures
 } from "./index";
 // @ts-ignore
 import mongodb from "mongodb";
@@ -82,42 +79,17 @@ describe("Data Retrieval", (): void => {
       };
       expect(isDraw(result)).toBe(1);
     });
-    test("expect to get results for all teams", async (): Promise<
-      void
-      > => {
-      const results: BaseResult[] = await getData();
-      expect(results.length).toBeGreaterThan(0);
+    test("expect to get results for all teams", async (): Promise<void> => {
+      const { featureValues, labelValues } = await getTrainingData();
+      expect(featureValues.length).toBeGreaterThan(0);
+      expect(labelValues.length).toBeGreaterThan(0);
     });
-    test("expect to get winning match results for team1", async (): Promise<
-      void
-    > => {
-      const results: BaseResult[] = await getData();
-      expect(results.length).toBeGreaterThan(0);
-      expect(results[0].homeWin).toBeTruthy();
-    });
-    test("expect flatten labels", (): void => {
-      const rawData: BaseResult = {
-        // oneHot encoded
-        awayTeam: [1, 0, 0, 0],
-        homeTeam: [0, 1, 0, 0],
-        homeWin: 1,
-        awayWin: 0,
-        draw: 0
-      };
-      const flattened: number[][] = flattenLabels([rawData, rawData]);
-      expect(flattened.length).toBe(2);
-    });
-    test("expect to flatten features", (): void => {
-      const rawData: BaseResult = {
-        // oneHot encoded
-        awayTeam: [1, 0, 0, 0],
-        homeTeam: [0, 1, 0, 0],
-        homeWin: 1,
-        awayWin: 0,
-        draw: 0
-      };
-      const flattened: number[][][] = flattenFeatures([rawData, rawData]);
-      expect(flattened[0][0].length).toBe(4);
+    test("expect to get winning match results for team1", async (): Promise<void> => {
+      const { featureValues, labelValues } = await getTrainingData();
+      expect(labelValues.length).toBeGreaterThan(0);
+      expect(labelValues[0]).toMatchObject([1, 0, 0]);
+      expect(featureValues.length).toBeGreaterThan(0);
+      expect(featureValues[0][0][0]).toBe(1);
     });
   });
   describe("Failing Tests", (): void => {
@@ -156,11 +128,9 @@ describe("Data Retrieval", (): void => {
         errorSpy.mockRestore();
       }
     );
-    test("expect not to get match results for Accrington Stanley", async (): Promise<
-      void
-    > => {
-      const results: BaseResult[] = await getData("Arsenal");
-      expect(results.length).toBe(0);
+    test("expect not to get match results for Accrington Stanley", async (): Promise<void> => {
+      const { labelValues, featureValues } = await getTrainingData("Accrington Stanley");
+      expect(featureValues.length).toBe(0);
       expect(errorSpy).toHaveBeenCalled();
     });
   });
