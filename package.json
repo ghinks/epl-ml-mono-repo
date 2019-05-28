@@ -10,6 +10,7 @@
     "lerna-version": "lerna version --conventional-commits --yes",
     "pretest": "lerna bootstrap",
     "test": "lerna run test",
+    "lint": "lerna run lint",
     "wipelock": "find ./ -name \"package-lock.json\" -not -path \"*node_modules*\" -print -exec rm {} \\;",
     "build": "lerna run build",
     "watch": "lerna run watch --parallel"
