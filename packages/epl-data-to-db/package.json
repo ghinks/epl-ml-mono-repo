@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-data-to-db",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "take EPL match results and write to a DB",
   "main": "dist/index.js",
   "repository": {
@@ -20,7 +20,7 @@
     "tags"
   ],
   "author": "ghinks@yahoo.com",
-  "license": "Unlicense",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
@@ -42,7 +42,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "@gvhinks/epl-data-reader": "^1.0.9",
+    "@gvhinks/epl-data-reader": "^1.0.10",
     "mongodb": "^3.1.13"
   },
   "babel": {

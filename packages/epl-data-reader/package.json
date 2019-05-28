@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-data-reader",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "read data from json files with EPL match results",
   "main": "dist/index.js",
   "repository": {
@@ -20,7 +20,7 @@
     "tags"
   ],
   "author": "ghinks@yahoo.com",
-  "license": "Unlicense",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
