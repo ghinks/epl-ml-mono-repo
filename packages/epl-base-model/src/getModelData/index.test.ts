@@ -129,7 +129,7 @@ describe("Data Retrieval", (): void => {
       }
     );
     test("expect not to get match results for Accrington Stanley", async (): Promise<void> => {
-      const { labelValues, featureValues } = await getTrainingData("Accrington Stanley");
+      const { featureValues } = await getTrainingData("Accrington Stanley");
       expect(featureValues.length).toBe(0);
       expect(errorSpy).toHaveBeenCalled();
     });

@@ -8,9 +8,7 @@ describe("Read test data files", (): void => {
     const files: string[] = await findDataFiles(testDataPath);
     expect(files.length).toBe(2);
   });
-  test("expect to read match result data from test data", async (): Promise<
-    void
-  > => {
+  test("expect to read match result data from test data", async (): Promise<void> => {
     const testDataPath: string = path.join(__dirname, "testData");
     const files: string[] = await findDataFiles(testDataPath);
     const fullyQualifiedFiles: string[] = files.map(
