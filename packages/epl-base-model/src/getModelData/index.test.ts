@@ -4,7 +4,7 @@ import getData, {
   isHomeWin,
   isAwayWin,
   isDraw,
-  FlattenedProps, flattenFeatures
+  flattenFeatures
 } from "./index";
 // @ts-ignore
 import mongodb from "mongodb";
