@@ -40,15 +40,34 @@ const isDraw = (result): number =>
     ? 1
     : 0;
 
-export interface FlattenedProps {
+/*export interface FlattenedProps {
   labelValues: number[][];
   featureValues: number[][];
-}
+}*/
 
-const flattenResults = (rawData: BaseResult[]): FlattenedProps => {
+const flattenLabels = (rawData: BaseResult[]): number[][] => {
+  const labels = getLabels(rawData);
+  const flattenPropsToArray = <T>(o: T[]): number[][] => o.reduce((a, c): number[] => {
+    return [...a, [...Object.values(c)]];
+  }, []);
+  const labelsArray: number[][]= flattenPropsToArray(labels);
+  return labelsArray;
+};
+
+const flattenFeatures =  (rawData: BaseResult[]): number[][][] => {
+  const features: Features[] = getFeatures(rawData);
+  const flattenPropsToArray = <T>(o: T[]): number[][][] => o.reduce((a, c): number[][] => {
+    return [...a, [...Object.values(c)]];
+  }, []);
+  const featureArray: number[][][]= flattenPropsToArray(features);
+  return featureArray;
+};
+
+/*
+const flattenLabels = (rawData: BaseResult[]): FlattenedProps => {
   const features = getFeatures(rawData);
   const labels = getLabels(rawData);
-  const flattenPropsToArray = <T>(o: Features[] | Labels[]): T[][] => o.reduce((a, c): T[] => {
+  const flattenPropsToArray = <T>(o: T[]): number[][] => o.reduce((a, c): number[] => {
     return [...a, [...Object.values(c)]];
   }, []);
   const labelsArray: number[][]= flattenPropsToArray(labels);
@@ -58,6 +77,7 @@ const flattenResults = (rawData: BaseResult[]): FlattenedProps => {
     featureValues: featureArray,
   };
 };
+ */
 
 const getData = async (team?: string): Promise<BaseResult[]> => {
   try {
@@ -89,4 +109,4 @@ const getData = async (team?: string): Promise<BaseResult[]> => {
   }
 };
 
-export { getData as default, flattenResults, isHomeWin, isAwayWin, isDraw };
+export { getData as default, flattenLabels, flattenFeatures, isHomeWin, isAwayWin, isDraw };

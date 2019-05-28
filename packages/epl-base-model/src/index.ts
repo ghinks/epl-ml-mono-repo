@@ -1,5 +1,5 @@
 import * as tf from "@tensorflow/tfjs-node";
-import getTrainingData, { BaseResult, flattenResults } from "./getModelData";
+import getTrainingData, { BaseResult, flattenLabels, flattenFeatures } from "./getModelData";
 
 const createModel = async (): Promise<tf.Sequential> => {
   const model: tf.Sequential = tf.sequential();
@@ -11,7 +11,8 @@ const createModel = async (): Promise<tf.Sequential> => {
   model.summary();
   model.compile({optimizer: tf.train.adam(0.001), loss: 'meanSquaredError'});
   const rawData: BaseResult[] = await getTrainingData();
-  const { labelValues, featureValues } = flattenResults(rawData);
+  const labelValues: number[][]= flattenLabels(rawData);
+  const featureValues: number[][][] = flattenFeatures(rawData);
   const numTeamsInLeague: number = (featureValues[0][0]).length;
   const featureTensors = tf.tensor3d(featureValues, [featureValues.length, 2, numTeamsInLeague], 'int32');
   const labelTensors = tf.tensor2d(labelValues, [labelValues.length, 3], 'int32');
@@ -43,6 +44,7 @@ const createModel = async (): Promise<tf.Sequential> => {
   const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,36], 'int32');
   const result = model.predict(testData);
   console.log(Array(100).join("="));
+  // @ts-ignore
   console.log(await result.data());
   console.log(Array(100).join("="));
   return model;

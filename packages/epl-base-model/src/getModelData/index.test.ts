@@ -1,10 +1,10 @@
 import getData, {
   BaseResult,
-  flattenResults,
+  flattenLabels,
   isHomeWin,
   isAwayWin,
   isDraw,
-  FlattenedProps
+  FlattenedProps, flattenFeatures
 } from "./index";
 // @ts-ignore
 import mongodb from "mongodb";
@@ -95,7 +95,7 @@ describe("Data Retrieval", (): void => {
       expect(results.length).toBeGreaterThan(0);
       expect(results[0].homeWin).toBeTruthy();
     });
-    test("expect to get an array of arrays of values back", (): void => {
+    test("expect flatten labels", (): void => {
       const rawData: BaseResult = {
         // oneHot encoded
         awayTeam: [1, 0, 0, 0],
@@ -104,8 +104,20 @@ describe("Data Retrieval", (): void => {
         awayWin: 0,
         draw: 0
       };
-      const flattened: FlattenedProps = flattenResults([rawData, rawData]);
-      expect(flattened.labelValues.length).toBe(2);
+      const flattened: number[][] = flattenLabels([rawData, rawData]);
+      expect(flattened.length).toBe(2);
+    });
+    test("expect to flatten features", (): void => {
+      const rawData: BaseResult = {
+        // oneHot encoded
+        awayTeam: [1, 0, 0, 0],
+        homeTeam: [0, 1, 0, 0],
+        homeWin: 1,
+        awayWin: 0,
+        draw: 0
+      };
+      const flattened: number[][][] = flattenFeatures([rawData, rawData]);
+      expect(flattened[0][0].length).toBe(4);
     });
   });
   describe("Failing Tests", (): void => {
