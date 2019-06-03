@@ -35,7 +35,8 @@ const createModel = async (): Promise<tf.Sequential> => {
     }
      */
   };
-  const history = await model.fit(featureTensors, labelTensors, fitArgs);
+  // const history =
+  await model.fit(featureTensors, labelTensors, fitArgs);
   // console.log(history);
   // const Arsenal = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
   const Chelsea = [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];

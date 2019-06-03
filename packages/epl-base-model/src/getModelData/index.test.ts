@@ -3,8 +3,7 @@ import getTrainingData, {
   isAwayWin,
   isDraw,
 } from "./index";
-// @ts-ignore
-import mongodb from "mongodb";
+import * as mongodb from "mongodb";
 jest.mock("mongodb");
 
 describe("Data Retrieval", (): void => {

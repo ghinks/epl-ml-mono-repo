@@ -37,6 +37,7 @@
     "jest": "^24.1.0",
     "prettier": "^1.17.0",
     "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.3.3"
   },
   "dependencies": {
@@ -114,6 +115,12 @@
     "testMatch": [
       "**/*.test.ts"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "diagnostics": false
+      }
+    }
   }
 }
