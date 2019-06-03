@@ -8,7 +8,7 @@
     "type": "git"
   },
   "scripts": {
-    "clean": "rimraf dist && rimraf definitions",
+    "clean": "rimraf dist",
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "cross-env NODE_ENV=test jest src",

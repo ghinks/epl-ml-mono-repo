@@ -3,12 +3,15 @@
     "outDir": "./dist",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "esModuleInterop": true,
+    "module": "CommonJS",
     "declaration": true,
     "target": "esnext"
   },
   "include": [
-    "src/**/*"
+    "./src/**/*"
   ],
-  "exclude": []
+  "exclude": [
+    "./src/**/*.spec.ts",
+    "./src/**/*.test.ts"
+  ]
 }
