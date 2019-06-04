@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-base-model",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "initial base model",
   "main": "dist/index.js",
   "repository": {
@@ -43,8 +43,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "@gvhinks/epl-data-reader": "^1.0.10",
-    "@gvhinks/epl-data-to-db": "^1.0.10",
+    "@gvhinks/epl-data-reader": "^1.0.11",
+    "@gvhinks/epl-data-to-db": "^1.0.11",
     "@tensorflow/tfjs-node": "^1.0.2",
     "@types/mongodb": "^3.1.23",
     "mongodb": "^3.1.13"
