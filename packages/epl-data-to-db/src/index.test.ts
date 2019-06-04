@@ -1,6 +1,6 @@
 import writeToDB, { renameProps, MatchData } from "./index";
 import { MatchResult } from "@gvhinks/epl-data-reader";
-import mongodb from "mongodb";
+import * as mongodb from "mongodb";
 jest.mock("mongodb");
 
 describe("Raw Data Transformations", (): void => {

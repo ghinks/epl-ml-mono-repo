@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-base-model",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "initial base model",
   "main": "dist/index.js",
   "repository": {
@@ -8,12 +8,12 @@
     "type": "git"
   },
   "scripts": {
-    "clean": "rimraf dist && rimraf definitions",
-    "build": "babel src --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
-    "watch": "babel --watch src --verbose  --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
-    "postbuild": "tsc --emitDeclarationOnly --outDir dist",
+    "clean": "rimraf dist",
+    "build": "tsc",
+    "watch": "tsc --watch",
     "test": "cross-env NODE_ENV=test jest src",
     "lint": "eslint \"src/**/*.ts\"",
+    "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose",
     "pretty": "prettier --write src/**/*.ts"
   },
   "keywords": [
@@ -37,21 +37,19 @@
     "jest": "^24.1.0",
     "prettier": "^1.17.0",
     "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.3.3"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "@gvhinks/epl-data-reader": "^1.0.10",
-    "@gvhinks/epl-data-to-db": "^1.0.10",
+    "@gvhinks/epl-data-reader": "^1.0.11",
+    "@gvhinks/epl-data-to-db": "^1.0.11",
     "@tensorflow/tfjs-node": "^1.0.2",
     "@types/mongodb": "^3.1.23",
     "mongodb": "^3.1.13"
   },
   "babel": {
-    "include": [
-      "src/**/*.ts"
-    ],
     "presets": [
       [
         "@babel/preset-env",
@@ -60,9 +58,6 @@
             "node": "10.0.0"
           }
         }
-      ],
-      [
-        "@babel/preset-typescript"
       ]
     ],
     "plugins": [
@@ -120,6 +115,12 @@
     "testMatch": [
       "**/*.test.ts"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "diagnostics": false
+      }
+    }
   }
 }

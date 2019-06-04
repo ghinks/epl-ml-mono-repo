@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-data-reader",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "read data from json files with EPL match results",
   "main": "dist/index.js",
   "repository": {
@@ -8,12 +8,12 @@
     "type": "git"
   },
   "scripts": {
-    "clean": "rimraf dist && rimraf definitions",
-    "build": "babel src --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
-    "watch": "babel --watch src --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
-    "postbuild": "tsc --emitDeclarationOnly --outDir definitions && cp definitions/index.d.ts dist/",
+    "clean": "rimraf dist",
+    "build": "tsc",
+    "watch": "tsc --watch",
     "test": "cross-env NODE_ENV=test jest src",
     "lint": "eslint \"src/**/*.ts\"",
+    "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose",
     "pretty": "prettier --write src/**/*.ts"
   },
   "keywords": [
@@ -37,6 +37,7 @@
     "jest": "^24.1.0",
     "prettier": "^1.17.0",
     "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.3.3"
   },
   "dependencies": {
@@ -55,8 +56,7 @@
             "node": "10.0.0"
           }
         }
-      ],
-      "@babel/preset-typescript"
+      ]
     ],
     "plugins": [
       "@babel/plugin-transform-runtime"
@@ -114,6 +114,12 @@
     "testMatch": [
       "**/*.test.ts"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "diagnostics": false
+      }
+    }
   }
 }

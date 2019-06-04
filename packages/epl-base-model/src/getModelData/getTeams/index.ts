@@ -15,7 +15,7 @@ const getNames = async (client: mongodb.MongoClient): Promise<Map<string, number
     const oneHot: number[] = Array(names.length).fill(0);
     oneHot[k] = 1;
     map.set(names[k], oneHot);
-    console.log(`${names[k]} = ${oneHot}`)
+    //  console.log(`${names[k]} = ${oneHot}`)
   });
   // console.log(map);
   return map;

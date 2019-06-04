@@ -1,6 +1,5 @@
 import { findDataFiles, readMatchResult } from "./index";
-// @ts-ignore
-import path from "path";
+import * as path from "path";
 
 describe("Read test data files", (): void => {
   test("expect to find 2 json files", async (): Promise<void> => {

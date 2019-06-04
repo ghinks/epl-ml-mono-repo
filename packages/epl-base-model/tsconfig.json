@@ -3,7 +3,7 @@
     "outDir": "./dist",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "esModuleInterop": true,
+    "module": "CommonJS",
     "declaration": true,
     "target": "esnext"
   },
