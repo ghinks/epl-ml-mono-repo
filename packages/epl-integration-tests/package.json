@@ -9,8 +9,8 @@
   },
   "scripts": {
     "integration": "jest",
-    "build": "babel src --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
-    "watch": "babel --watch src --out-dir dist --extensions \".ts\" --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\""
+    "build": "tsc",
+    "watch": "tsc --watch"
   },
   "keywords": [],
   "author": "",
