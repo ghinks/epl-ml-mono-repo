@@ -1,5 +1,5 @@
 import * as tf from "@tensorflow/tfjs-node";
-import getTrainingData from "./getModelData";
+import getTrainingData, { TrainingData } from "./getModelData";
 
 const createModel = async (): Promise<tf.Sequential> => {
   const model: tf.Sequential = tf.sequential();
@@ -30,4 +30,4 @@ const createModel = async (): Promise<tf.Sequential> => {
   return model;
 };
 
-export { getTrainingData, createModel as default };
+export { getTrainingData, createModel as default, TrainingData };
