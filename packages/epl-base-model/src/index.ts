@@ -1,8 +1,12 @@
 import * as tf from "@tensorflow/tfjs-node";
 import getTrainingData, { TrainingData } from "./getModelData";
 
+// import * as fs from 'fs';
+
 const createModel = async (): Promise<tf.Sequential> => {
-  const model: tf.Sequential = tf.sequential();
+  const model: tf.Sequential = tf.sequential({
+    name: "predict"
+  });
   // we have 3424 test sets
   // each of 2 * 36
   model.add(tf.layers.dense({inputShape: [2,36], units: 3, useBias: true, name:"teams_layer"}));
@@ -19,14 +23,6 @@ const createModel = async (): Promise<tf.Sequential> => {
     verbose: 0
   };
   await model.fit(featureTensors, labelTensors, fitArgs);
-  const Chelsea = [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-  const WestHam = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0];
-  const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,36], 'int32');
-  const result = model.predict(testData);
-  console.log(Array(100).join("="));
-  // @ts-ignore
-  console.log(await result.data());
-  console.log(Array(100).join("="));
   return model;
 };
 
