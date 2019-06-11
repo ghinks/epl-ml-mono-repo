@@ -1,8 +1,12 @@
 import findMatchesInPath , { MatchResult } from "@gvhinks/epl-data-reader";
 import writeToDB from "@gvhinks/epl-data-to-db";
 import createModel, { getTrainingData, TrainingData } from "@gvhinks/epl-base-model";
+import * as tf from "@tensorflow/tfjs-node";
 
 describe("Integration Tests", (): void => {
+  const LONG_TEST = 30 * 1000;
+  const Chelsea = [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  const WestHam = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0];
   test("expect to git stuff back after you push data into the DB", async () => {
     const stuff: MatchResult[] = await findMatchesInPath("/Users/ghinks/dev/match-analysis/packages/epl-data-reader/data");
     expect(stuff.length).toBeGreaterThan(0);
@@ -37,6 +41,13 @@ describe("Integration Tests", (): void => {
   });
   test("expect to create a model", async () => {
     const model = await createModel();
-    expect(model).toBeTruthy();
-  }, 1000 * 1000);
+    const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,36], 'int32');
+    const prediction = model.predict(testData);
+    // @ts-ignore
+    const result = await prediction.data();
+    expect(result.length).toBe(3);
+    const sumOfWeights = result[0] + result[1] + result[2];
+    expect(sumOfWeights).toBeGreaterThan(0.90);
+    expect(sumOfWeights).toBeLessThan(1.15);
+  }, LONG_TEST);
 });
