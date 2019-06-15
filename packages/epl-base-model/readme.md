@@ -54,3 +54,9 @@ There have been 36 teams in the historical data and the one hot encoding for thi
 For a home team a model will be built that reflects all previous results against any of the other 35 teams.
 
 When a model has been built predictions will be made against a set of test data.
+
+# testing
+
+The test set, which was kept back from the training data produced a 60% accuracy score
+on the first pass without any model tuning.
+
