@@ -107,11 +107,12 @@ describe("Model Creation from test data", (): void => {
         homeTeam: string,
         awayTeam: string,
         standardizedResult: number[],
+        actualResult: number[],
+        comparison: boolean,
         result: number[]
       };
       let mytests = testFeatureValues.map((hotEncodedNames, i) => {
         const humanRdName: string = teamNames.get(`${hotEncodedNames[0]}`);
-        console.log(humanRdName);
         // map float to unit 1 and 0
         const standardize = (prediction: number[]): number[] => {
           const maxValue = prediction.reduce((a, c) => {
@@ -136,6 +137,8 @@ describe("Model Creation from test data", (): void => {
             homeTeam: teamNames.get(`${hotEncodedNames[0]}`),
             awayTeam: teamNames.get(`${hotEncodedNames[1]}`),
             standardizedResult: standardize(result),
+            actualResult: testLabelValues[i],
+            comparison: `${standardize(result)}` === `${testLabelValues[i]}`,
             result
           };
         };
@@ -143,7 +146,17 @@ describe("Model Creation from test data", (): void => {
       });
       const predTests: Promise<PredictResult>[] = mytests.map(t => t());
       const matchResults: PredictResult[] = await Promise.all(predTests);
-      matchResults.forEach(r => console.log(r));
+      let total = 0;
+      let matches = 0;
+      matchResults.forEach(r => {
+        console.log(r);
+        total += 1;
+        if (r.comparison) {
+          matches++;
+        }
+      });
+      console.log(`total = ${total} success rate = ${matches/total}`);
+      expect(matches/total).toBeGreaterThan(0.5);
     }, LONG_TIMEOUT);
   });
 });
