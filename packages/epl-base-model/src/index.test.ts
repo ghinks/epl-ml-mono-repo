@@ -23,7 +23,7 @@ describe("Model Creation from test data", (): void => {
     };
     getModelData.mockResolvedValue(trainingTestData);
   }
-  describe("model training", () => {
+  describe("model training", (): void => {
     beforeAll(async (): Promise<void> => {
       await createModelTrainingData();
     });
@@ -46,7 +46,7 @@ describe("Model Creation from test data", (): void => {
       expect(sumOfWeights).toBeLessThan(1.15);
     }, LONG_TIMEOUT);
   });
-  describe("model testing", () => {
+  describe("model testing", (): void => {
     let model: tf.Sequential;
     let testFeatureValues;
     let testLabelValues;
@@ -94,8 +94,10 @@ describe("Model Creation from test data", (): void => {
       await createModelTrainingData();
       model = await createModel();
       // change the lookup form string/number[]
-      // @ts-ignore
-      teamNames = new Map(Array.from(teamsArray).reduce((a, c) => {return [...a, [`${c[1]}`, c[0]]}, []));
+      const teams: string[] = teamsArray.reduce((a, c): string[] => {
+        return [...a, [`${c[1]}`, c[0]]]
+      }, []);
+      teamNames = new Map(teams);
       testFeatureValues = JSON.parse(await fsProm.readFile(path.join(__dirname, "./testData/testingFeatureValues.json"), "utf-8"));
       testLabelValues = JSON.parse(await fsProm.readFile(path.join(__dirname, "./testData/testingLabelValues.json"), "utf-8"));
     }, LONG_TIMEOUT);
@@ -104,24 +106,24 @@ describe("Model Creation from test data", (): void => {
     // on the resultant model.
     test("expect the model to predict similar results to test data", async (): Promise<void> => {
       interface PredictResult {
-        homeTeam: string,
-        awayTeam: string,
-        standardizedResult: number[],
-        actualResult: number[],
-        comparison: boolean,
-        result: number[]
+        homeTeam: string;
+        awayTeam: string;
+        standardizedResult: number[];
+        actualResult: number[];
+        comparison: boolean;
+        result: number[];
       };
-      let mytests = testFeatureValues.map((hotEncodedNames, i) => {
-        const humanRdName: string = teamNames.get(`${hotEncodedNames[0]}`);
+      type AsyncPredResult = () => Promise<PredictResult>;
+      let mytests = testFeatureValues.map((hotEncodedNames, i): AsyncPredResult => {
         // map float to unit 1 and 0
         const standardize = (prediction: number[]): number[] => {
-          const maxValue = prediction.reduce((a, c) => {
+          const maxValue = prediction.reduce((a, c): number => {
             if (c > a) {
               return c
             }
             return a;
           }, 0)
-          return prediction.map((v) => {
+          return prediction.map((v): number => {
             if (v < maxValue) {
               return 0;
             }
@@ -144,11 +146,11 @@ describe("Model Creation from test data", (): void => {
         };
         return predictionTest;
       });
-      const predTests: Promise<PredictResult>[] = mytests.map(t => t());
+      const predTests: Promise<PredictResult>[] = mytests.map((t): Promise<PredictResult> => t());
       const matchResults: PredictResult[] = await Promise.all(predTests);
       let total = 0;
       let matches = 0;
-      matchResults.forEach(r => {
+      matchResults.forEach((r): void => {
         console.log(r);
         total += 1;
         if (r.comparison) {
