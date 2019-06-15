@@ -29,18 +29,16 @@ const isDraw = (result): number =>
     ? 1
     : 0;
 
-const getTrainingData = async (team?: string): Promise<TrainingData> => {
+const getTrainingData = async (dateReg: RegExp = /^20[0-9][0-8].*/): Promise<TrainingData> => {
   try {
     const client: mongodb.MongoClient = await mongodb.MongoClient.connect(url, {
       useNewUrlParser: true
     });
-    const teams: Map<string, number[]> = await getNames(client);
+    const teams: Map<string, number[]> = await getNames();
     const collection = getCollection(client);
     const query = {
-      Date: { $regex: /^20[0-9][0-8].*/ },
-      $or: [{ homeTeam: team }, { awayTeam: team }]
+      Date: { $regex: dateReg },
     };
-    if (!team) delete query["$or"];
     const results: MatchData[] = await collection.find(query).toArray();
 
     const rawLabels: Labels[] = results.map(
@@ -74,4 +72,4 @@ const getTrainingData = async (team?: string): Promise<TrainingData> => {
   }
 };
 
-export { getTrainingData as default, flattenLabels, flattenFeatures, isHomeWin, isAwayWin, isDraw };
+export { getTrainingData as default, flattenLabels, flattenFeatures, isHomeWin, isAwayWin, isDraw, getNames };
