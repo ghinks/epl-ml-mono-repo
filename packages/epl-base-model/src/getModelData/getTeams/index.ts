@@ -1,10 +1,13 @@
 import * as mongodb from "mongodb";
-import { dbName, collectionName } from "../constants";
+import { dbName, collectionName, url } from "../constants";
 
 const getCollection = (client: mongodb.MongoClient): mongodb.Collection =>
   client.db(dbName).collection(collectionName);
 
-const getNames = async (client: mongodb.MongoClient): Promise<Map<string, number[]>> => {
+const getNames = async (): Promise<Map<string, number[]>> => {
+  const client: mongodb.MongoClient = await mongodb.MongoClient.connect(url, {
+    useNewUrlParser: true
+  });
   const collection = getCollection(client);
   // @ts-ignore
   const names: string[] = (await collection.distinct("homeTeam")).sort();
