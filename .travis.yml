@@ -1,6 +1,9 @@
 language: node_js
 os:
   - linux
+node_js:
+  - "latest"
+  - "current"
 
 script:
   - npm test
