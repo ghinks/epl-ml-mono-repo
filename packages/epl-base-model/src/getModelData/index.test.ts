@@ -127,8 +127,8 @@ describe("Data Retrieval", (): void => {
         errorSpy.mockRestore();
       }
     );
-    test("expect not to get match results for Accrington Stanley", async (): Promise<void> => {
-      const { featureValues } = await getTrainingData("Accrington Stanley");
+    test("expect not to get match results", async (): Promise<void> => {
+      const { featureValues } = await getTrainingData(/^20[0-9][0-8].*/);
       expect(featureValues.length).toBe(0);
       expect(errorSpy).toHaveBeenCalled();
     });

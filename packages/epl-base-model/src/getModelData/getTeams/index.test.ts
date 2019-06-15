@@ -1,5 +1,6 @@
 import getNames from "./index";
 import * as mongodb from "mongodb";
+jest.mock("mongodb");
 
 describe("Team names", (): void => {
   // as the client is passed in we can mock
@@ -13,6 +14,10 @@ describe("Team names", (): void => {
       })
     })
   };
+
+  beforeAll((): void => {
+    mongodb.MongoClient.connect.mockResolvedValue(mockClient);
+  });
 
   it("expect to get names", async (): Promise<void> => {
     const names = await getNames(mockClient);

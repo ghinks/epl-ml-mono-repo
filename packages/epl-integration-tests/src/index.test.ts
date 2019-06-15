@@ -1,17 +1,26 @@
 import findMatchesInPath , { MatchResult } from "@gvhinks/epl-data-reader";
 import writeToDB from "@gvhinks/epl-data-to-db";
-import createModel, { getTrainingData, BaseResult } from "@gvhinks/epl-base-model";
+import createModel, { getTrainingData, TrainingData, getNames } from "@gvhinks/epl-base-model";
+import * as tf from "@tensorflow/tfjs-node";
+// import * as fs from "fs";
 
 describe("Integration Tests", (): void => {
+  const LONG_TEST = 30 * 1000;
+  const Chelsea = [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  const WestHam = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0];
+  let teams;
+  beforeAll(async (): Promise<void> => {
+    teams = await getNames();
+  });
   test("expect to git stuff back after you push data into the DB", async () => {
     const stuff: MatchResult[] = await findMatchesInPath("/Users/ghinks/dev/match-analysis/packages/epl-data-reader/data");
     expect(stuff.length).toBeGreaterThan(0);
     const result = await writeToDB(stuff);
     expect(result).toBe(true);
   });
-  test("expect to get the model date", async() => {
-    const results: BaseResult[] = await getTrainingData("Arsenal");
-    expect(results.length).toBeGreaterThan(0);
+  test("expect to get data for Arsenal", async() => {
+    const results: TrainingData = await getTrainingData();
+    expect(results.labelValues.length).toBeGreaterThan(0);
     interface Aggregation {
       winCount: number;
       drawCount: number;
@@ -22,10 +31,11 @@ describe("Integration Tests", (): void => {
       drawCount: 0,
       looseCount: 0
     };
-    const summary = results.reduce((a: Aggregation, r: BaseResult) => {
-      if (r.draw) {
+    // one hot encoding W, D, L
+    const summary = results.labelValues.reduce((a: Aggregation, r: TrainingData) => {
+      if (r[2]) {
         a.drawCount++;
-      } else if (r.win) {
+      } else if (r[0]) {
         a.winCount++
       } else a.looseCount++;
       return a;
@@ -35,8 +45,22 @@ describe("Integration Tests", (): void => {
     expect(summary.drawCount).toBeGreaterThan(0);
 
   });
-  test("expect to create a model", async () => {
+  test("expect to create a model and make a prediction", async () => {
     const model = await createModel();
-    expect(model).toBeTruthy();
-  }, 1000 * 1000);
+    const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,36], 'int32');
+    const prediction = model.predict(testData);
+    // @ts-ignore
+    const result = await prediction.data();
+    expect(result.length).toBe(3);
+    const sumOfWeights = result[0] + result[1] + result[2];
+    expect(sumOfWeights).toBeGreaterThan(0.90);
+    expect(sumOfWeights).toBeLessThan(1.15);
+  }, LONG_TEST);
+  test("test a model using the reserved 2019 test data set", async () => {
+    const model = await createModel();
+    const { labelValues: testLabels, featureValues: testFeatures } = await getTrainingData(/^2019.*/);
+    expect(testLabels.length).toBeGreaterThan(0);
+    // fs.writeFileSync(__dirname + "testingLabels.json", JSON.stringify(testLabels, null, 2), "utf-8");
+    // fs.writeFileSync(__dirname + "testingFeatures.json", JSON.stringify(testFeatures, null, 2), "utf-8");
+  }, LONG_TEST);
 });
