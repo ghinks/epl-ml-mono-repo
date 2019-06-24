@@ -4,8 +4,10 @@ import createModel, { getTrainingData, TrainingData, getNames } from "@gvhinks/e
 import * as tf from "@tensorflow/tfjs-node";
 // import * as fs from "fs";
 
+const LONG_TEST = 60 * 1000;
+
 describe("Integration Tests", (): void => {
-  const LONG_TEST = 30 * 1000;
+
   const Chelsea = [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
   const WestHam = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0];
   let teams;
@@ -43,8 +45,7 @@ describe("Integration Tests", (): void => {
     expect(summary.winCount).toBeGreaterThan(0);
     expect(summary.looseCount).toBeGreaterThan(0);
     expect(summary.drawCount).toBeGreaterThan(0);
-
-  });
+  }, LONG_TEST);
   test("expect to create a model and make a prediction", async () => {
     const model = await createModel();
     const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,36], 'int32');
@@ -60,7 +61,10 @@ describe("Integration Tests", (): void => {
     const model = await createModel();
     const { labelValues: testLabels, featureValues: testFeatures } = await getTrainingData(/^2019.*/);
     expect(testLabels.length).toBeGreaterThan(0);
-    // fs.writeFileSync(__dirname + "testingLabels.json", JSON.stringify(testLabels, null, 2), "utf-8");
-    // fs.writeFileSync(__dirname + "testingFeatures.json", JSON.stringify(testFeatures, null, 2), "utf-8");
+    const testData = tf.tensor3d([ ...testFeatures[0][0], ...testFeatures[0][1]], [1,2,36], 'int32');
+    const prediction = model.predict(testData);
+    const result = await prediction.data();
+    expect(result.length).toBe(3);
+    console.log(`predicted result = ${result} and testLabel is ${testLabels[0]}`);
   }, LONG_TEST);
 });
