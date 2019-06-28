@@ -4,8 +4,7 @@ import getModelData from "./getModelData";
 import TrainingData from "./getModelData";
 import * as fs from 'fs';
 import * as path from 'path';
-import { createPredictionResult, AsyncPredResult, createArrPrdFuncReqs, createTeamNameLookup, PredictResult } from "./utils";
-
+import { createArrPrdFuncReqs, createTeamNameLookup, PredictResult } from "@gvhinks/epl-utilities";
 
 jest.mock("./getModelData");
 const fsProm = fs.promises;
@@ -64,14 +63,6 @@ describe("Model Creation from test data", (): void => {
     // data set that was held back from the initial full data set in order to run these
     // on the resultant model.
     test("expect the model to predict similar results to test data", async (): Promise<void> => {
-/*      interface PredictResult {
-        homeTeam: string;
-        awayTeam: string;
-        standardizedResult: number[];
-        actualResult: number[];
-        comparison: boolean;
-        result: number[];
-      };*/
       let mytests = createArrPrdFuncReqs(model, testFeatureValues, teamNames, testLabelValues);
       const predTests: Promise<PredictResult>[] = mytests.map((t): Promise<PredictResult> => t());
       const matchResults: PredictResult[] = await Promise.all(predTests);

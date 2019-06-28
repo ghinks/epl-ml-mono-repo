@@ -2,14 +2,14 @@ import findMatchesInPath , { MatchResult } from "@gvhinks/epl-data-reader";
 import writeToDB from "@gvhinks/epl-data-to-db";
 import createModel, { getTrainingData, TrainingData, getNames } from "@gvhinks/epl-base-model";
 import * as tf from "@tensorflow/tfjs-node";
-// import * as fs from "fs";
+import { createPredictionResult, AsyncPredResult, createArrPrdFuncReqs, createTeamNameLookup, PredictResult, getOneHotEncoding } from "@gvhinks/epl-utilities";
 
-const LONG_TEST = 60 * 1000;
+const LONG_TEST = 2 * 60 * 1000;
 
 describe("Integration Tests", (): void => {
 
-  const Chelsea = [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-  const WestHam = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0];
+  const Chelsea = getOneHotEncoding("Chelsea");
+  const WestHam = getOneHotEncoding("West Ham");
   let teams;
   beforeAll(async (): Promise<void> => {
     teams = await getNames();
@@ -57,14 +57,23 @@ describe("Integration Tests", (): void => {
     expect(sumOfWeights).toBeGreaterThan(0.90);
     expect(sumOfWeights).toBeLessThan(1.15);
   }, LONG_TEST);
-  test("test a model using the reserved 2019 test data set", async () => {
+  test("test a model using the reserved 2019 test data set", async (): Promise<void> => {
+    let allTeamNames = createTeamNameLookup();
     const model = await createModel();
     const { labelValues: testLabels, featureValues: testFeatures } = await getTrainingData(/^2019.*/);
-    expect(testLabels.length).toBeGreaterThan(0);
-    const testData = tf.tensor3d([ ...testFeatures[0][0], ...testFeatures[0][1]], [1,2,36], 'int32');
-    const prediction = model.predict(testData);
-    const result = await prediction.data();
-    expect(result.length).toBe(3);
-    console.log(`predicted result = ${result} and testLabel is ${testLabels[0]}`);
+    let mytests = createArrPrdFuncReqs(model, testFeatures, allTeamNames, testLabels);
+    const predTests: Promise<PredictResult>[] = mytests.map((t): Promise<PredictResult> => t());
+    const matchResults: PredictResult[] = await Promise.all(predTests);
+    let total = 0;
+    let matches = 0;
+    matchResults.forEach((r): void => {
+      console.log(r);
+      total += 1;
+      if (r.comparison) {
+        matches++;
+      }
+    });
+    console.log(`total = ${total} success rate = ${matches/total}`);
+    expect(matches/total).toBeGreaterThan(0.5);
   }, LONG_TEST);
 });
