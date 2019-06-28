@@ -45,7 +45,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "@babel/runtime": "^7.3.1"
+    "@babel/runtime": "^7.3.1",
+    "@tensorflow/tfjs-node": "^1.2.3"
   },
   "babel": {
     "include": [
