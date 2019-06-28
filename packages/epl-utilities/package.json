@@ -1,11 +1,19 @@
 {
-  "name": "@gvhinks/epl-data-to-db",
+  "name": "@gvhinks/epl-utilities",
   "version": "1.0.11",
-  "description": "take EPL match results and write to a DB",
+  "description": "utilities used for EPL model testing",
+  "keywords": [
+    "epl",
+    "monorepo",
+    "tensorflow"
+  ],
+  "author": "Glenn Hinks <ghinks@yahoo.com>",
+  "homepage": "https://github.com/ghinks/epl-ml-mono-repo#readme",
+  "license": "MIT",
   "main": "dist/index.js",
   "repository": {
-    "url": "https://github.com/ghinks/epl-ml-mono-repo.git",
-    "type": "git"
+    "type": "git",
+    "url": "git+https://github.com/ghinks/epl-ml-mono-repo.git"
   },
   "scripts": {
     "clean": "rimraf dist",
@@ -16,11 +24,6 @@
     "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose",
     "pretty": "prettier --write src/**/*.ts"
   },
-  "keywords": [
-    "tags"
-  ],
-  "author": "ghinks@yahoo.com",
-  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "7.4.4",
     "@babel/core": "7.4.5",
@@ -43,9 +46,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "@gvhinks/epl-data-reader": "^1.0.11",
-    "@gvhinks/epl-utilities": "^1.0.11",
-    "mongodb": "^3.1.13"
+    "@tensorflow/tfjs-node": "^1.2.3"
   },
   "babel": {
     "include": [
@@ -116,10 +117,6 @@
     "collectCoverage": true,
     "testMatch": [
       "**/*.test.ts"
-    ],
-    "coverageReporters": [
-      "text",
-      "html"
     ],
     "testEnvironment": "node",
     "preset": "ts-jest",

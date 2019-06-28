@@ -2,12 +2,14 @@ import findMatchesInPath , { MatchResult } from "@gvhinks/epl-data-reader";
 import writeToDB from "@gvhinks/epl-data-to-db";
 import createModel, { getTrainingData, TrainingData, getNames } from "@gvhinks/epl-base-model";
 import * as tf from "@tensorflow/tfjs-node";
-// import * as fs from "fs";
+import { createPredictionResult, AsyncPredResult, createArrPrdFuncReqs, createTeamNameLookup, PredictResult, getOneHotEncoding } from "@gvhinks/epl-utilities";
+
+const LONG_TEST = 2 * 60 * 1000;
 
 describe("Integration Tests", (): void => {
-  const LONG_TEST = 30 * 1000;
-  const Chelsea = [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-  const WestHam = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0];
+
+  const Chelsea = getOneHotEncoding("Chelsea");
+  const WestHam = getOneHotEncoding("West Ham");
   let teams;
   beforeAll(async (): Promise<void> => {
     teams = await getNames();
@@ -43,8 +45,7 @@ describe("Integration Tests", (): void => {
     expect(summary.winCount).toBeGreaterThan(0);
     expect(summary.looseCount).toBeGreaterThan(0);
     expect(summary.drawCount).toBeGreaterThan(0);
-
-  });
+  }, LONG_TEST);
   test("expect to create a model and make a prediction", async () => {
     const model = await createModel();
     const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,36], 'int32');
@@ -56,11 +57,23 @@ describe("Integration Tests", (): void => {
     expect(sumOfWeights).toBeGreaterThan(0.90);
     expect(sumOfWeights).toBeLessThan(1.15);
   }, LONG_TEST);
-  test("test a model using the reserved 2019 test data set", async () => {
+  test("test a model using the reserved 2019 test data set", async (): Promise<void> => {
+    let allTeamNames = createTeamNameLookup();
     const model = await createModel();
     const { labelValues: testLabels, featureValues: testFeatures } = await getTrainingData(/^2019.*/);
-    expect(testLabels.length).toBeGreaterThan(0);
-    // fs.writeFileSync(__dirname + "testingLabels.json", JSON.stringify(testLabels, null, 2), "utf-8");
-    // fs.writeFileSync(__dirname + "testingFeatures.json", JSON.stringify(testFeatures, null, 2), "utf-8");
+    let mytests = createArrPrdFuncReqs(model, testFeatures, allTeamNames, testLabels);
+    const predTests: Promise<PredictResult>[] = mytests.map((t): Promise<PredictResult> => t());
+    const matchResults: PredictResult[] = await Promise.all(predTests);
+    let total = 0;
+    let matches = 0;
+    matchResults.forEach((r): void => {
+      console.log(r);
+      total += 1;
+      if (r.comparison) {
+        matches++;
+      }
+    });
+    console.log(`total = ${total} success rate = ${matches/total}`);
+    expect(matches/total).toBeGreaterThan(0.5);
   }, LONG_TEST);
 });

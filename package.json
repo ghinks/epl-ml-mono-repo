@@ -8,11 +8,11 @@
   "license": "MIT",
   "scripts": {
     "lerna-version": "lerna version --conventional-commits --yes",
-    "pretest": "lerna bootstrap",
     "test": "lerna run test",
     "lint": "lerna run lint",
     "wipelock": "find ./ -name \"package-lock.json\" -not -path \"*node_modules*\" -print -exec rm {} \\;",
     "wipedist": "find ./packages -name \"dist\" -print -exec rm -rf {} \\;",
+    "prebuild": "lerna bootstrap",
     "build": "lerna run build",
     "watch": "lerna run watch --parallel"
   },
