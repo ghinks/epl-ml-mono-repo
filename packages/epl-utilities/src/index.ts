@@ -72,23 +72,17 @@ const createArrPrdFuncReqs = (model: tf.Sequential,
 // encoded team name and turn it back into the human known team name.
 // convert 1,0,0,...0 to Arsenal
 const createTeamNameLookup = (): Map<string, string> => {
-  // @ts-ignore
   const teams: string[][] = teamsArray.reduce((a, c): string[] => {
-    // @ts-ignore
     return [...a, [`${c[1]}`, c[0]]]
   }, []);
-  // @ts-ignore
   return new Map(teams);
 }
 
 const getOneHotEncoding = (teamName: string): number[] => {
-  // @ts-ignore
   const oneHotEncoded: number[] = teamsArray.reduce((a, v): number[] => {
-    if (v[0] === teamName) { // @ts-ignore
-      // @ts-ignore
+    if (v[0] === teamName) {
       return v[1];
     }
-    // @ts-ignore
     return a;
   }, []);
   return oneHotEncoded;
