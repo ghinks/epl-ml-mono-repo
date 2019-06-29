@@ -23,3 +23,6 @@ an engine to predict future games.
 As with all academic exercises it is hoped that the experiences gained from the testing
 and use of this may be applied in a general way to other data sets so that a prediction 
 may be made.
+
+### requirements
+To run the integration tests a mongo db is required.
