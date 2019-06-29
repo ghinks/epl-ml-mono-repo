@@ -1,14 +1,24 @@
-import * as fast from "fastify";
+import * as fastify from "fastify";
+import { promises as fspromises } from "fs";
+import * as path from "path";
 
-const fastify = fast();
+const app = fastify({logger: true});
 
-// Declare a route
-fastify.get('/', (request, reply) => {
-  reply.send({ hello: 'world' })
+const readModelJson = async (): Promise<string> => {
+  const fileName = "model.json";
+  const filePath = path.resolve(path.join(__dirname, "../model"), fileName);
+  console.log(filePath);
+  const data = await fspromises.readFile(filePath, 'utf8');
+  return JSON.parse(data);
+};
+
+app.get('/', async (request, reply) => {
+  reply.type('application/json').code(200);
+  const data = await readModelJson();
+  return data;
 })
 
-// Run the server!
-fastify.listen(3000, (err, address) => {
+app.listen(3000, (err, address) => {
   if (err) throw err
-  fastify.log.info(`server listening on ${address}`)
+  app.log.info(`server listening on ${address}`)
 })
