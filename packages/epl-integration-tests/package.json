@@ -2,7 +2,7 @@
   "name": "@gvhinks/epl-integration-tests",
   "version": "1.0.13",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": {
     "url": "https://github.com/ghinks/epl-ml-mono-repo.git",
     "type": "git"

@@ -1,12 +1,17 @@
-import findMatchesInPath, { MatchResult } from "@gvhinks/epl-data-reader";
-import writeToDB from "@gvhinks/epl-data-to-db";
-import { read } from "fs";
+import createModel, { save } from "@gvhinks/epl-base-model";
+import * as tf from "@tensorflow/tfjs-node";
+import * as path from "path";
 
-const readTheData = async () => {
-  const stuff: MatchResult[] = await findMatchesInPath("/Users/ghinks/dev/match-analysis/packages/epl-data-reader/data");
-  const result = await writeToDB(stuff);
+const makeTheModel = async (): Promise<void> => {
+  try {
+    const model: tf.Sequential = await createModel();
+    const targetFolder = path.resolve(path.join(__dirname, "../../epl-host-model/model"))
+    save(model, `file://${targetFolder}`);
+  } catch (e) {
+    console.error(Array(100).join("#"));
+    console.error(e.message);
+    console.error(Array(100).join("#"));
+  }
 };
 
-readTheData()
-  .then(() => console.info("completed"))
-  .catch(err => console.error(err.message));
+makeTheModel().then(() => console.log("finished making the model"));

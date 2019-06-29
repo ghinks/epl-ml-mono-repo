@@ -5,6 +5,7 @@ import * as tf from "@tensorflow/tfjs-node";
 import { createPredictionResult, AsyncPredResult, createArrPrdFuncReqs, createTeamNameLookup, PredictResult, getOneHotEncoding } from "@gvhinks/epl-utilities";
 import { io } from '@tensorflow/tfjs-core';
 import * as fs from "fs";
+import * as path from "path";
 const LONG_TEST = 2 * 60 * 1000;
 
 describe("Integration Tests", (): void => {
@@ -17,7 +18,9 @@ describe("Integration Tests", (): void => {
   });
   describe("DB tests", () => {
     test("expect to git stuff back after you push data into the DB", async () => {
-      const stuff: MatchResult[] = await findMatchesInPath("/Users/ghinks/dev/match-analysis/packages/epl-data-reader/data");
+      const dataPath = path.resolve(path.join(__dirname, "../../epl-data-reader/data"))
+      console.log(dataPath);
+      const stuff: MatchResult[] = await findMatchesInPath(dataPath);
       expect(stuff.length).toBeGreaterThan(0);
       const result = await writeToDB(stuff);
       expect(result).toBe(true);
