@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-data-reader",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "read data from json files with EPL match results",
   "main": "dist/index.js",
   "repository": {
@@ -43,7 +43,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "@gvhinks/epl-utilities": "^1.0.12"
+    "@gvhinks/epl-utilities": "^1.0.13"
   },
   "babel": {
     "include": [
