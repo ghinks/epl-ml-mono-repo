@@ -1,0 +1,29 @@
+{
+  "name": "@gvhinks/epl-client",
+  "version": "1.0.13",
+  "description": "Browser side client",
+  "keywords": [
+    "tensorflow",
+    "epl",
+    "monorepo"
+  ],
+  "author": "Glenn Hinks <ghinks@yahoo.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghinks/epl-ml-mono-repo.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3",
+    "typescript": "^3.5.2"
+  },
+  "dependencies": {
+    "@gvhinks/epl-utilities": "^1.0.13",
+    "@tensorflow/tfjs": "^1.2.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}

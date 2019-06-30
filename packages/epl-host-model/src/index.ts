@@ -1,8 +1,14 @@
 import * as fastify from "fastify";
 import { promises as fspromises } from "fs";
 import * as path from "path";
+import * as fastifyCors from "fastify-cors";
 
 const app = fastify({logger: true});
+
+app.register(fastifyCors, {
+  origin: /.*localhost.*/
+});
+
 
 const readModelJson = async (): Promise<string> => {
   const fileName = "model.json";
