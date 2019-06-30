@@ -1,4 +1,4 @@
-import * as tf from "@tensorflow/tfjs-node";
+import * as tf from "@tensorflow/tfjs";
 import teamsArray from "./teamNames";
 
 // result so that console op is ok to view

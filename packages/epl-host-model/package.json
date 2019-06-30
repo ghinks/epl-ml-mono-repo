@@ -1,26 +1,36 @@
 {
-  "name": "@gvhinks/epl-integration-tests",
+  "name": "@gvhinks/epl-host-model",
   "version": "1.0.13",
-  "description": "",
+  "description": "Package that can host the model for a client to load",
   "main": "dist/index.js",
   "repository": {
-    "url": "https://github.com/ghinks/epl-ml-mono-repo.git",
-    "type": "git"
+    "type": "git",
+    "url": "git+https://github.com/ghinks/epl-ml-mono-repo.git"
   },
   "scripts": {
-    "integration": "jest",
+    "clean": "rimraf dist",
     "build": "tsc",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "test": "cross-env NODE_ENV=test jest src",
+    "lint": "eslint \"src/**/*.ts\"",
+    "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose",
+    "pretty": "prettier --write src/**/*.ts",
+    "start": "tsc-watch src/index.ts --outDir ./dist --onSuccess \"node ./dist/index.js\" --onFailure \"echo Beep! Compilation Failed\" --compiler typescript/bin/tsc"
+
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "epl",
+    "monorepo",
+    "tensorflow"
+  ],
+  "author": "Glenn Hinks <ghinks@yahoo.com>",
   "license": "MIT",
   "dependencies": {
-    "@gvhinks/epl-base-model": "^1.0.13",
-    "@gvhinks/epl-data-reader": "^1.0.13",
-    "@gvhinks/epl-data-to-db": "^1.0.13",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/runtime": "^7.3.1",
     "@gvhinks/epl-utilities": "^1.0.13",
-    "@gvhinks/epl-base-model": "^1.0.13"
+    "fastify": "^2.6.0",
+    "fastify-cors": "^2.1.3"
   },
   "devDependencies": {
     "@babel/cli": "7.4.4",
@@ -30,19 +40,16 @@
     "@babel/preset-env": "7.4.5",
     "@babel/preset-typescript": "7.3.3",
     "@babel/register": "7.4.4",
-    "@babel/runtime": "7.4.5",
-    "@tensorflow/tfjs-node": "1.2.3",
-    "@types/node": "10.14.9",
+    "@types/node": "11.13.14",
     "@typescript-eslint/eslint-plugin": "1.11.0",
     "@typescript-eslint/parser": "1.11.0",
-    "babel-jest": "24.8.0",
-    "babel-plugin-rewire": "1.2.0",
     "cross-env": "5.2.0",
     "eslint": "5.16.0",
     "jest": "24.8.0",
     "prettier": "1.17.1",
     "rimraf": "2.6.3",
     "ts-jest": "24.0.2",
+    "tsc-watch": "^2.2.1",
     "typescript": "3.4.5"
   },
   "babel": {
@@ -57,8 +64,7 @@
             "node": "10.0.0"
           }
         }
-      ],
-      "@babel/preset-typescript"
+      ]
     ],
     "plugins": [
       "@babel/plugin-transform-runtime"
@@ -97,15 +103,31 @@
   },
   "jest": {
     "verbose": true,
-    "collectCoverage": false,
+    "collectCoverage": true,
     "testMatch": [
-      "**/*.test.ts",
-      "**/*.test.js"
+      "**/*.test.ts"
     ],
-    "coverageReporters": [
-      "text",
-      "html"
+    "testEnvironment": "node",
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "diagnostics": false
+      }
+    }
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
     ],
-    "testEnvironment": "node"
+    "exclude": [
+      "src/**/*.spec.ts",
+      "src/**/*.test.ts"
+    ],
+    "report": [
+      "json",
+      "lcov",
+      "html",
+      "text"
+    ]
   }
 }

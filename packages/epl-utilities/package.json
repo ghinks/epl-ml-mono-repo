@@ -46,7 +46,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "@tensorflow/tfjs-node": "^1.2.3"
+    "@tensorflow/tfjs": "^1.2.2"
   },
   "babel": {
     "include": [
@@ -57,7 +57,7 @@
         "@babel/preset-env",
         {
           "targets": {
-            "node": "10.0.0"
+            "chrome": "58"
           }
         }
       ]
