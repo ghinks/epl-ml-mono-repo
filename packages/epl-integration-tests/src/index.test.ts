@@ -53,7 +53,7 @@ describe("Integration Tests", (): void => {
     }, LONG_TEST);
   });
 
-  describe("Model Tests", () => {
+  describe("Model Functional Tests", () => {
     afterAll(() => {
       //remove test files if they exist
       const files = [`${__dirname}/model.json`, `${__dirname}/weights.bin`];
@@ -109,4 +109,18 @@ describe("Integration Tests", (): void => {
       expect(result).toBeTruthy()
     }, LONG_TEST);
   });
+
+  describe("Model Loading Tests", () => {
+    test("expert to be able to load the model from the server", async (): Promise<void> => {
+      try {
+        const url = "http://localhost:3000/model.json"
+        const result = await tf.loadLayersModel(url);
+        console.log(result);
+      } catch (e) {
+        console.error(Array(100).join("#"));
+        console.error(e.message);
+        fail();
+      }
+    });
+  })
 });

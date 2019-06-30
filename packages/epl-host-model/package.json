@@ -2,14 +2,6 @@
   "name": "@gvhinks/epl-host-model",
   "version": "1.0.13",
   "description": "Package that can host the model for a client to load",
-  "keywords": [
-    "epl",
-    "monorepo",
-    "tensorflow"
-  ],
-  "author": "Glenn Hinks <ghinks@yahoo.com>",
-  "homepage": "https://github.com/ghinks/epl-ml-mono-repo#readme",
-  "license": "MIT",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
@@ -24,8 +16,17 @@
     "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose",
     "pretty": "prettier --write src/**/*.ts"
   },
-  "bugs": {
-    "url": "https://github.com/ghinks/epl-ml-mono-repo/issues"
+  "keywords": [
+    "epl",
+    "monorepo",
+    "tensorflow"
+  ],
+  "author": "Glenn Hinks <ghinks@yahoo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "@babel/runtime": "^7.3.1",
+    "fastify": "^2.6.0"
   },
   "devDependencies": {
     "@babel/cli": "7.4.4",
@@ -45,11 +46,6 @@
     "rimraf": "2.6.3",
     "ts-jest": "24.0.2",
     "typescript": "3.4.5"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.2.5",
-    "@babel/runtime": "^7.3.1",
-    "fastify": "^2.6.0"
   },
   "babel": {
     "include": [
@@ -100,6 +96,20 @@
       "mocha": true
     }
   },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "testMatch": [
+      "**/*.test.ts"
+    ],
+    "testEnvironment": "node",
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "diagnostics": false
+      }
+    }
+  },
   "nyc": {
     "extension": [
       ".ts"
@@ -114,19 +124,5 @@
       "html",
       "text"
     ]
-  },
-  "jest": {
-    "verbose": true,
-    "collectCoverage": true,
-    "testMatch": [
-      "**/*.test.ts"
-    ],
-    "testEnvironment": "node",
-    "preset": "ts-jest",
-    "globals": {
-      "ts-jest": {
-        "diagnostics": false
-      }
-    }
   }
 }
