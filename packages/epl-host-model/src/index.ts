@@ -29,23 +29,18 @@ const readWeights = async (): Promise<Buffer> => {
   return data;
 };
 
-app.get("*", async (request, reply): Promise<void> => {
+app.get("/model.json", async (request, reply): Promise<void> => {
   console.log(request.params);
   console.log(request.headers);
-  if (request.params["*"] === "/model.json") {
-    const data = await readModelJson();
-    reply.type("application/json").code(200).send(data);
-  }
-  else if (request.params["*"] === "/weights.bin"){
-    const data = await readWeights();
-    reply.type("application/octet-stream").code(200).send(data);
-  } else {
-    const data = {
-      params: request.params,
-      message: "not handled"
-    };
-    reply.type("application/json").code(400).send(data);
-  }
+  const data = await readModelJson();
+  reply.type("application/json").code(200).send(data);
+});
+
+app.get("/weights.bin", async (request, reply): Promise<void> => {
+  console.log(request.params);
+  console.log(request.headers);
+  const data = await readWeights();
+  reply.type("application/octet-stream").code(200).send(data);
 });
 
 app.listen(3000, (err, address): void => {
