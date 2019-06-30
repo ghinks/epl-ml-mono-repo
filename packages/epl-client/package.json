@@ -14,7 +14,7 @@
     "url": "git+https://github.com/ghinks/epl-ml-mono-repo.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "start": "parcel index.html"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.3",
