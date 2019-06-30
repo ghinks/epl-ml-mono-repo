@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import loadModel from './src/loadModel'
 import * as tf from '@tensorflow/tfjs';
+
+// TODO this should use the utils library but the
+// tensor flow types for browser and node caused
+// a type mismatch
 import getOneHotEncoding from './src/getOneHotEncoding'
 
 console.log('Hello from tsx!')

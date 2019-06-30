@@ -53,6 +53,17 @@ describe("Integration Tests", (): void => {
     }, LONG_TEST);
   });
 
+  async function predictChelseaWestHam(model) {
+    const testData = tf.tensor3d([...Chelsea, ...WestHam], [1, 2, 36], "int32");
+    const prediction = model.predict(testData);
+    // @ts-ignore
+    const result = await prediction.data();
+    expect(result.length).toBe(3);
+    const sumOfWeights = result[0] + result[1] + result[2];
+    expect(sumOfWeights).toBeGreaterThan(0.90);
+    expect(sumOfWeights).toBeLessThan(1.15);
+  }
+
   describe("Model Functional Tests", () => {
     afterAll(() => {
       //remove test files if they exist
@@ -69,14 +80,7 @@ describe("Integration Tests", (): void => {
     });
     test("expect to create a model and make a prediction", async () => {
       const model = await createModel();
-      const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,36], 'int32');
-      const prediction = model.predict(testData);
-      // @ts-ignore
-      const result = await prediction.data();
-      expect(result.length).toBe(3);
-      const sumOfWeights = result[0] + result[1] + result[2];
-      expect(sumOfWeights).toBeGreaterThan(0.90);
-      expect(sumOfWeights).toBeLessThan(1.15);
+      await predictChelseaWestHam(model);
     }, LONG_TEST);
     test("test a model using the reserved 2019 test data set", async (): Promise<void> => {
       let allTeamNames = createTeamNameLookup();
@@ -110,17 +114,54 @@ describe("Integration Tests", (): void => {
     }, LONG_TEST);
   });
 
-  describe("Model Loading Tests", () => {
-    test("expert to be able to load the model from the server", async (): Promise<void> => {
+  describe("Model Loading Tests from file", (): void => {
+    test("Expect to load from file", async (): Promise<void> => {
       try {
-        const url = "http://localhost:3000/model.json"
-        const result = await tf.loadLayersModel(url);
-        console.log(result);
+        const targetFile = path.resolve(path.join(__dirname, "../../epl-host-model/model", "model.json"));
+        const file = `file:///${targetFile}`;
+        console.log(file);
+        await tf.loadLayersModel(file);
       } catch (e) {
         console.error(Array(100).join("#"));
         console.error(e.message);
         fail();
       }
     });
-  })
+    test("expect to run the loaded model from file", async (): Promise<void> => {
+      try {
+        const targetFile = path.resolve(path.join(__dirname, "../../epl-host-model/model", "model.json"));
+        const file = `file:///${targetFile}`;
+        console.log(file);
+        const model = await tf.loadLayersModel(file);
+        await predictChelseaWestHam(model);
+      } catch (e) {
+        console.error(Array(100).join("#"));
+        console.error(e.message);
+        fail();
+      }
+    }, LONG_TEST);
+  });
+  describe("Model Loading Tests http", () => {
+    test("expert to be able to load the model from the server", async (): Promise<void> => {
+      try {
+        const url = "http://localhost:3000/model.json"
+        const result = await tf.loadLayersModel(url);
+      } catch (e) {
+        console.error(Array(100).join("#"));
+        console.error(e.message);
+        fail();
+      }
+    });
+    test("expect to run the loaded model", async (): Promise<void> => {
+      try {
+        const url = "http://localhost:3000/model.json"
+        const model = await tf.loadLayersModel(url);
+        await predictChelseaWestHam(model);
+      } catch (e) {
+        console.error(Array(100).join("#"));
+        console.error(e.message);
+        fail();
+      }
+    }, LONG_TEST);
+  });
 });

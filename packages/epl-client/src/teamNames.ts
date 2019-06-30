@@ -1,3 +1,4 @@
+// TODO this should come from the utils lib
 type TeamElement = (string | number[])[]
 const teamsArray: TeamElement[] = [
   ["Arsenal", [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],

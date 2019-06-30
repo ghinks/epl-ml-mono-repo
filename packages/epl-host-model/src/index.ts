@@ -9,6 +9,9 @@ app.register(fastifyCors, {
   origin: /.*localhost.*/
 });
 
+console.log(Array(100).join("="));
+console.log("       started ...");
+console.log(Array(100).join("="));
 
 const readModelJson = async (): Promise<string> => {
   const fileName = "model.json";
@@ -18,11 +21,11 @@ const readModelJson = async (): Promise<string> => {
   return JSON.parse(data);
 };
 
-const readWeights = async (): Promise<string> => {
+const readWeights = async (): Promise<Buffer> => {
   const fileName = "weights.bin";
   const filePath = path.resolve(path.join(__dirname, "../model"), fileName);
   console.log(filePath);
-  const data = await fspromises.readFile(filePath, "binary");
+  const data: Buffer = await fspromises.readFile(filePath);
   return data;
 };
 
@@ -35,7 +38,7 @@ app.get("*", async (request, reply): Promise<void> => {
   }
   else if (request.params["*"] === "/weights.bin"){
     const data = await readWeights();
-    reply.type("application/bin").code(200).send(data);
+    reply.type("application/octet-stream").code(200).send(data);
   } else {
     const data = {
       params: request.params,
