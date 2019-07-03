@@ -1,13 +1,24 @@
 # model
 
-Give simple historical data about a club make a future prediction of a match. 
+## description
+This is a node based model generation package. It will use the training data to produce a model of the premier league
+base on all the fixture results. The default date range is defined by a RegExp which defaults to 
 
+```javascript
+/^20[0-9][0-8].*/
+```
 
-Starting with a historical data set of results for clubs use the most simple data.
+Which means the default training data uses all results up to but not including those in 2019.
 
-- home club name ( one hot encoded ) let us call this team Arsenal
-- away club name ( one hot encoded ) let us call this team West Ham
-- Take the results which can be win, loose, draw and apply them to the home team
+Each club in the premier league is **one hot encoded** as in the table below. 
+
+The prediction produces an array of three numbers corresponding to the possibility of a 
+
+- home win
+- away win
+- draw
+
+so a prediction of team A vs team B with a prediction of **[ 1, 0, 0]** would mean a home win is predicted.
 
 There have been 36 teams in the historical data and the one hot encoding for this from our data set is as follows
 
@@ -58,5 +69,5 @@ When a model has been built predictions will be made against a set of test data.
 # testing
 
 The test set, which was kept back from the training data produced a 60% accuracy score
-on the first pass without any model tuning.
-
+on the first pass without any model tuning. The test set fixtures were the results of 
+games in 2019 for the 2018/2019 season (ie the second half of the season).

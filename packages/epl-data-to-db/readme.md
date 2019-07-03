@@ -8,7 +8,12 @@ choose a relational DB my preference would be postgres.
 ### Interface
 
 The Data is presented to this module as an Array of 
-**MatchResult** objects but is stored in the format below
+**MatchResult** objects. The data is retrieved from the **epl-data-reader**
+package where it is stored in **json** files covering the premier league 
+game results from 2009 to 2019.
+
+This module takes the **MatchResult** data and places it into a mongo DB in
+the following format the **matches** collection.
 
 ```markdown
 interface MatchData {
@@ -36,3 +41,7 @@ interface MatchData {
   referee: string;
 }
 ```
+
+If you were to view the data in the mongoDB via **Robo 3T** you would see
+
+![image of mongodb data](mongo.png)
