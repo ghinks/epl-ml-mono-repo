@@ -13,7 +13,8 @@
     "watch": "tsc --watch",
     "test": "cross-env NODE_ENV=test jest src",
     "lint": "eslint \"src/**/*.ts\"",
-    "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose",
+    "copyData": "cp -r data ./dist/",
+    "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose && npm run copyData",
     "pretty": "prettier --write src/**/*.ts"
   },
   "keywords": [

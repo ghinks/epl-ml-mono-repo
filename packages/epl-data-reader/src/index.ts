@@ -2,7 +2,7 @@ import { findDataFiles, readMatchResult } from "./findFiles";
 import { MatchResult} from "./matchResult";
 import "core-js/fn/array/flat-map";
 
-const findMatchesInPath = async (dataPath: string): Promise<MatchResult[]> => {
+const getHistoricalData = async (dataPath = `${__dirname}/../data/historicalData`): Promise<MatchResult[]> => {
   console.log(__dirname);
   try {
     let files: string[] = await findDataFiles(dataPath);
@@ -24,5 +24,5 @@ const findMatchesInPath = async (dataPath: string): Promise<MatchResult[]> => {
   }
 };
 
-export default findMatchesInPath;
+export default getHistoricalData;
 export { MatchResult } from "./matchResult"
