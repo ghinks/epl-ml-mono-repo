@@ -1,4 +1,4 @@
-import findMatchesInPath , { MatchResult } from "@gvhinks/epl-data-reader";
+import getHistoricalData , { MatchResult } from "@gvhinks/epl-data-reader";
 import writeToDB from "@gvhinks/epl-data-to-db";
 import createModel, { getTrainingData, TrainingData, getNames, save} from "@gvhinks/epl-base-model";
 import * as tf from "@tensorflow/tfjs-node";
@@ -18,9 +18,9 @@ describe("Integration Tests", (): void => {
   });
   describe("DB tests", () => {
     test("expect to git stuff back after you push data into the DB", async () => {
-      const dataPath = path.resolve(path.join(__dirname, "../../epl-data-reader/data"))
-      console.log(dataPath);
-      const stuff: MatchResult[] = await findMatchesInPath(dataPath);
+      // const dataPath = path.resolve(path.join(__dirname, "../../epl-data-reader/data"))
+      // console.log(dataPath);
+      const stuff: MatchResult[] = await getHistoricalData();
       expect(stuff.length).toBeGreaterThan(0);
       const result = await writeToDB(stuff);
       expect(result).toBe(true);

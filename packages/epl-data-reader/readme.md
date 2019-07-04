@@ -1,6 +1,6 @@
 # `@gvhinks/epl-data-reader`
 
-Data is provided for the [English Premier League](http://www.football-data.co.uk/) via a [zip](https://datahub.io/sports-data/english-premier-league#data)
+Data is provided via a [zip](https://datahub.io/sports-data/english-premier-league#data)
 
 ## Purpose
 The data is stored statically in the data folder in the form of raw json. This module's 

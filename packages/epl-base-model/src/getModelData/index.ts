@@ -1,5 +1,5 @@
 import * as mongodb from "mongodb";
-import { MatchData } from "@gvhinks/epl-data-to-db/dist";
+import { MatchData } from "@gvhinks/epl-data-to-db";
 import flattenLabels, { Labels } from "./getLabels";
 import flattenFeatures, { Features } from "./getFeatures";
 import { url, dbName, collectionName } from "./constants";
