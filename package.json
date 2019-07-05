@@ -14,7 +14,8 @@
     "wipedist": "find ./packages -name \"dist\" -print -exec rm -rf {} \\;",
     "prebuild": "lerna bootstrap",
     "build": "lerna run build",
-    "watch": "lerna run watch --parallel"
+    "watch": "lerna run watch --parallel",
+    "deleteFeatureBranches": "git branch | grep \"feature\" | xargs git branch -D"
   },
   "support": {
     "target": "LTS",
