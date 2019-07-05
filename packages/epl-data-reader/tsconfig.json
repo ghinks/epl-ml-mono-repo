@@ -3,9 +3,10 @@
     "outDir": "./dist",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "module": "CommonJS",
+    "module": "commonjs",
     "declaration": true,
-    "target": "esnext"
+    "target": "esnext",
+    "sourceMap": true
   },
   "include": [
     "./src/**/*"
