@@ -4,15 +4,15 @@ import getModelData from "./getModelData";
 import TrainingData from "./getModelData";
 import * as fs from 'fs';
 import * as path from 'path';
-import { createArrPrdFuncReqs, createTeamNameLookup, PredictResult } from "@gvhinks/epl-utilities";
+import { createArrPrdFuncReqs, createTeamNameLookup, PredictResult, getOneHotEncoding } from "@gvhinks/epl-utilities";
 
 jest.mock("./getModelData");
 const fsProm = fs.promises;
 
 describe("Model Creation from test data", (): void => {
-  const LONG_TIMEOUT: number = 30 * 1000;
-  const Chelsea = [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-  const WestHam = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0];
+  const LONG_TIMEOUT: number = 5 * 60 * 1000;
+  const Chelsea = getOneHotEncoding("Chelsea");
+  const WestHam = getOneHotEncoding("West Ham");
   const createModelTrainingData = async (): Promise<void> =>  {
     const testFeatureValues = await fsProm.readFile(path.join(__dirname, "./testData/trainingTestFeatureValues.json"), "utf-8");
     const testLabelValues = await fsProm.readFile(path.join(__dirname, "./testData/trainingTestLabelValues.json"), "utf-8");

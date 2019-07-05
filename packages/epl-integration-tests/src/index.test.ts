@@ -2,7 +2,7 @@ import getHistoricalData , { MatchResult } from "@gvhinks/epl-data-reader";
 import writeToDB from "@gvhinks/epl-data-to-db";
 import createModel, { getTrainingData, TrainingData, getNames, save} from "@gvhinks/epl-base-model";
 import * as tf from "@tensorflow/tfjs-node";
-import { createPredictionResult, AsyncPredResult, createArrPrdFuncReqs, createTeamNameLookup, PredictResult, getOneHotEncoding } from "@gvhinks/epl-utilities";
+import { createArrPrdFuncReqs, createTeamNameLookup, PredictResult, getOneHotEncoding } from "@gvhinks/epl-utilities";
 import { io } from '@tensorflow/tfjs-core';
 import * as fs from "fs";
 import * as path from "path";

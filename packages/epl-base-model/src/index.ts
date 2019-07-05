@@ -2,14 +2,10 @@ import * as tf from "@tensorflow/tfjs-node";
 import getTrainingData, { TrainingData, getNames } from "./getModelData";
 import save from "./saveModel"
 
-// import * as fs from 'fs';
-
 const createModel = async (): Promise<tf.Sequential> => {
   const model: tf.Sequential = tf.sequential({
     name: "predict"
   });
-  // we have 3424 test sets
-  // each of 2 * 43
   model.add(tf.layers.dense({inputShape: [2,43], units: 3, useBias: true, name:"teams_layer"}));
   model.add(tf.layers.flatten());
   model.add(tf.layers.dense({units: 3, useBias: true, name: "results_layer"}));
