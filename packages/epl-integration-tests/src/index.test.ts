@@ -6,7 +6,7 @@ import { createPredictionResult, AsyncPredResult, createArrPrdFuncReqs, createTe
 import { io } from '@tensorflow/tfjs-core';
 import * as fs from "fs";
 import * as path from "path";
-const LONG_TEST = 2 * 60 * 1000;
+const LONG_TEST = 5 * 60 * 1000;
 
 describe("Integration Tests", (): void => {
 
@@ -54,7 +54,7 @@ describe("Integration Tests", (): void => {
   });
 
   async function predictChelseaWestHam(model) {
-    const testData = tf.tensor3d([...Chelsea, ...WestHam], [1, 2, 36], "int32");
+    const testData = tf.tensor3d([...Chelsea, ...WestHam], [1, 2, 43], "int32");
     const prediction = model.predict(testData);
     // @ts-ignore
     const result = await prediction.data();
@@ -85,7 +85,7 @@ describe("Integration Tests", (): void => {
     test("test a model using the reserved 2019 test data set", async (): Promise<void> => {
       let allTeamNames = createTeamNameLookup();
       const model = await createModel();
-      const { labelValues: testLabels, featureValues: testFeatures } = await getTrainingData(/^2019.*/);
+      const { labelValues: testLabels, featureValues: testFeatures } = await getTrainingData(new Date(2019, 1, 1), new Date( 2020, 7, 1));
       let mytests = createArrPrdFuncReqs(model, testFeatures, allTeamNames, testLabels);
       const predTests: Promise<PredictResult>[] = mytests.map((t): Promise<PredictResult> => t());
       const matchResults: PredictResult[] = await Promise.all(predTests);

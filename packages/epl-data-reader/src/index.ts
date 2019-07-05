@@ -17,12 +17,13 @@ const getJSONTenYearData = async (dataPath = `${__dirname}/../data/historicalDat
     // yes an array of promises of arrays of match results
     const dataProms: Promise<MatchResult[]>[] = files.map((f): Promise<MatchResult[]> => readMatchResult(f));
     const matcheArrs: MatchResult[][] = await Promise.all([...dataProms]);
-    const matches: MatchResult[] = matcheArrs.flatMap(<T> (a: T): T => a);
+    let matches: MatchResult[] = matcheArrs.flatMap(<T> (a: T): T => a);
     const standardMatches: StandardResult[] = matches.map((m: MatchResult): StandardResult => ({
       Date: new Date(m.Date),
       HomeTeam: m.HomeTeam,
       AwayTeam: m.AwayTeam,
-      Referee: m.Referee
+      Referee: m.Referee,
+      FTR: m.FTR
     }));
     return standardMatches;
 
@@ -50,7 +51,7 @@ const getCsvData = async (maxDate: Date, fileName = `${__dirname}/../data/eplCSV
     if (matchDate > maxDate ) {
       return a;
     }
-
+    // look at io-ts
     const result: StandardResult = {
       Date: matchDate,
       // @ts-ignore
@@ -58,7 +59,9 @@ const getCsvData = async (maxDate: Date, fileName = `${__dirname}/../data/eplCSV
       // @ts-ignore
       AwayTeam: v.AwayTeam,
       // @ts-ignore
-      Referee: v.Referee
+      Referee: v.Referee,
+      // @ts-ignore
+      FTR: v.FTR
     };
     return [...a, result];
   }, []);

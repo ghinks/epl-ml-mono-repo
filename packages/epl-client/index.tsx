@@ -22,7 +22,7 @@ const carryOutModelExperiment = async (): Promise<void> => {
   console.log(window.performance.now() - before);
   const Chelsea = getOneHotEncoding("Chelsea");
   const WestHam = getOneHotEncoding("West Ham");
-  const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,36], 'int32');
+  const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,43], 'int32');
   const prediction = model.predict(testData);
   const result = await prediction.data();
   console.log(window.performance.now() - before);

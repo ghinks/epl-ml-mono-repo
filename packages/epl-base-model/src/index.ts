@@ -9,8 +9,8 @@ const createModel = async (): Promise<tf.Sequential> => {
     name: "predict"
   });
   // we have 3424 test sets
-  // each of 2 * 36
-  model.add(tf.layers.dense({inputShape: [2,36], units: 3, useBias: true, name:"teams_layer"}));
+  // each of 2 * 43
+  model.add(tf.layers.dense({inputShape: [2,43], units: 3, useBias: true, name:"teams_layer"}));
   model.add(tf.layers.flatten());
   model.add(tf.layers.dense({units: 3, useBias: true, name: "results_layer"}));
   model.compile({optimizer: tf.train.adam(0.001), loss: 'meanSquaredError'});

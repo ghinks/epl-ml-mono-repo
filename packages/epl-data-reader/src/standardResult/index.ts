@@ -3,4 +3,5 @@ export interface StandardResult {
   HomeTeam: string;
   AwayTeam: string;
   Referee: string;
+  FTR: string;
 };

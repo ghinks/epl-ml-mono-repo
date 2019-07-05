@@ -38,7 +38,7 @@ const createPredictionResult = async (model: tf.Sequential,
   hotEncodedNames: number[][],
   teamNames: Map<string, string>,
   testLabelValues: number[]): Promise<PredictResult> => {
-  const testData = tf.tensor3d([...hotEncodedNames[0], ...hotEncodedNames[1]], [1, 2, 36], "int32");
+  const testData = tf.tensor3d([...hotEncodedNames[0], ...hotEncodedNames[1]], [1, 2, 43], "int32");
   const prediction = model.predict(testData);
   // @ts-ignore
   const result: number[] = await prediction.data();

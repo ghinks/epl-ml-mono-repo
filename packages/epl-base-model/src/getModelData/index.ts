@@ -29,7 +29,7 @@ const isDraw = (result): number =>
     ? 1
     : 0;
 
-const getTrainingData = async (dateReg: RegExp = /^20[0-9][0-8].*/): Promise<TrainingData> => {
+const getTrainingData = async (fromDate: Date = new Date(2000, 1,1), toDate: Date = new Date(2018, 1, 1)): Promise<TrainingData> => {
   try {
     const client: mongodb.MongoClient = await mongodb.MongoClient.connect(url, {
       useNewUrlParser: true
@@ -37,7 +37,7 @@ const getTrainingData = async (dateReg: RegExp = /^20[0-9][0-8].*/): Promise<Tra
     const teams: Map<string, number[]> = await getNames();
     const collection = getCollection(client);
     const query = {
-      Date: { $regex: dateReg },
+      Date: { $gte: fromDate, $lte: toDate },
     };
     const results: MatchData[] = await collection.find(query).toArray();
 

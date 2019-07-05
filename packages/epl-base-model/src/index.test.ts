@@ -37,7 +37,7 @@ describe("Model Creation from test data", (): void => {
     }, LONG_TIMEOUT);
     test("Expect to make a prediction", async (): Promise<void> => {
       const model: tf.Sequential = await createModel();
-      const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,36], 'int32');
+      const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,43], 'int32');
       const prediction = model.predict(testData);
       // @ts-ignore
       const result = await prediction.data();
