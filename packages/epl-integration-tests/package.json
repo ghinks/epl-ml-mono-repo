@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-integration-tests",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "",
   "main": "dist/index.js",
   "repository": {
@@ -16,11 +16,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@gvhinks/epl-base-model": "^1.0.13",
-    "@gvhinks/epl-data-reader": "^1.0.13",
-    "@gvhinks/epl-data-to-db": "^1.0.13",
-    "@gvhinks/epl-utilities": "^1.0.13",
-    "@gvhinks/epl-base-model": "^1.0.13"
+    "@gvhinks/epl-base-model": "^1.0.14",
+    "@gvhinks/epl-data-reader": "^1.0.14",
+    "@gvhinks/epl-data-to-db": "^1.0.14",
+    "@gvhinks/epl-utilities": "^1.0.14"
   },
   "devDependencies": {
     "@babel/cli": "7.5.0",

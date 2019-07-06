@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-host-model",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Package that can host the model for a client to load",
   "main": "dist/index.js",
   "repository": {
@@ -16,7 +16,6 @@
     "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose",
     "pretty": "prettier --write src/**/*.ts",
     "start": "tsc-watch src/index.ts --outDir ./dist --onSuccess \"node ./dist/index.js\" --onFailure \"echo Beep! Compilation Failed\" --compiler typescript/bin/tsc"
-
   },
   "keywords": [
     "epl",
@@ -28,7 +27,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "@gvhinks/epl-utilities": "^1.0.13",
+    "@gvhinks/epl-utilities": "^1.0.14",
     "fastify": "^2.6.0",
     "fastify-cors": "^2.1.3"
   },
