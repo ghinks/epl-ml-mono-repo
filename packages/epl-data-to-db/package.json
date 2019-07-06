@@ -14,7 +14,8 @@
     "test": "cross-env NODE_ENV=test jest src",
     "lint": "eslint \"src/**/*.ts\"",
     "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose",
-    "pretty": "prettier --write src/**/*.ts"
+    "pretty": "prettier --write src/**/*.ts",
+    "start": "node index.js"
   },
   "keywords": [
     "tags"

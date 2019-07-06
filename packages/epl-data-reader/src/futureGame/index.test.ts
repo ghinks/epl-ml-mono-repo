@@ -5,7 +5,7 @@ describe("Get future games", (): void => {
     const games: FutureGame[] = await getFutureGames();
     expect(games.length).toBeGreaterThan(1);
     const minDate = new Date("2019/01/01");
-    games.forEach((game: FutureGame) => {
+    games.forEach((game: FutureGame): void => {
       const result = game.date > minDate;
       if (!result) console.error(`expected ${game.date} > ${minDate} for ${game.homeTeam}`);
       expect(result).toBeTruthy();
