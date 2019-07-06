@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-client",
-  "version": "1.0.14",
+  "version": "1.1.0",
   "description": "Browser side client",
   "keywords": [
     "tensorflow",
@@ -21,7 +21,7 @@
     "typescript": "3.5.2"
   },
   "dependencies": {
-    "@gvhinks/epl-utilities": "^1.0.14",
+    "@gvhinks/epl-utilities": "^1.1.0",
     "@tensorflow/tfjs": "1.2.2",
     "react": "16.8.6",
     "react-dom": "16.8.6"
