@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-data-to-db",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "take EPL match results and write to a DB",
   "main": "dist/index.js",
   "repository": {
@@ -44,7 +44,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "@gvhinks/epl-data-reader": "^1.5.0",
+    "@gvhinks/epl-data-reader": "^1.5.1",
     "@gvhinks/epl-utilities": "^1.1.0",
     "mongodb": "^3.1.13"
   },
