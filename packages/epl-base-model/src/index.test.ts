@@ -18,9 +18,10 @@ describe("Model Creation from test data", (): void => {
     const testLabelValues = await fsProm.readFile(path.join(__dirname, "./testData/trainingTestLabelValues.json"), "utf-8");
     // @ts-ignore
     let trainingTestData: TrainingData;
+    // limit test data to 3000 samples
     trainingTestData = {
-      labelValues: JSON.parse(testLabelValues),
-      featureValues: JSON.parse(testFeatureValues)
+      labelValues: (JSON.parse(testLabelValues)).slice(-3000),
+      featureValues: (JSON.parse(testFeatureValues)).slice(-3000)
     };
     getModelData.mockResolvedValue(trainingTestData);
   }
