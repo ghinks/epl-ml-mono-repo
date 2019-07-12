@@ -24,13 +24,13 @@
   },
   "devDependencies": {
     "@babel/cli": "7.5.0",
-    "@babel/core": "7.5.0",
+    "@babel/core": "7.5.4",
     "@babel/plugin-transform-regenerator": "7.4.5",
     "@babel/plugin-transform-runtime": "7.5.0",
-    "@babel/preset-env": "7.5.0",
+    "@babel/preset-env": "7.5.4",
     "@babel/preset-typescript": "7.3.3",
     "@babel/register": "7.4.4",
-    "@babel/runtime": "7.5.0",
+    "@babel/runtime": "7.5.4",
     "@tensorflow/tfjs-node": "1.2.3",
     "@types/node": "10.14.12",
     "@typescript-eslint/eslint-plugin": "1.11.0",
@@ -43,7 +43,7 @@
     "prettier": "1.17.1",
     "rimraf": "2.6.3",
     "ts-jest": "24.0.2",
-    "typescript": "3.4.5"
+    "typescript": "3.5.3"
   },
   "babel": {
     "include": [
