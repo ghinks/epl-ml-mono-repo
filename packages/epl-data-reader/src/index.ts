@@ -3,7 +3,7 @@ import { MatchResult} from "./matchResult";
 import { StandardResult } from "./standardResult";
 import * as csv from "csvtojson"
 import "core-js/fn/array/flat-map";
-import getFutureGames, { FutureGame } from "./futureGame";
+import getFixtures, { Fixture } from "./fixtures";
 
 const getJSONTenYearData = async (dataPath = `${__dirname}/../data/historicalData`): Promise<StandardResult[]> => {
   console.log(__dirname);
@@ -80,4 +80,4 @@ const getHistoricalData = async (): Promise<StandardResult[]> => {
   return [...dataToMinDate, ...dataTo2019]
 };
 
-export { getHistoricalData as default, MatchResult, StandardResult, getJSONTenYearData, getCsvData, getFutureGames, FutureGame }
+export { getHistoricalData as default, MatchResult, StandardResult, getJSONTenYearData, getCsvData, getFixtures, Fixture }

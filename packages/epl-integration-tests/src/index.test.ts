@@ -1,4 +1,4 @@
-import getHistoricalData , { MatchResult, FutureResult, getFutureGames } from "@gvhinks/epl-data-reader";
+import getHistoricalData , { MatchResult, FutureResult, getFixtures } from "@gvhinks/epl-data-reader";
 import writeToDB, { writeFutureFixtures } from "@gvhinks/epl-data-to-db";
 import createModel, { getTrainingData, TrainingData, getNames, save} from "@gvhinks/epl-base-model";
 import * as tf from "@tensorflow/tfjs-node";
@@ -26,7 +26,7 @@ describe("Integration Tests", (): void => {
       expect(result).toBe(true);
     });
     test("expect to be able to write future fixtures to the DB", async (): Promise<void> => {
-      const stuff: FutureResult[] = await getFutureGames();
+      const stuff: FutureResult[] = await getFixtures();
       expect(stuff.length).toBeGreaterThan(0);
       const result = await writeFutureFixtures(stuff);
       expect(result).toBe(true);

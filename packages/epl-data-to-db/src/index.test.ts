@@ -1,5 +1,5 @@
 import writeToDB, { renameHistoricalProps, MatchData, writeFutureFixtures } from "./index";
-import { MatchResult, FutureGame } from "@gvhinks/epl-data-reader";
+import { MatchResult, Fixture } from "@gvhinks/epl-data-reader";
 import * as mongodb from "mongodb";
 jest.mock("mongodb");
 
@@ -88,7 +88,7 @@ describe("Mongo DB tests", (): void => {
     });
   });
   describe("Future Fixtures", (): void => {
-    const rawResult: FutureGame =   {
+    const rawResult: Fixture =   {
       roundNumber: 1,
       date: new Date("09/08/2019 20:00"),
       location: "Anfield",

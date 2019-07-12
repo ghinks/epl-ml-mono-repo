@@ -1,39 +1,18 @@
 {
-  "name": "@gvhinks/epl-host-model",
-  "version": "1.1.0",
-  "description": "Package that can host the model for a client to load",
+  "name": "@gvhinks/epl-constants",
+  "version": "1.5.1",
+  "description": "constants",
+  "author": "Glenn Hinks <ghinks@yahoo.com>",
+  "homepage": "https://github.com/ghinks/epl-ml-mono-repo#readme",
+  "license": "MIT",
   "main": "dist/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ghinks/epl-ml-mono-repo.git"
-  },
   "scripts": {
     "clean": "rimraf dist",
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "cross-env NODE_ENV=test jest src",
     "lint": "eslint \"src/**/*.ts\"",
     "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose",
-    "pretty": "prettier --write src/**/*.ts",
-    "start": "tsc-watch src/index.ts --outDir ./dist --onSuccess \"node ./dist/index.js\" --onFailure \"echo Beep! Compilation Failed\" --compiler typescript/bin/tsc"
-  },
-  "keywords": [
-    "epl",
-    "monorepo",
-    "tensorflow"
-  ],
-  "author": "Glenn Hinks <ghinks@yahoo.com>",
-  "license": "MIT",
-  "dependencies": {
-    "@babel/polyfill": "^7.2.5",
-    "@babel/runtime": "^7.3.1",
-    "@gvhinks/epl-constants": "^1.5.1",
-    "@gvhinks/epl-data-reader": "^1.5.1",
-    "@gvhinks/epl-utilities": "^1.1.0",
-    "@types/mongodb": "^3.1.28",
-    "fastify": "^2.6.0",
-    "fastify-cors": "^2.1.3",
-    "mongodb": "^3.2.7"
+    "pretty": "prettier --write src/**/*.ts"
   },
   "devDependencies": {
     "@babel/cli": "7.5.0",
@@ -52,13 +31,13 @@
     "prettier": "1.17.1",
     "rimraf": "2.6.3",
     "ts-jest": "24.0.2",
-    "tsc-watch": "2.2.1",
     "typescript": "3.4.5"
   },
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "@babel/runtime": "^7.3.1"
+  },
   "babel": {
-    "include": [
-      "src/**/*.ts"
-    ],
     "presets": [
       [
         "@babel/preset-env",
@@ -100,37 +79,7 @@
     ],
     "env": {
       "node": true,
-      "jest": true,
-      "mocha": true
+      "jest": true
     }
-  },
-  "jest": {
-    "verbose": true,
-    "collectCoverage": true,
-    "testMatch": [
-      "**/*.test.ts"
-    ],
-    "testEnvironment": "node",
-    "preset": "ts-jest",
-    "globals": {
-      "ts-jest": {
-        "diagnostics": false
-      }
-    }
-  },
-  "nyc": {
-    "extension": [
-      ".ts"
-    ],
-    "exclude": [
-      "src/**/*.spec.ts",
-      "src/**/*.test.ts"
-    ],
-    "report": [
-      "json",
-      "lcov",
-      "html",
-      "text"
-    ]
   }
 }

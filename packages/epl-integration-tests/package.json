@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@gvhinks/epl-base-model": "^1.5.1",
+    "@gvhinks/epl-constants": "^1.5.1",
     "@gvhinks/epl-data-reader": "^1.5.1",
     "@gvhinks/epl-data-to-db": "^1.5.1",
     "@gvhinks/epl-utilities": "^1.1.0"

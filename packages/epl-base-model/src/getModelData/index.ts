@@ -2,7 +2,7 @@ import * as mongodb from "mongodb";
 import { MatchData } from "@gvhinks/epl-data-to-db";
 import flattenLabels, { Labels } from "./getLabels";
 import flattenFeatures, { Features } from "./getFeatures";
-import { url, dbName, collectionName } from "./constants";
+import { url, dbName, historicalMatches } from "@gvhinks/epl-constants";
 import getNames from "./getTeams"
 
 // export interface BaseResult extends Features, Labels {};
@@ -12,7 +12,7 @@ export interface TrainingData {
 }
 
 const getCollection = (client: mongodb.MongoClient): mongodb.Collection =>
-  client.db(dbName).collection(collectionName);
+  client.db(dbName).collection(historicalMatches);
 
 const isHomeWin = (result): number =>
   (result.fullTimeResult === "H")

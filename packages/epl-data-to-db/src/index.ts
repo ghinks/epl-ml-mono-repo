@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
-import { StandardResult, FutureGame } from "@gvhinks/epl-data-reader";
+import { StandardResult, Fixture } from "@gvhinks/epl-data-reader";
+import { url, dbName, historicalMatches, fixtures as fixturesCollection } from "@gvhinks/epl-constants";
 
 export interface MatchData {
   Date: Date;
@@ -22,16 +23,13 @@ const renameHistoricalProps = (games: StandardResult[]): MatchData[] => {
 };
 
 const writeHistoricalData = async (games: StandardResult[]): Promise<boolean> => {
-  const url = "mongodb://localhost:27017";
-  const dbName = "epl-scores";
-  const collectionName = "matches";
   try {
     const client: MongoClient = await MongoClient.connect(url, {
       useNewUrlParser: true
     });
     const db = await client.db(dbName);
-    if(db.length) await db.dropCollection(collectionName);
-    const matches = await client.db(dbName).createCollection(collectionName);
+    if(db.length) await db.dropCollection(historicalMatches);
+    const matches = await client.db(dbName).createCollection(historicalMatches);
     await matches.insertMany(renameHistoricalProps(games));
     client.close();
     return true;
@@ -41,17 +39,14 @@ const writeHistoricalData = async (games: StandardResult[]): Promise<boolean> =>
   }
 };
 
-const writeFutureFixtures = async (fixtures: FutureGame[]): Promise<boolean> => {
-  const url = "mongodb://localhost:27017";
-  const dbName = "epl-scores";
-  const collectionName = "fixtures";
+const writeFutureFixtures = async (fixtures: Fixture[]): Promise<boolean> => {
   try {
     const client: MongoClient = await MongoClient.connect(url, {
       useNewUrlParser: true
     });
     const db = await client.db(dbName);
-    if(db.length) await db.dropCollection(collectionName);
-    const futureMatches = await client.db(dbName).createCollection(collectionName);
+    if(db.length) await db.dropCollection(fixturesCollection);
+    const futureMatches = await client.db(dbName).createCollection(fixturesCollection);
     await futureMatches.insertMany(fixtures);
     client.close();
     return true;

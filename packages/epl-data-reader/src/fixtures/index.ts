@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 
-interface FutureGame {
+interface Fixture {
   roundNumber: number;
   date: Date;
   location: string;
@@ -9,10 +9,10 @@ interface FutureGame {
   awayTeam: string;
 };
 
-const getFutureData = async (): Promise<FutureGame[]> => {
+const getFixtures = async (): Promise<Fixture[]> => {
   const fileName: string = path.join(__dirname, "../../data/futureFixtures/eplSeason2020.json");
   const rawData: object[] = JSON.parse(await fs.promises.readFile(fileName, "utf-8"));
-  const fixtures: FutureGame[] = rawData.map((data): FutureGame => {
+  const fixtures: Fixture[] = rawData.map((data): Fixture => {
     const match = data["Date"].match(/(\d+)\/(\d+)\/(\d+).*/);
     return {
       roundNumber: data["Round Number"],
@@ -25,4 +25,4 @@ const getFutureData = async (): Promise<FutureGame[]> => {
   return fixtures;
 };
 
-export { getFutureData as default, FutureGame }
+export { getFixtures as default, Fixture }
