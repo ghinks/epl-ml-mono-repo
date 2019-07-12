@@ -7,4 +7,12 @@ interface Forecast {
   points: number;
 };
 
-export { Forecast };
+interface Fixture {
+  roundNumber: number;
+  date: Date;
+  location: string;
+  homeTeam: string;
+  awayTeam: string;
+};
+
+export { Forecast, Fixture };

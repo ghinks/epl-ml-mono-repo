@@ -27,6 +27,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
+    "@gvhinks/epl-common-interfaces": "^1.5.1",
     "@gvhinks/epl-constants": "^1.5.1",
     "@gvhinks/epl-data-reader": "^1.5.1",
     "@gvhinks/epl-utilities": "^1.1.0",

@@ -1,13 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
+import { Fixture } from "@gvhinks/epl-common-interfaces";
 
-interface Fixture {
-  roundNumber: number;
-  date: Date;
-  location: string;
-  homeTeam: string;
-  awayTeam: string;
-};
 
 const getFixtures = async (): Promise<Fixture[]> => {
   const fileName: string = path.join(__dirname, "../../data/futureFixtures/eplSeason2020.json");
@@ -25,4 +19,4 @@ const getFixtures = async (): Promise<Fixture[]> => {
   return fixtures;
 };
 
-export { getFixtures as default, Fixture }
+export { getFixtures as default }

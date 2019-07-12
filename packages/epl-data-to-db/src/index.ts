@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
-import { StandardResult, Fixture } from "@gvhinks/epl-data-reader";
+import { StandardResult } from "@gvhinks/epl-data-reader";
+import { Fixture } from "@gvhinks/epl-common-interfaces";
 import { url, dbName, historicalMatches, fixtures as fixturesCollection } from "@gvhinks/epl-constants";
 
 export interface MatchData {

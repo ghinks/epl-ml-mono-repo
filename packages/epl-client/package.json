@@ -21,6 +21,7 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
+    "@gvhinks/epl-common-interfaces": "^1.5.1",
     "@gvhinks/epl-constants": "^1.5.1",
     "@gvhinks/epl-utilities": "^1.1.0",
     "@tensorflow/tfjs": "1.2.2",
