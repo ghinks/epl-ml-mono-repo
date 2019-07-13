@@ -1,15 +1,7 @@
 import * as tf from "@tensorflow/tfjs";
 import teamsArray from "./teamNames";
+import { PredictResult } from "@gvhinks/epl-common-interfaces";
 
-// result so that console op is ok to view
-interface PredictResult {
-  homeTeam: string;
-  awayTeam: string;
-  standardizedResult: number[];
-  actualResult: number[];
-  comparison: boolean;
-  result: number[];
-};
 
 // type for a predictive test function
 type AsyncPredResult = () => Promise<PredictResult>;

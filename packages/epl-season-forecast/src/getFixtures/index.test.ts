@@ -3,9 +3,6 @@ import { Fixture } from "@gvhinks/epl-common-interfaces";
 import * as mongodb from "mongodb";
 jest.mock("mongodb");
 
-
-
-
 describe("forecast", (): void => {
   interface MockFindResult {
     toArray(): Promise<Fixture[]>;

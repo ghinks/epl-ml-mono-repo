@@ -1,23 +1,20 @@
-import getHistoricalData , { MatchResult, FutureResult, getFixtures } from "@gvhinks/epl-data-reader";
+import getHistoricalData , { MatchResult, getFixtures } from "@gvhinks/epl-data-reader";
 import writeToDB, { writeFutureFixtures } from "@gvhinks/epl-data-to-db";
-import createModel, { getTrainingData, TrainingData, getNames, save} from "@gvhinks/epl-base-model";
+import createModel, { getTrainingData, TrainingData, save} from "@gvhinks/epl-base-model";
 import * as tf from "@tensorflow/tfjs-node";
-import { createArrPrdFuncReqs, createTeamNameLookup, PredictResult, getOneHotEncoding } from "@gvhinks/epl-utilities";
+import { createArrPrdFuncReqs, createTeamNameLookup, getOneHotEncoding } from "@gvhinks/epl-utilities";
 import { io } from '@tensorflow/tfjs-core';
 import * as fs from "fs";
 import * as path from "path";
+import { PredictResult, Fixture } from "@gvhinks/epl-common-interfaces";
 const LONG_TEST = 5 * 60 * 1000;
 
 describe("Integration Tests", (): void => {
 
   const Chelsea = getOneHotEncoding("Chelsea");
   const WestHam = getOneHotEncoding("West Ham");
-  let teams;
-  beforeAll(async (): Promise<void> => {
-    teams = await getNames();
-  });
-  describe("DB tests", () => {
-    test("expect to git stuff back after you push data into the DB", async () => {
+  describe("DB tests", (): void => {
+    test("expect to git stuff back after you push data into the DB", async (): Promise<void> => {
       // const dataPath = path.resolve(path.join(__dirname, "../../epl-data-reader/data"))
       // console.log(dataPath);
       const stuff: MatchResult[] = await getHistoricalData();
@@ -26,12 +23,12 @@ describe("Integration Tests", (): void => {
       expect(result).toBe(true);
     });
     test("expect to be able to write future fixtures to the DB", async (): Promise<void> => {
-      const stuff: FutureResult[] = await getFixtures();
+      const stuff: Fixture[] = await getFixtures();
       expect(stuff.length).toBeGreaterThan(0);
       const result = await writeFutureFixtures(stuff);
       expect(result).toBe(true);
     });
-    test("expect to get data for Arsenal", async() => {
+    test("expect to get data for Arsenal", async(): void => {
       const results: TrainingData = await getTrainingData();
       expect(results.labelValues.length).toBeGreaterThan(0);
       interface Aggregation {
@@ -45,7 +42,7 @@ describe("Integration Tests", (): void => {
         looseCount: 0
       };
       // one hot encoding W, D, L
-      const summary = results.labelValues.reduce((a: Aggregation, r: TrainingData) => {
+      const summary = results.labelValues.reduce((a: Aggregation, r: TrainingData): Aggregation => {
         if (r[2]) {
           a.drawCount++;
         } else if (r[0]) {
@@ -59,7 +56,7 @@ describe("Integration Tests", (): void => {
     }, LONG_TEST);
   });
 
-  async function predictChelseaWestHam(model) {
+  async function predictChelseaWestHam(model): Promise<void> {
     const testData = tf.tensor3d([...Chelsea, ...WestHam], [1, 2, 43], "int32");
     const prediction = model.predict(testData);
     // @ts-ignore
@@ -70,11 +67,11 @@ describe("Integration Tests", (): void => {
     expect(sumOfWeights).toBeLessThan(1.15);
   }
 
-  describe("Model Functional Tests", () => {
-    afterAll(() => {
+  describe("Model Functional Tests", (): void => {
+    afterAll((): void => {
       //remove test files if they exist
       const files = [`${__dirname}/model.json`, `${__dirname}/weights.bin`];
-      files.forEach((file) => {
+      files.forEach((file): void => {
         try {
           if (fs.existsSync(file)) {
             fs.unlinkSync(file);
@@ -84,7 +81,7 @@ describe("Integration Tests", (): void => {
         }
       });
     });
-    test("expect to create a model and make a prediction", async () => {
+    test("expect to create a model and make a prediction", async (): Promise<void> => {
       const model = await createModel();
       await predictChelseaWestHam(model);
     }, LONG_TEST);
@@ -147,11 +144,11 @@ describe("Integration Tests", (): void => {
       }
     }, LONG_TEST);
   });
-  describe("Model Loading Tests http", () => {
+  describe("Model Loading Tests http", (): void => {
     test("expert to be able to load the model from the server", async (): Promise<void> => {
       try {
         const url = "http://localhost:3000/model.json"
-        const result = await tf.loadLayersModel(url);
+        await tf.loadLayersModel(url);
       } catch (e) {
         console.error(Array(100).join("#"));
         console.error(e.message);

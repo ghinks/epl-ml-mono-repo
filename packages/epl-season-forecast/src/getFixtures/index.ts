@@ -16,7 +16,6 @@ const getFixtures = async (): Promise<Fixture[]> => {
     console.error(e.message);
     return [];
   }
-
 };
 
 export { getFixtures }

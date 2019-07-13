@@ -15,4 +15,14 @@ interface Fixture {
   awayTeam: string;
 };
 
-export { Forecast, Fixture };
+// result so that console op is ok to view
+interface PredictResult {
+  homeTeam: string;
+  awayTeam: string;
+  standardizedResult: number[];
+  actualResult: number[];
+  comparison: boolean;
+  result: number[];
+};
+
+export { Forecast, Fixture, PredictResult };
