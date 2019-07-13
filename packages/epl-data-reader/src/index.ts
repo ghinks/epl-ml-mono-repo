@@ -3,7 +3,8 @@ import { MatchResult} from "./matchResult";
 import { StandardResult } from "./standardResult";
 import * as csv from "csvtojson"
 import "core-js/fn/array/flat-map";
-import getFixtures, { Fixture } from "./fixtures";
+import getFixtures from "./fixtures";
+import { Fixture } from "@gvhinks/epl-common-interfaces";
 
 const getJSONTenYearData = async (dataPath = `${__dirname}/../data/historicalData`): Promise<StandardResult[]> => {
   console.log(__dirname);
