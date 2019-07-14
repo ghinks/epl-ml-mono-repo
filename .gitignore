@@ -76,3 +76,4 @@ typings/
 dist
 definitions
 /.vscode/launch.json
+/log.txt

@@ -1,5 +1,5 @@
 import { standardize, createPredictionResult, createTeamNameLookup, getOneHotEncoding } from "./index";
-// import teamNames from "./teamNames"
+import { numAllTimeTeams } from "@gvhinks/epl-constants";
 
 describe("test utils", (): void => {
   const arsenal = getOneHotEncoding("Arsenal")
@@ -59,7 +59,7 @@ describe("test utils", (): void => {
   describe("One hot encoded team name", (): void => {
     test("Arsenal", (): void => {
       const oneHotEncoded = getOneHotEncoding("Arsenal");
-      expect(oneHotEncoded.length).toBe(43);
+      expect(oneHotEncoded.length).toBe(numAllTimeTeams);
       expect(oneHotEncoded[0]).toBe(1);
       const sum: number = oneHotEncoded.reduce((a, v): number => {
         return a + v;

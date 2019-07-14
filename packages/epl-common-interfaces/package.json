@@ -90,6 +90,7 @@
     "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose"
   },
   "dependencies": {
-    "@gvhinks/epl-constants": "^1.5.1"
+    "@gvhinks/epl-constants": "^1.5.1",
+    "@gvhinks/epl-season-forecast": "^1.5.1"
   }
 }

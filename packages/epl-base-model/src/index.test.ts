@@ -5,6 +5,7 @@ import TrainingData from "./getModelData";
 import * as fs from 'fs';
 import * as path from 'path';
 import { createArrPrdFuncReqs, createTeamNameLookup, PredictResult, getOneHotEncoding } from "@gvhinks/epl-utilities";
+import { numAllTimeTeams } from "@gvhinks/epl-constants";
 
 jest.mock("./getModelData");
 const fsProm = fs.promises;
@@ -38,7 +39,7 @@ describe("Model Creation from test data", (): void => {
     }, LONG_TIMEOUT);
     test("Expect to make a prediction", async (): Promise<void> => {
       const model: tf.Sequential = await createModel();
-      const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,43], 'int32');
+      const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,numAllTimeTeams], 'int32');
       const prediction = model.predict(testData);
       // @ts-ignore
       const result = await prediction.data();

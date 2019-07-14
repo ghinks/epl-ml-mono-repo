@@ -39,6 +39,7 @@
     "cross-env": "5.2.0",
     "eslint": "6.0.1",
     "jest": "24.8.0",
+    "nock": "^10.0.6",
     "prettier": "1.17.1",
     "rimraf": "2.6.3",
     "ts-jest": "24.0.2",
@@ -49,12 +50,9 @@
     "@babel/runtime": "^7.3.1",
     "@gvhinks/epl-common-interfaces": "^1.5.1",
     "@gvhinks/epl-constants": "^1.5.1",
-    "@gvhinks/epl-data-reader": "^1.5.1",
-    "@gvhinks/epl-data-to-db": "^1.5.1",
     "@gvhinks/epl-utilities": "^1.1.0",
-    "@tensorflow/tfjs-node": "^1.0.2",
-    "@types/mongodb": "^3.1.23",
-    "mongodb": "^3.1.13"
+    "@tensorflow/tfjs": "^1.0.2",
+    "isomorphic-fetch": "^2.2.1"
   },
   "babel": {
     "presets": [
@@ -62,7 +60,7 @@
         "@babel/preset-env",
         {
           "targets": {
-            "node": "10.0.0"
+            "chrome": "58"
           }
         }
       ]
