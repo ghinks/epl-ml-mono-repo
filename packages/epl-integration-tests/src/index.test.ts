@@ -6,9 +6,9 @@ import { createArrPrdFuncReqs, createTeamNameLookup, getOneHotEncoding } from "@
 import { io } from '@tensorflow/tfjs-core';
 import * as fs from "fs";
 import * as path from "path";
-import { PredictResult, Fixture } from "@gvhinks/epl-common-interfaces";
+import { PredictResult, Fixture, FixturePrediction } from "@gvhinks/epl-common-interfaces";
 import { numAllTimeTeams, fixturesUrl } from "@gvhinks/epl-constants";
-import { getPredictions, getFixtures as getFixturesFromHost } from "@gvhinks/epl-season-forecast";
+import { getPredictions, getFixtures as getFixturesFromHost, collateTable } from "@gvhinks/epl-season-forecast";
 
 const LONG_TEST = 5 * 60 * 1000;
 
@@ -155,6 +155,25 @@ describe("Integration Tests", (): void => {
         const fixtures: Fixture[] = await getFixturesFromHost();
         console.log("got fixtures");
         await getPredictions(fixtures, model);
+      } catch (e) {
+        console.error(Array(100).join("#"));
+        console.error(e.message);
+        fail();
+      }
+    });
+    test("expect to create a table", async (): Promise<void> => {
+      try {
+        const targetFile = path.resolve(path.join(__dirname, "../../epl-host-model/model", "model.json"));
+        const file = `file:///${targetFile}`;
+        console.log(file);
+        const model = await tf.loadLayersModel(file);
+        console.log("got model");
+        const fixtures: Fixture[] = await getFixturesFromHost();
+        console.log("got fixtures");
+        const predictions: FixturePrediction[] = await getPredictions(fixtures, model);
+        const table = collateTable(predictions);
+        expect(table.length).toBeGreaterThan(0);
+        console.log(JSON.stringify(table, null, 2));
       } catch (e) {
         console.error(Array(100).join("#"));
         console.error(e.message);
