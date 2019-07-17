@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@gvhinks/epl-utilities": "^1.0.13",
-    "@tensorflow/tfjs": "1.2.2",
+    "@tensorflow/tfjs": "1.2.3",
     "react": "16.8.6",
     "react-dom": "16.8.6"
   }
