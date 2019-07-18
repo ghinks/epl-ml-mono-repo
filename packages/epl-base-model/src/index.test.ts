@@ -4,23 +4,25 @@ import getModelData from "./getModelData";
 import TrainingData from "./getModelData";
 import * as fs from 'fs';
 import * as path from 'path';
-import { createArrPrdFuncReqs, createTeamNameLookup, PredictResult } from "@gvhinks/epl-utilities";
+import { createArrPrdFuncReqs, createTeamNameLookup, PredictResult, getOneHotEncoding } from "@gvhinks/epl-utilities";
+import { numAllTimeTeams } from "@gvhinks/epl-constants";
 
 jest.mock("./getModelData");
 const fsProm = fs.promises;
 
 describe("Model Creation from test data", (): void => {
-  const LONG_TIMEOUT: number = 30 * 1000;
-  const Chelsea = [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-  const WestHam = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0];
+  const LONG_TIMEOUT: number = 5 * 60 * 1000;
+  const Chelsea = getOneHotEncoding("Chelsea");
+  const WestHam = getOneHotEncoding("West Ham");
   const createModelTrainingData = async (): Promise<void> =>  {
     const testFeatureValues = await fsProm.readFile(path.join(__dirname, "./testData/trainingTestFeatureValues.json"), "utf-8");
     const testLabelValues = await fsProm.readFile(path.join(__dirname, "./testData/trainingTestLabelValues.json"), "utf-8");
     // @ts-ignore
     let trainingTestData: TrainingData;
+    // limit test data to 3000 samples
     trainingTestData = {
-      labelValues: JSON.parse(testLabelValues),
-      featureValues: JSON.parse(testFeatureValues)
+      labelValues: (JSON.parse(testLabelValues)).slice(-3000),
+      featureValues: (JSON.parse(testFeatureValues)).slice(-3000)
     };
     getModelData.mockResolvedValue(trainingTestData);
   }
@@ -37,7 +39,7 @@ describe("Model Creation from test data", (): void => {
     }, LONG_TIMEOUT);
     test("Expect to make a prediction", async (): Promise<void> => {
       const model: tf.Sequential = await createModel();
-      const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,36], 'int32');
+      const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,numAllTimeTeams], 'int32');
       const prediction = model.predict(testData);
       // @ts-ignore
       const result = await prediction.data();

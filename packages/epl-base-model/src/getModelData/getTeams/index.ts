@@ -1,8 +1,8 @@
 import * as mongodb from "mongodb";
-import { dbName, collectionName, url } from "../constants";
+import { url, dbName, historicalMatches } from "@gvhinks/epl-constants";
 
 const getCollection = (client: mongodb.MongoClient): mongodb.Collection =>
-  client.db(dbName).collection(collectionName);
+  client.db(dbName).collection(historicalMatches);
 
 const getNames = async (): Promise<Map<string, number[]>> => {
   const client: mongodb.MongoClient = await mongodb.MongoClient.connect(url, {

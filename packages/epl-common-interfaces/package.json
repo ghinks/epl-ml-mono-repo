@@ -1,0 +1,95 @@
+{
+  "name": "@gvhinks/epl-common-interfaces",
+  "version": "1.5.1",
+  "description": "Common TS interfaces shared between node and front end modules",
+  "keywords": [
+    "epl",
+    "typescript",
+    "tensorflow",
+    "machine",
+    "learning"
+  ],
+  "author": "Glenn Hinks <ghinks@yahoo.com>",
+  "homepage": "https://github.com/ghinks/epl-ml-mono-repo#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghinks/epl-ml-mono-repo.git"
+  },
+  "babel": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "chrome": "58"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "@babel/plugin-transform-runtime"
+        ]
+      }
+    }
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "@typescript-eslint/indent": [
+        "error",
+        2
+      ]
+    },
+    "extends": [
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "env": {
+      "node": true,
+      "jest": true,
+      "mocha": true
+    }
+  },
+  "devDependencies": {
+    "@babel/cli": "7.5.0",
+    "@babel/core": "7.5.0",
+    "@babel/plugin-transform-regenerator": "7.4.5",
+    "@babel/plugin-transform-runtime": "7.5.0",
+    "@babel/preset-env": "7.5.0",
+    "@babel/preset-typescript": "7.3.3",
+    "@babel/register": "7.4.4",
+    "@types/node": "11.13.14",
+    "@typescript-eslint/eslint-plugin": "1.11.0",
+    "@typescript-eslint/parser": "1.11.0",
+    "cross-env": "5.2.0",
+    "eslint": "6.0.1",
+    "rimraf": "2.6.3",
+    "typescript": "3.4.5"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "lint": "eslint \"src/**/*.ts\"",
+    "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose"
+  },
+  "dependencies": {
+    "@gvhinks/epl-constants": "^1.5.1"
+  }
+}

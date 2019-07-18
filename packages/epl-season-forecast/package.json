@@ -1,0 +1,131 @@
+{
+  "name": "@gvhinks/epl-season-forecast",
+  "version": "1.5.1",
+  "description": "Create a prediction from the fixtures for the season",
+  "keywords": [
+    "lerna",
+    "tensorflow",
+    "typescript"
+  ],
+  "author": "Glenn Hinks <ghinks@yahoo.com>",
+  "homepage": "https://github.com/ghinks/epl-ml-mono-repo#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghinks/epl-ml-mono-repo.git"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "cross-env NODE_ENV=test jest src",
+    "lint": "eslint \"src/**/*.ts\"",
+    "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose",
+    "pretty": "prettier --write src/**/*.ts",
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.5.0",
+    "@babel/core": "7.5.0",
+    "@babel/plugin-transform-regenerator": "7.4.5",
+    "@babel/plugin-transform-runtime": "7.5.0",
+    "@babel/preset-env": "7.5.0",
+    "@babel/preset-typescript": "7.3.3",
+    "@babel/register": "7.4.4",
+    "@types/node": "11.13.14",
+    "@typescript-eslint/eslint-plugin": "1.11.0",
+    "@typescript-eslint/parser": "1.11.0",
+    "cross-env": "5.2.0",
+    "eslint": "6.0.1",
+    "jest": "24.8.0",
+    "nock": "^10.0.6",
+    "prettier": "1.17.1",
+    "rimraf": "2.6.3",
+    "ts-jest": "24.0.2",
+    "typescript": "3.4.5"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "@babel/runtime": "^7.3.1",
+    "@gvhinks/epl-common-interfaces": "^1.5.1",
+    "@gvhinks/epl-constants": "^1.5.1",
+    "@gvhinks/epl-utilities": "^1.1.0",
+    "@tensorflow/tfjs": "^1.0.2",
+    "isomorphic-fetch": "^2.2.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "chrome": "58"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "@babel/plugin-transform-runtime"
+        ]
+      }
+    }
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "@typescript-eslint/indent": [
+        "error",
+        2
+      ]
+    },
+    "extends": [
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "env": {
+      "node": true,
+      "jest": true
+    }
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "src/**/*.spec.ts",
+      "src/**/*.test.ts"
+    ],
+    "report": [
+      "json",
+      "lcov",
+      "html",
+      "text"
+    ]
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "testMatch": [
+      "**/*.test.ts"
+    ],
+    "testEnvironment": "node",
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "diagnostics": false
+      }
+    }
+  }
+}

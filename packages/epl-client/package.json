@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-client",
-  "version": "1.0.13",
+  "version": "1.1.0",
   "description": "Browser side client",
   "keywords": [
     "tensorflow",
@@ -21,9 +21,14 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
-    "@gvhinks/epl-utilities": "^1.0.13",
-    "@tensorflow/tfjs": "1.2.3",
+    "@gvhinks/epl-common-interfaces": "^1.5.1",
+    "@gvhinks/epl-constants": "^1.5.1",
+    "@gvhinks/epl-season-forecast": "^1.5.1",
+    "@gvhinks/epl-utilities": "^1.1.0",
+    "@tensorflow/tfjs": "1.2.2",
     "react": "16.8.6",
-    "react-dom": "16.8.6"
+    "react-dom": "16.8.6",
+    "react-table": "^6.10.0",
+    "rollup": "^1.17.0"
   }
 }

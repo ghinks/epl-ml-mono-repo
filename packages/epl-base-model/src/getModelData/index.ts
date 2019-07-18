@@ -2,7 +2,7 @@ import * as mongodb from "mongodb";
 import { MatchData } from "@gvhinks/epl-data-to-db";
 import flattenLabels, { Labels } from "./getLabels";
 import flattenFeatures, { Features } from "./getFeatures";
-import { url, dbName, collectionName } from "./constants";
+import { url, dbName, historicalMatches } from "@gvhinks/epl-constants";
 import getNames from "./getTeams"
 
 // export interface BaseResult extends Features, Labels {};
@@ -12,7 +12,7 @@ export interface TrainingData {
 }
 
 const getCollection = (client: mongodb.MongoClient): mongodb.Collection =>
-  client.db(dbName).collection(collectionName);
+  client.db(dbName).collection(historicalMatches);
 
 const isHomeWin = (result): number =>
   (result.fullTimeResult === "H")
@@ -29,7 +29,7 @@ const isDraw = (result): number =>
     ? 1
     : 0;
 
-const getTrainingData = async (dateReg: RegExp = /^20[0-9][0-8].*/): Promise<TrainingData> => {
+const getTrainingData = async (fromDate: Date = new Date(2000, 1,1), toDate: Date = new Date(2018, 1, 1)): Promise<TrainingData> => {
   try {
     const client: mongodb.MongoClient = await mongodb.MongoClient.connect(url, {
       useNewUrlParser: true
@@ -37,7 +37,7 @@ const getTrainingData = async (dateReg: RegExp = /^20[0-9][0-8].*/): Promise<Tra
     const teams: Map<string, number[]> = await getNames();
     const collection = getCollection(client);
     const query = {
-      Date: { $regex: dateReg },
+      Date: { $gte: fromDate, $lte: toDate },
     };
     const results: MatchData[] = await collection.find(query).toArray();
 

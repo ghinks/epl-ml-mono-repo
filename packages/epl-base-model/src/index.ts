@@ -1,16 +1,13 @@
 import * as tf from "@tensorflow/tfjs-node";
 import getTrainingData, { TrainingData, getNames } from "./getModelData";
-import save from "./saveModel"
-
-// import * as fs from 'fs';
+import save from "./saveModel";
+import { numAllTimeTeams } from "@gvhinks/epl-constants";
 
 const createModel = async (): Promise<tf.Sequential> => {
   const model: tf.Sequential = tf.sequential({
     name: "predict"
   });
-  // we have 3424 test sets
-  // each of 2 * 36
-  model.add(tf.layers.dense({inputShape: [2,36], units: 3, useBias: true, name:"teams_layer"}));
+  model.add(tf.layers.dense({inputShape: [2,numAllTimeTeams], units: 3, useBias: true, name:"teams_layer"}));
   model.add(tf.layers.flatten());
   model.add(tf.layers.dense({units: 3, useBias: true, name: "results_layer"}));
   model.compile({optimizer: tf.train.adam(0.001), loss: 'meanSquaredError'});

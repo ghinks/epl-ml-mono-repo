@@ -20,7 +20,7 @@
     "Date": "10/08/2019 15:00",
     "Location": "Vitality Stadium",
     "Home Team": "Bournemouth",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -59,7 +59,7 @@
     "Round Number": 1,
     "Date": "10/08/2019 17:30",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Aston Villa",
     "Result": ""
   },
@@ -75,7 +75,7 @@
     "Round Number": 1,
     "Date": "11/08/2019 16:30",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Chelsea",
     "Result": ""
   },
@@ -124,7 +124,7 @@
     "Date": "17/08/2019 15:00",
     "Location": "Etihad Stadium",
     "Home Team": "Man City",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -139,7 +139,7 @@
     "Round Number": 2,
     "Date": "17/08/2019 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Crystal Palace",
     "Result": ""
   },
@@ -156,7 +156,7 @@
     "Date": "17/08/2019 15:00",
     "Location": "Molineux Stadium",
     "Home Team": "Wolves",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -195,7 +195,7 @@
     "Round Number": 3,
     "Date": "24/08/2019 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Crystal Palace",
     "Result": ""
   },
@@ -211,7 +211,7 @@
     "Round Number": 3,
     "Date": "24/08/2019 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Leicester",
     "Result": ""
   },
@@ -219,7 +219,7 @@
     "Round Number": 3,
     "Date": "24/08/2019 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Newcastle",
     "Result": ""
   },
@@ -244,7 +244,7 @@
     "Date": "31/08/2019 15:00",
     "Location": "Emirates Stadium",
     "Home Team": "Arsenal",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -260,7 +260,7 @@
     "Date": "31/08/2019 15:00",
     "Location": "Stamford Bridge",
     "Home Team": "Chelsea",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -308,7 +308,7 @@
     "Date": "31/08/2019 15:00",
     "Location": "St. Mary's Stadium",
     "Home Team": "Southampton",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -355,7 +355,7 @@
     "Round Number": 5,
     "Date": "14/09/2019 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Leicester",
     "Result": ""
   },
@@ -371,7 +371,7 @@
     "Round Number": 5,
     "Date": "14/09/2019 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Southampton",
     "Result": ""
   },
@@ -379,7 +379,7 @@
     "Round Number": 5,
     "Date": "14/09/2019 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Crystal Palace",
     "Result": ""
   },
@@ -436,7 +436,7 @@
     "Date": "21/09/2019 15:00",
     "Location": "Goodison Park",
     "Home Team": "Everton",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -444,7 +444,7 @@
     "Date": "21/09/2019 15:00",
     "Location": "King Power Stadium",
     "Home Team": "Leicester",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -476,7 +476,7 @@
     "Date": "21/09/2019 15:00",
     "Location": "London Stadium",
     "Home Team": "West Ham",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -531,7 +531,7 @@
     "Round Number": 7,
     "Date": "28/09/2019 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Arsenal",
     "Result": ""
   },
@@ -539,7 +539,7 @@
     "Round Number": 7,
     "Date": "28/09/2019 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Liverpool",
     "Result": ""
   },
@@ -547,7 +547,7 @@
     "Round Number": 7,
     "Date": "28/09/2019 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Southampton",
     "Result": ""
   },
@@ -572,7 +572,7 @@
     "Date": "05/10/2019 15:00",
     "Location": "Amex Stadium",
     "Home Team": "Brighton",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -604,7 +604,7 @@
     "Date": "05/10/2019 15:00",
     "Location": "St. James' Park",
     "Home Team": "Newcastle",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -628,7 +628,7 @@
     "Date": "05/10/2019 15:00",
     "Location": "Vicarage Road",
     "Home Team": "Watford",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -691,7 +691,7 @@
     "Round Number": 9,
     "Date": "19/10/2019 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Liverpool",
     "Result": ""
   },
@@ -699,7 +699,7 @@
     "Round Number": 9,
     "Date": "19/10/2019 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Arsenal",
     "Result": ""
   },
@@ -707,7 +707,7 @@
     "Round Number": 9,
     "Date": "19/10/2019 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Watford",
     "Result": ""
   },
@@ -748,7 +748,7 @@
     "Date": "26/10/2019 15:00",
     "Location": "Anfield",
     "Home Team": "Liverpool",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -772,7 +772,7 @@
     "Date": "26/10/2019 15:00",
     "Location": "Carrow Road",
     "Home Team": "Norwich",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -796,7 +796,7 @@
     "Date": "26/10/2019 15:00",
     "Location": "London Stadium",
     "Home Team": "West Ham",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -804,7 +804,7 @@
     "Date": "02/11/2019 15:00",
     "Location": "Vitality Stadium",
     "Home Team": "Bournemouth",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -844,7 +844,7 @@
     "Date": "02/11/2019 15:00",
     "Location": "Goodison Park",
     "Home Team": "Everton",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -859,7 +859,7 @@
     "Round Number": 11,
     "Date": "02/11/2019 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Burnley",
     "Result": ""
   },
@@ -915,7 +915,7 @@
     "Round Number": 12,
     "Date": "09/11/2019 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Brighton",
     "Result": ""
   },
@@ -947,8 +947,8 @@
     "Round Number": 12,
     "Date": "09/11/2019 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
-    "Away Team": "Sheffield Utd",
+    "Home Team": "Tottenham",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -1019,8 +1019,8 @@
     "Round Number": 13,
     "Date": "23/11/2019 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
-    "Away Team": "Man Utd",
+    "Home Team": "Sheffield United",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -1036,7 +1036,7 @@
     "Date": "23/11/2019 15:00",
     "Location": "London Stadium",
     "Home Team": "West Ham",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -1075,7 +1075,7 @@
     "Round Number": 14,
     "Date": "30/11/2019 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Aston Villa",
     "Result": ""
   },
@@ -1107,7 +1107,7 @@
     "Round Number": 14,
     "Date": "30/11/2019 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Bournemouth",
     "Result": ""
   },
@@ -1116,7 +1116,7 @@
     "Date": "30/11/2019 15:00",
     "Location": "Molineux Stadium",
     "Home Team": "Wolves",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -1147,7 +1147,7 @@
     "Round Number": 15,
     "Date": "03/12/2019 19:45",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Newcastle",
     "Result": ""
   },
@@ -1163,8 +1163,8 @@
     "Round Number": 15,
     "Date": "03/12/2019 20:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
-    "Away Team": "Spurs",
+    "Home Team": "Man United",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -1236,7 +1236,7 @@
     "Date": "07/12/2019 15:00",
     "Location": "Etihad Stadium",
     "Home Team": "Man City",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -1252,14 +1252,14 @@
     "Date": "07/12/2019 15:00",
     "Location": "Carrow Road",
     "Home Team": "Norwich",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
     "Round Number": 16,
     "Date": "07/12/2019 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Burnley",
     "Result": ""
   },
@@ -1331,7 +1331,7 @@
     "Round Number": 17,
     "Date": "14/12/2019 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Everton",
     "Result": ""
   },
@@ -1339,7 +1339,7 @@
     "Round Number": 17,
     "Date": "14/12/2019 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Aston Villa",
     "Result": ""
   },
@@ -1356,7 +1356,7 @@
     "Date": "14/12/2019 15:00",
     "Location": "Molineux Stadium",
     "Home Team": "Wolves",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -1380,7 +1380,7 @@
     "Date": "21/12/2019 15:00",
     "Location": "Amex Stadium",
     "Home Team": "Brighton",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -1419,7 +1419,7 @@
     "Round Number": 18,
     "Date": "21/12/2019 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Chelsea",
     "Result": ""
   },
@@ -1428,7 +1428,7 @@
     "Date": "21/12/2019 15:00",
     "Location": "Vicarage Road",
     "Home Team": "Watford",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -1491,7 +1491,7 @@
     "Round Number": 19,
     "Date": "26/12/2019 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Newcastle",
     "Result": ""
   },
@@ -1499,7 +1499,7 @@
     "Round Number": 19,
     "Date": "26/12/2019 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Watford",
     "Result": ""
   },
@@ -1507,7 +1507,7 @@
     "Round Number": 19,
     "Date": "26/12/2019 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Brighton",
     "Result": ""
   },
@@ -1540,7 +1540,7 @@
     "Date": "28/12/2019 15:00",
     "Location": "Turf Moor",
     "Home Team": "Burnley",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -1556,7 +1556,7 @@
     "Date": "28/12/2019 15:00",
     "Location": "Etihad Stadium",
     "Home Team": "Man City",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -1572,7 +1572,7 @@
     "Date": "28/12/2019 15:00",
     "Location": "Carrow Road",
     "Home Team": "Norwich",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -1604,7 +1604,7 @@
     "Date": "01/01/2020 15:00",
     "Location": "Emirates Stadium",
     "Home Team": "Arsenal",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -1628,7 +1628,7 @@
     "Date": "01/01/2020 15:00",
     "Location": "Anfield",
     "Home Team": "Liverpool",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -1660,7 +1660,7 @@
     "Date": "01/01/2020 15:00",
     "Location": "St. Mary's Stadium",
     "Home Team": "Southampton",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -1731,7 +1731,7 @@
     "Round Number": 22,
     "Date": "11/01/2020 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Norwich",
     "Result": ""
   },
@@ -1739,7 +1739,7 @@
     "Round Number": 22,
     "Date": "11/01/2020 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "West Ham",
     "Result": ""
   },
@@ -1747,7 +1747,7 @@
     "Round Number": 22,
     "Date": "11/01/2020 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Liverpool",
     "Result": ""
   },
@@ -1764,7 +1764,7 @@
     "Date": "18/01/2020 15:00",
     "Location": "Emirates Stadium",
     "Home Team": "Arsenal",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -1788,7 +1788,7 @@
     "Date": "18/01/2020 15:00",
     "Location": "Anfield",
     "Home Team": "Liverpool",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -1828,7 +1828,7 @@
     "Date": "18/01/2020 15:00",
     "Location": "Vicarage Road",
     "Home Team": "Watford",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -1875,7 +1875,7 @@
     "Round Number": 24,
     "Date": "21/01/2020 19:45",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Man City",
     "Result": ""
   },
@@ -1891,7 +1891,7 @@
     "Round Number": 24,
     "Date": "21/01/2020 20:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Burnley",
     "Result": ""
   },
@@ -1907,7 +1907,7 @@
     "Round Number": 24,
     "Date": "22/01/2020 19:45",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Norwich",
     "Result": ""
   },
@@ -1940,7 +1940,7 @@
     "Date": "01/02/2020 15:00",
     "Location": "Selhurst Park",
     "Home Team": "Crystal Palace",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -1963,7 +1963,7 @@
     "Round Number": 25,
     "Date": "01/02/2020 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Wolves",
     "Result": ""
   },
@@ -1979,7 +1979,7 @@
     "Round Number": 25,
     "Date": "01/02/2020 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Man City",
     "Result": ""
   },
@@ -2012,7 +2012,7 @@
     "Date": "08/02/2020 15:00",
     "Location": "Villa Park",
     "Home Team": "Aston Villa",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -2028,7 +2028,7 @@
     "Date": "08/02/2020 15:00",
     "Location": "Stamford Bridge",
     "Home Team": "Chelsea",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -2059,7 +2059,7 @@
     "Round Number": 26,
     "Date": "08/02/2020 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Bournemouth",
     "Result": ""
   },
@@ -2100,7 +2100,7 @@
     "Date": "22/02/2020 15:00",
     "Location": "Stamford Bridge",
     "Home Team": "Chelsea",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -2131,7 +2131,7 @@
     "Round Number": 27,
     "Date": "22/02/2020 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Watford",
     "Result": ""
   },
@@ -2139,7 +2139,7 @@
     "Round Number": 27,
     "Date": "22/02/2020 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Brighton",
     "Result": ""
   },
@@ -2172,7 +2172,7 @@
     "Date": "29/02/2020 15:00",
     "Location": "Villa Park",
     "Home Team": "Aston Villa",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -2188,7 +2188,7 @@
     "Date": "29/02/2020 15:00",
     "Location": "Goodison Park",
     "Home Team": "Everton",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -2219,7 +2219,7 @@
     "Round Number": 28,
     "Date": "29/02/2020 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Wolves",
     "Result": ""
   },
@@ -2252,7 +2252,7 @@
     "Date": "07/03/2020 15:00",
     "Location": "Turf Moor",
     "Home Team": "Burnley",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -2291,7 +2291,7 @@
     "Round Number": 29,
     "Date": "07/03/2020 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Man City",
     "Result": ""
   },
@@ -2299,7 +2299,7 @@
     "Round Number": 29,
     "Date": "07/03/2020 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Norwich",
     "Result": ""
   },
@@ -2364,7 +2364,7 @@
     "Date": "14/03/2020 15:00",
     "Location": "St. James' Park",
     "Home Team": "Newcastle",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -2379,8 +2379,8 @@
     "Round Number": 30,
     "Date": "14/03/2020 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
-    "Away Team": "Man Utd",
+    "Home Team": "Tottenham",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -2435,8 +2435,8 @@
     "Round Number": 31,
     "Date": "21/03/2020 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
-    "Away Team": "Sheffield Utd",
+    "Home Team": "Man United",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -2467,7 +2467,7 @@
     "Round Number": 31,
     "Date": "21/03/2020 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "West Ham",
     "Result": ""
   },
@@ -2508,7 +2508,7 @@
     "Date": "04/04/2020 15:00",
     "Location": "Amex Stadium",
     "Home Team": "Brighton",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -2539,8 +2539,8 @@
     "Round Number": 32,
     "Date": "04/04/2020 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
-    "Away Team": "Spurs",
+    "Home Team": "Sheffield United",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -2564,7 +2564,7 @@
     "Date": "11/04/2020 15:00",
     "Location": "Turf Moor",
     "Home Team": "Burnley",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -2595,7 +2595,7 @@
     "Round Number": 33,
     "Date": "11/04/2020 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Bournemouth",
     "Result": ""
   },
@@ -2627,7 +2627,7 @@
     "Round Number": 33,
     "Date": "11/04/2020 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Everton",
     "Result": ""
   },
@@ -2644,7 +2644,7 @@
     "Date": "18/04/2020 15:00",
     "Location": "Vitality Stadium",
     "Home Team": "Bournemouth",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -2660,7 +2660,7 @@
     "Date": "18/04/2020 15:00",
     "Location": "Villa Park",
     "Home Team": "Aston Villa",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -2699,7 +2699,7 @@
     "Round Number": 34,
     "Date": "18/04/2020 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Wolves",
     "Result": ""
   },
@@ -2755,7 +2755,7 @@
     "Round Number": 35,
     "Date": "25/04/2020 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "Southampton",
     "Result": ""
   },
@@ -2771,7 +2771,7 @@
     "Round Number": 35,
     "Date": "25/04/2020 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Chelsea",
     "Result": ""
   },
@@ -2779,7 +2779,7 @@
     "Round Number": 35,
     "Date": "25/04/2020 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Arsenal",
     "Result": ""
   },
@@ -2828,7 +2828,7 @@
     "Date": "02/05/2020 15:00",
     "Location": "Selhurst Park",
     "Home Team": "Crystal Palace",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -2844,7 +2844,7 @@
     "Date": "02/05/2020 15:00",
     "Location": "King Power Stadium",
     "Home Team": "Leicester",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {
@@ -2860,7 +2860,7 @@
     "Date": "02/05/2020 15:00",
     "Location": "St. James' Park",
     "Home Team": "Newcastle",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -2915,7 +2915,7 @@
     "Round Number": 37,
     "Date": "09/05/2020 15:00",
     "Location": "Old Trafford",
-    "Home Team": "Man Utd",
+    "Home Team": "Man United",
     "Away Team": "West Ham",
     "Result": ""
   },
@@ -2931,7 +2931,7 @@
     "Round Number": 37,
     "Date": "09/05/2020 15:00",
     "Location": "Bramall Lane",
-    "Home Team": "Sheffield Utd",
+    "Home Team": "Sheffield United",
     "Away Team": "Everton",
     "Result": ""
   },
@@ -2939,7 +2939,7 @@
     "Round Number": 37,
     "Date": "09/05/2020 15:00",
     "Location": "Tottenham Hotspur Stadium",
-    "Home Team": "Spurs",
+    "Home Team": "Tottenham",
     "Away Team": "Leicester",
     "Result": ""
   },
@@ -2988,7 +2988,7 @@
     "Date": "17/05/2020 15:00",
     "Location": "Selhurst Park",
     "Home Team": "Crystal Palace",
-    "Away Team": "Spurs",
+    "Away Team": "Tottenham",
     "Result": ""
   },
   {
@@ -3004,7 +3004,7 @@
     "Date": "17/05/2020 15:00",
     "Location": "King Power Stadium",
     "Home Team": "Leicester",
-    "Away Team": "Man Utd",
+    "Away Team": "Man United",
     "Result": ""
   },
   {
@@ -3028,7 +3028,7 @@
     "Date": "17/05/2020 15:00",
     "Location": "St. Mary's Stadium",
     "Home Team": "Southampton",
-    "Away Team": "Sheffield Utd",
+    "Away Team": "Sheffield United",
     "Result": ""
   },
   {

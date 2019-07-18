@@ -1,15 +1,8 @@
 import * as tf from "@tensorflow/tfjs";
 import teamsArray from "./teamNames";
+import { PredictResult } from "@gvhinks/epl-common-interfaces";
+import { numAllTimeTeams } from "@gvhinks/epl-constants";
 
-// result so that console op is ok to view
-interface PredictResult {
-  homeTeam: string;
-  awayTeam: string;
-  standardizedResult: number[];
-  actualResult: number[];
-  comparison: boolean;
-  result: number[];
-};
 
 // type for a predictive test function
 type AsyncPredResult = () => Promise<PredictResult>;
@@ -38,7 +31,7 @@ const createPredictionResult = async (model: tf.Sequential,
   hotEncodedNames: number[][],
   teamNames: Map<string, string>,
   testLabelValues: number[]): Promise<PredictResult> => {
-  const testData = tf.tensor3d([...hotEncodedNames[0], ...hotEncodedNames[1]], [1, 2, 36], "int32");
+  const testData = tf.tensor3d([...hotEncodedNames[0], ...hotEncodedNames[1]], [1, 2, numAllTimeTeams], "int32");
   const prediction = model.predict(testData);
   // @ts-ignore
   const result: number[] = await prediction.data();

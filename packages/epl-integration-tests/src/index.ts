@@ -14,4 +14,4 @@ const makeTheModel = async (): Promise<void> => {
   }
 };
 
-makeTheModel().then(() => console.log("finished making the model"));
+makeTheModel().then((): void => console.log("finished making the model"));
