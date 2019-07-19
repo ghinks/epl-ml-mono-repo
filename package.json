@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "devDependencies": {
     "@types/jest": "24.0.15",
-    "lerna": "3.15.0"
+    "lerna": "3.16.1"
   },
   "license": "MIT",
   "scripts": {
