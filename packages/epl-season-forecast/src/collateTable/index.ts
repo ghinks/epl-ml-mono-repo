@@ -54,7 +54,7 @@ function updateHomeTeamTblEntry(leageTblMp: Map<string, Forecast >, fixturePredi
   // console.log(`update home team forecast ${JSON.stringify(leageTblMp.get(fixturePrediction.homeTeam))}`)
 }
 
-function updateAwayTeamTblEntry(leageTblMp: Map<string, Forecast>, fixturePrediction, awayTeamUpdate: Update): vqid {
+function updateAwayTeamTblEntry(leageTblMp: Map<string, Forecast>, fixturePrediction, awayTeamUpdate: Update): void {
   const awayTeamForecast: Forecast = leageTblMp.get(fixturePrediction.awayTeam);
   awayTeamForecast.wins += awayTeamUpdate.win;
   awayTeamForecast.loses += awayTeamUpdate.lose;
