@@ -19,7 +19,7 @@ const getAwayTeamPoints = (fxPrd: FixturePrediction): number => {
   return 1;
 };
 
-function createNewHomeTeamEntry(singeGamePrediction, forecastTable: Map<string, Forecast>) {
+function createNewHomeTeamEntry(singeGamePrediction, forecastTable: Map<string, Forecast>): void {
   const forecast: Forecast = {
     position: 0,
     team: singeGamePrediction.homeTeam,
@@ -32,7 +32,7 @@ function createNewHomeTeamEntry(singeGamePrediction, forecastTable: Map<string, 
   forecastTable.set(singeGamePrediction.homeTeam, forecast);
 }
 
-function createNewAwayTeamEntry(singeGamePrediction, forecastTable: Map<string, Forecast>) {
+function createNewAwayTeamEntry(singeGamePrediction, forecastTable: Map<string, Forecast>): void {
   const forecast: Forecast = {
     position: 0,
     team: singeGamePrediction.awayTeam,
@@ -45,7 +45,7 @@ function createNewAwayTeamEntry(singeGamePrediction, forecastTable: Map<string, 
   forecastTable.set(singeGamePrediction.awayTeam, forecast);
 }
 
-function updateHomeTeamTblEntry(leageTblMp: Map<string, Forecast >, fixturePrediction, homeTeamUpdate: Update) {
+function updateHomeTeamTblEntry(leageTblMp: Map<string, Forecast >, fixturePrediction, homeTeamUpdate: Update): void {
   const homeTeamForecast: Forecast = leageTblMp.get(fixturePrediction.homeTeam);
   homeTeamForecast.wins += homeTeamUpdate.win;
   homeTeamForecast.loses += homeTeamUpdate.lose;
@@ -54,7 +54,7 @@ function updateHomeTeamTblEntry(leageTblMp: Map<string, Forecast >, fixturePredi
   // console.log(`update home team forecast ${JSON.stringify(leageTblMp.get(fixturePrediction.homeTeam))}`)
 }
 
-function updateAwayTeamTblEntry(leageTblMp: Map<string, Forecast>, fixturePrediction, awayTeamUpdate: Update) {
+function updateAwayTeamTblEntry(leageTblMp: Map<string, Forecast>, fixturePrediction, awayTeamUpdate: Update): vqid {
   const awayTeamForecast: Forecast = leageTblMp.get(fixturePrediction.awayTeam);
   awayTeamForecast.wins += awayTeamUpdate.win;
   awayTeamForecast.loses += awayTeamUpdate.lose;
@@ -108,8 +108,8 @@ const collateTable = (results: FixturePrediction[]): Forecast[] => {
   }, new Map<string, Forecast>());
 
   //list.sort((a, b) => (a.color > b.color) ? 1 : -1)
-  let tbl = Array.from(tableMap.values()).sort((a: Forecast, b: Forecast) => (a.points > b.points) ? -1 : 1);
-  tbl = tbl.map((f: Forecast, i: number) => {
+  let tbl = Array.from(tableMap.values()).sort((a: Forecast, b: Forecast): number => (a.points > b.points) ? -1 : 1);
+  tbl = tbl.map((f: Forecast, i: number): Forecast => {
     f.position = i + 1;
     return f;
   })
