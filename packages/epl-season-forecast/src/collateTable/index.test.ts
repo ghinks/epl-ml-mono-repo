@@ -1,13 +1,13 @@
 import { collateTable } from "./index";
-import { testSet1, testHomeAwayWin, TestFixPred, createFixPred } from "./testData";
+import { testSet1, testHomeAwayWin, createFixPred } from "./testData";
 import { Forecast, FixturePrediction } from "@gvhinks/epl-common-interfaces";
 
-describe("Collation of Forecasts to a table", () => {
-  describe("Basics", () => {
+describe("Collation of Forecasts to a table", (): void => {
+  describe("Basics", (): void => {
     test("expect a table of size 3", (): void => {
       const forecast: Forecast[] = collateTable(testSet1);
       expect(forecast.length).toBe(6);
-      const totalPts = forecast.reduce((a: number, c: Forecast) => {
+      const totalPts = forecast.reduce((a: number, c: Forecast): number => {
         const pts = a + (c.wins * 3) + (c.draws * 1);
         return pts;
       }, 0);
@@ -17,7 +17,7 @@ describe("Collation of Forecasts to a table", () => {
     test("expect teamA to have 6 pts", (): void => {
       const forecast: Forecast[] = collateTable(testHomeAwayWin);
       expect(forecast.length).toBe(2);
-      const points = forecast.reduce((a: number, c: Forecast) => {
+      const points = forecast.reduce((a: number, c: Forecast): number => {
         if (c.team === "teamA") {
           const pts = a + c.wins * 3 + c.draws * 1;
           return pts;
@@ -27,14 +27,14 @@ describe("Collation of Forecasts to a table", () => {
       expect(points).toBe(6);
     });
   });
-  describe("Cases", () => {
+  describe("Cases", (): void => {
     // A v B , [0, 0, 1]
     // A v C , [0, 0, 1]
     // B v A , [0, 0, 1]
     // B v C , [0, 0, 1]
     // C v A , [0, 0, 1]
     // C v B , [0, 0, 1]
-    test("3 teams all draws", () => {
+    test("3 teams all draws", (): void => {
       const draw: number[] = [0, 0, 1];
       const testFx: FixturePrediction[] = createFixPred([
         {

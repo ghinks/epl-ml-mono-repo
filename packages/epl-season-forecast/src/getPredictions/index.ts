@@ -11,11 +11,12 @@ const getPredictions = async (seasonsFixtures: Fixture[], model: tf.LayersModel)
   });
   const predictData = fixTensor.map((fx: tf.Tensor3D): tf.Tensor | tf.Tensor[] => model.predict(fx));
   // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const rawPredictions = predictData.map(prediction => prediction.data());
   const resolvedPredictions = await Promise.all(rawPredictions);
   const predictResults: FixturePrediction[] = resolvedPredictions.map((p: number[], i): FixturePrediction => {
     const standardizedResult = standardize(p);
-/*    const fxPrd: FixturePrediction = {
+    /*    const fxPrd: FixturePrediction = {
       roundNumber: seasonsFixtures[i].roundNumber,
       date: seasonsFixtures[i].date,
       location: seasonsFixtures[i].location,

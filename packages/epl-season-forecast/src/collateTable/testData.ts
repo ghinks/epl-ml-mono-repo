@@ -54,7 +54,7 @@ interface TestFixPred {
 }
 
 const createFixPred = (testData: TestFixPred[]): FixturePrediction[] => {
-  return testData.map((t: TestFixPred) => {
+  return testData.map((t: TestFixPred): FixturePrediction => {
     return {
       roundNumber: 1,
       date: new Date(),

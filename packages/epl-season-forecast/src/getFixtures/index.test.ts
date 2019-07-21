@@ -21,12 +21,12 @@ describe("forecast", (): void => {
     }
   ];
   let scope;
-  beforeAll(() => {
+  beforeAll((): void => {
     scope = nock(fixturesUrl.host)
       .get(fixturesUrl.uri)
       .reply(200, testResponse);
   });
-  afterAll(() => {
+  afterAll((): void => {
     nock.cleanAll();
   });
   test("expect to get fixtures", async (): Promise<void> => {
