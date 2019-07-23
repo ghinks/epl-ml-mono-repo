@@ -1,9 +1,25 @@
 language: node_js
+
 os:
+  - linux
   - osx
+
+
 node_js:
   - "v10.16.0"
   - "v12.6.0"
+
+compiler:
+  - gcc
+  - clang
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-6
+
 script:
   - npm run build
   - npm test
