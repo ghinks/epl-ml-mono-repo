@@ -3,7 +3,7 @@ os:
   - osx
 node_js:
   - "v10.16.0"
-  - "v12.6.0"
+  - "v12.7.0"
 script:
   - npm run build
   - npm test
