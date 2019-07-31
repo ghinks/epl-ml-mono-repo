@@ -25,7 +25,7 @@
     "@gvhinks/epl-constants": "^1.5.1",
     "@gvhinks/epl-season-forecast": "^1.5.1",
     "@gvhinks/epl-utilities": "^1.1.0",
-    "@tensorflow/tfjs": "1.2.2",
+    "@tensorflow/tfjs": "1.2.5",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-table": "6.10.0",
