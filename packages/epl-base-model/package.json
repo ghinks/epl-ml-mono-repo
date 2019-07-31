@@ -49,7 +49,7 @@
     "@gvhinks/epl-data-to-db": "^1.5.1",
     "@gvhinks/epl-season-forecast": "^1.5.1",
     "@gvhinks/epl-utilities": "^1.1.0",
-    "@tensorflow/tfjs-node": "^1.0.2",
+    "@tensorflow/tfjs-node": "1.2.5",
     "@types/mongodb": "^3.1.23",
     "mongodb": "^3.1.13"
   },
