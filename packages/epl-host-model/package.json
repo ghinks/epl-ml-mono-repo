@@ -54,7 +54,7 @@
     "prettier": "1.17.1",
     "rimraf": "3.0.0",
     "ts-jest": "24.0.2",
-    "tsc-watch": "2.2.1",
+    "tsc-watch": "2.4.0",
     "typescript": "3.5.3"
   },
   "babel": {
