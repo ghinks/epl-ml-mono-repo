@@ -1,4 +1,4 @@
-import getHistoricalData , { MatchResult, getFixtures } from "@gvhinks/epl-data-reader";
+import getHistoricalData , { StandardResult, getFixtures } from "@gvhinks/epl-data-reader";
 import writeToDB, { writeFutureFixtures } from "@gvhinks/epl-data-to-db";
 import createModel, { getTrainingData, TrainingData, save} from "@gvhinks/epl-base-model";
 import * as tf from "@tensorflow/tfjs-node";
@@ -7,7 +7,7 @@ import { io } from '@tensorflow/tfjs-core';
 import * as fs from "fs";
 import * as path from "path";
 import { PredictResult, Fixture, FixturePrediction } from "@gvhinks/epl-common-interfaces";
-import { numAllTimeTeams, fixturesUrl } from "@gvhinks/epl-constants";
+import { numAllTimeTeams } from "@gvhinks/epl-constants";
 import { getPredictions, getFixtures as getFixturesFromHost, collateTable } from "@gvhinks/epl-season-forecast";
 
 const LONG_TEST = 5 * 60 * 1000;
@@ -19,9 +19,9 @@ describe("Integration Tests", (): void => {
     test("expect to git stuff back after you push data into the DB", async (): Promise<void> => {
       // const dataPath = path.resolve(path.join(__dirname, "../../epl-data-reader/data"))
       // console.log(dataPath);
-      const stuff: MatchResult[] = await getHistoricalData();
-      expect(stuff.length).toBeGreaterThan(0);
-      const result = await writeToDB(stuff);
+      const retrievedHistResults: StandardResult[] = await getHistoricalData();
+      expect(retrievedHistResults.length).toBeGreaterThan(0);
+      const result = await writeToDB(retrievedHistResults);
       expect(result).toBe(true);
     });
     test("expect to be able to write future fixtures to the DB", async (): Promise<void> => {
@@ -30,7 +30,7 @@ describe("Integration Tests", (): void => {
       const result = await writeFutureFixtures(stuff);
       expect(result).toBe(true);
     });
-    test("expect to get data for Arsenal", async(): void => {
+    test("expect to get data for Arsenal", async(): Promise<void> => {
       const results: TrainingData = await getTrainingData();
       expect(results.labelValues.length).toBeGreaterThan(0);
       interface Aggregation {
@@ -38,13 +38,13 @@ describe("Integration Tests", (): void => {
         drawCount: number;
         looseCount: number;
       };
-      let initialValue: Aggregation = {
+      const initialValue: Aggregation = {
         winCount: 0,
         drawCount: 0,
         looseCount: 0
       };
       // one hot encoding W, D, L
-      const summary = results.labelValues.reduce((a: Aggregation, r: TrainingData): Aggregation => {
+      const summary = results.labelValues.reduce((a: Aggregation, r: number[]): Aggregation => {
         if (r[2]) {
           a.drawCount++;
         } else if (r[0]) {
@@ -88,10 +88,10 @@ describe("Integration Tests", (): void => {
       await predictChelseaWestHam(model);
     }, LONG_TEST);
     test("test a model using the reserved 2019 test data set", async (): Promise<void> => {
-      let allTeamNames = createTeamNameLookup();
+      const allTeamNames = createTeamNameLookup();
       const model = await createModel();
       const { labelValues: testLabels, featureValues: testFeatures } = await getTrainingData(new Date(2019, 1, 1), new Date( 2020, 7, 1));
-      let mytests = createArrPrdFuncReqs(model, testFeatures, allTeamNames, testLabels);
+      const mytests = createArrPrdFuncReqs(model, testFeatures, allTeamNames, testLabels);
       const predTests: Promise<PredictResult>[] = mytests.map((t): Promise<PredictResult> => t());
       const matchResults: PredictResult[] = await Promise.all(predTests);
       let total = 0;
