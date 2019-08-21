@@ -88,15 +88,15 @@
       "@typescript-eslint/indent": [
         "error",
         2
-      ]
+      ],
+      "@typescript-eslint/ban-ts-ignore": [ "off"]
     },
     "extends": [
       "plugin:@typescript-eslint/recommended"
     ],
     "env": {
       "node": true,
-      "jest": true,
-      "mocha": true
+      "jest": true
     }
   },
   "nyc": {

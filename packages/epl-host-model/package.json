@@ -95,7 +95,8 @@
       "@typescript-eslint/indent": [
         "error",
         2
-      ]
+      ],
+      "@typescript-eslint/ban-ts-ignore": [ "off"]
     },
     "extends": [
       "plugin:@typescript-eslint/recommended"

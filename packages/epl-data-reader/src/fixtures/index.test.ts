@@ -1,4 +1,5 @@
-import getFixtures, { Fixture } from "./index";
+import getFixtures from "./index";
+import { Fixture } from "@gvhinks/epl-common-interfaces";
 
 describe("Get future games", (): void => {
   test("expect to retrieve future games", async (): Promise<void> => {

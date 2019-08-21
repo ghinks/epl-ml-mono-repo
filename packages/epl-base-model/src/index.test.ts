@@ -1,7 +1,6 @@
 import createModel from "./index";
 import * as tf from "@tensorflow/tfjs-node";
-import getModelData from "./getModelData";
-import TrainingData from "./getModelData";
+import getModelData, { TrainingData } from "./getModelData";
 import * as fs from 'fs';
 import * as path from 'path';
 import { createArrPrdFuncReqs, createTeamNameLookup, PredictResult, getOneHotEncoding } from "@gvhinks/epl-utilities";
@@ -17,14 +16,14 @@ describe("Model Creation from test data", (): void => {
   const createModelTrainingData = async (): Promise<void> =>  {
     const testFeatureValues = await fsProm.readFile(path.join(__dirname, "./testData/trainingTestFeatureValues.json"), "utf-8");
     const testLabelValues = await fsProm.readFile(path.join(__dirname, "./testData/trainingTestLabelValues.json"), "utf-8");
-    // @ts-ignore
-    let trainingTestData: TrainingData;
     // limit test data to 3000 samples
-    trainingTestData = {
+    const trainingTestData: TrainingData = {
       labelValues: (JSON.parse(testLabelValues)).slice(-3000),
       featureValues: (JSON.parse(testFeatureValues)).slice(-3000)
     };
-    getModelData.mockResolvedValue(trainingTestData);
+    // @ts-ignore
+    const mockedGetModelData = (getModelData as jest.Mocked)
+    mockedGetModelData.mockResolvedValue(trainingTestData);
   }
   describe("model training", (): void => {
     beforeAll(async (): Promise<void> => {
@@ -65,7 +64,7 @@ describe("Model Creation from test data", (): void => {
     // data set that was held back from the initial full data set in order to run these
     // on the resultant model.
     test("expect the model to predict similar results to test data", async (): Promise<void> => {
-      let mytests = createArrPrdFuncReqs(model, testFeatureValues, teamNames, testLabelValues);
+      const mytests = createArrPrdFuncReqs(model, testFeatureValues, teamNames, testLabelValues);
       const predTests: Promise<PredictResult>[] = mytests.map((t): Promise<PredictResult> => t());
       const matchResults: PredictResult[] = await Promise.all(predTests);
       let total = 0;

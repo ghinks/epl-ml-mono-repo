@@ -9,7 +9,7 @@ const makeTheModel = async (): Promise<void> => {
     save(model, `file://${targetFolder}`);
   } catch (e) {
     console.error(Array(100).join("#"));
-    console.error(e.message);
+    console.error(e.stack);
     console.error(Array(100).join("#"));
   }
 };
