@@ -3,7 +3,7 @@
   "private": false,
   "main": "dist/index.js",
   "devDependencies": {
-    "@types/jest": "24.0.17",
+    "@types/jest": "24.0.18",
     "lerna": "3.16.4"
   },
   "license": "MIT",
