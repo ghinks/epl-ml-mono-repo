@@ -24,7 +24,7 @@ describe("Integration Tests", (): void => {
     test("Expect to load from file", async (): Promise<void> => {
       const targetFile = path.resolve(path.join(__dirname, "../../epl-host-model/model", "model.json"));
       const file = `file:///${targetFile}`;
-      const funcUnderTest = async (): Promise<void> => await tf.loadLayersModel(file);
+      const funcUnderTest = async (): Promise<tf.LayersModel> => await tf.loadLayersModel(file);
       expect(funcUnderTest).not.toThrow();
     });
     test("expect to run the loaded model from file", async (): Promise<void> => {
