@@ -19,7 +19,7 @@ describe("Integration Tests", (): void => {
   describe("Model Loading Tests http", (): void => {
     test("expect to be able to load the model from the server", async (): Promise<void> => {
       const url = "http://localhost:3000/model.json"
-      const funcUnderTest = async (): Promise<void> => await tf.loadLayersModel(url);
+      const funcUnderTest = async (): Promise<tf.LayersModel> => await tf.loadLayersModel(url);
       expect(funcUnderTest).not.toThrow();
     }, LONG_TEST);
     test("expect to run the loaded model", async (): Promise<void> => {
