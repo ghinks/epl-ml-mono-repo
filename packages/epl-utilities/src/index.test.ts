@@ -1,4 +1,5 @@
 import { standardize, createPredictionResult, createTeamNameLookup, getOneHotEncoding } from "./index";
+import * as tf from "@tensorflow/tfjs";
 import { numAllTimeTeams } from "@gvhinks/epl-constants";
 
 describe("test utils", (): void => {
@@ -32,13 +33,15 @@ describe("test utils", (): void => {
     const hotEncodedNames = [arsenal, villa];
     const teamNames: Map<string, string> = new Map([[`${arsenal}`, "arsenal"], [`${villa}`, "villa"]]);
     const mockModel = {
-      predict: (): void => ({
+      predict: (): object => ({
         data: async (): Promise<number[]> => Promise.resolve([0.1, 0.2, 0.3])
       })
     };
     const testLabelValues = [0,0,1];
-    test("expect a prediction result", async (): void => {
-      const result = await createPredictionResult(mockModel, hotEncodedNames, teamNames, testLabelValues);
+    test("expect a prediction result", async (): Promise<void> => {
+      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+      const mockSeq: tf.Sequential = <tf.Sequential><unknown>mockModel;
+      const result = await createPredictionResult(mockSeq, hotEncodedNames, teamNames, testLabelValues);
       expect(result.standardizedResult[0]).toEqual(0);
       expect(result.standardizedResult[1]).toEqual(0);
       expect(result.standardizedResult[2]).toEqual(1);

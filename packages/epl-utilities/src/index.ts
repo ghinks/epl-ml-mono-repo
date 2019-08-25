@@ -51,7 +51,7 @@ const createArrPrdFuncReqs = (model: tf.Sequential,
   testFeatures: number[][][],
   teamNames: Map<string, string>,
   testLabels: number[][]): AsyncPredResult[] => {
-  let mytests = testFeatures.map((hotEncodedNames, i): AsyncPredResult => {
+  const mytests = testFeatures.map((hotEncodedNames, i): AsyncPredResult => {
     const predictionTest = async (): Promise<PredictResult> => {
       return await createPredictionResult(model, hotEncodedNames, teamNames, testLabels[i]);
     }

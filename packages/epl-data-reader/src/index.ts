@@ -19,7 +19,7 @@ const getJSONTenYearData = async (dataPath = `${__dirname}/../data/historicalDat
     // yes an array of promises of arrays of match results
     const dataProms: Promise<MatchResult[]>[] = files.map((f): Promise<MatchResult[]> => readMatchResult(f));
     const matcheArrs: MatchResult[][] = await Promise.all([...dataProms]);
-    let matches: MatchResult[] = matcheArrs.flatMap(<T> (a: T): T => a);
+    const matches: MatchResult[] = matcheArrs.flatMap(<T> (a: T): T => a);
     const standardMatches: StandardResult[] = matches.map((m: MatchResult): StandardResult => ({
       Date: new Date(m.Date),
       HomeTeam: m.HomeTeam,

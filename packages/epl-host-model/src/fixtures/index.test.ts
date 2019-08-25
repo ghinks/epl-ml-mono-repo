@@ -9,32 +9,35 @@ describe("Fixtures retrieval", (): void => {
     toArray(): Promise<Fixture[]>;
   }
   interface MockCollectionResult {
-    distinct(): Promise<string[]>;
+    // distinct(): Promise<string[]>;
     find(): MockFindResult;
   }
   interface MockDBResult {
     collection(): MockCollectionResult;
   }
+
+  const mockData: Fixture[] = [
+    {
+      roundNumber: 0,
+      date: new Date(),
+      location: "place",
+      homeTeam: "teamA",
+      awayTeam: "teamB"
+    }
+  ];
   describe("Passing tests", (): void => {
     beforeAll(
       (): void => {
-        mongodb.MongoClient.connect.mockResolvedValue({
+        const mockCollection = {
+          find: (): MockFindResult => ({
+            toArray: (): Promise<Fixture[]> =>
+              Promise.resolve(mockData)
+          })
+        };
+        (mongodb.MongoClient.connect as jest.Mock).mockResolvedValue({
           db: (): MockDBResult => {
             return {
-              collection: (): MockCollectionResult => ({
-                find: (): MockFindResult => ({
-                  toArray: (): Promise<Fixture[]> =>
-                    Promise.resolve([
-                      {
-                        roundNumber: 0,
-                        date: new Date(),
-                        location: "place",
-                        homeTeam: "teamA",
-                        awayTeam: "teamB"
-                      }
-                    ])
-                })
-              })
+              collection: (): MockCollectionResult => mockCollection
             };
           }
         });
@@ -49,15 +52,16 @@ describe("Fixtures retrieval", (): void => {
     let errorSpy;
     beforeAll(
       (): void => {
-        mongodb.MongoClient.connect.mockResolvedValue({
+        const mockCollection = {
+          find: (): MockFindResult => ({
+            toArray: (): Promise<Fixture[]> =>
+              Promise.reject(new Error("thrown"))
+          })
+        };
+        (mongodb.MongoClient.connect as jest.Mock).mockResolvedValue({
           db: (): MockDBResult => {
             return {
-              collection: (): MockCollectionResult => ({
-                find: (): MockFindResult => ({
-                  toArray: (): Promise<Error> =>
-                    Promise.reject(new Error("thrown"))
-                })
-              })
+              collection: (): MockCollectionResult => mockCollection
             };
           }
         });
@@ -71,7 +75,7 @@ describe("Fixtures retrieval", (): void => {
         jest.clearAllMocks();
         errorSpy.mockRestore();
       })
-    test("expect an empty array", async (): void => {
+    test("expect an empty array", async (): Promise<void> => {
       const result = await readFixtures();
       expect(result.length).toBe(0);
       expect(errorSpy).toHaveBeenCalled();

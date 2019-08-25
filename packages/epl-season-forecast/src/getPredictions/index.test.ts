@@ -1,5 +1,6 @@
+import * as tf from '@tensorflow/tfjs';
 import { getPredictions } from "./index";
-import { Fixture, FixturePredictions } from "@gvhinks/epl-common-interfaces";
+import { Fixture, FixturePrediction } from "@gvhinks/epl-common-interfaces";
 
 describe("Fixture Predictions", (): void => {
   const fixtures: Fixture[] = [
@@ -12,13 +13,15 @@ describe("Fixture Predictions", (): void => {
     }
   ];
   const mockModel = {
-    predict: (): void => ({
+    predict: (): object => ({
       data: async (): Promise<number[]> => Promise.resolve([0.1, 0.2, 0.3])
     })
   };
   test("expect to get no errors", async (): Promise<void> => {
     try {
-      const results: FixturePredictions[] = await getPredictions(fixtures, mockModel);
+      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+      const mockLayersModel: tf.LayersModel = <tf.LayersModel><unknown>mockModel;
+      const results: FixturePrediction[] = await getPredictions(fixtures, mockLayersModel);
       expect(results.length).toBe(1);
       expect(results[0].standardizedResult[2]).toBe(1);
     } catch (e) {

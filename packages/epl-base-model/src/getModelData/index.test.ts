@@ -25,6 +25,7 @@ describe("Data Retrieval", (): void => {
   describe("Passing Tests", (): void => {
     beforeAll(
       (): void => {
+        // @ts-ignore
         mongodb.MongoClient.connect.mockResolvedValue({
           db: (): MockDBResult => {
             return {
@@ -104,6 +105,7 @@ describe("Data Retrieval", (): void => {
     let errorSpy;
     beforeAll(
       (): void => {
+        // @ts-ignore
         mongodb.MongoClient.connect.mockResolvedValue({
           db: (): MockDBResult => {
             return {
@@ -128,7 +130,7 @@ describe("Data Retrieval", (): void => {
       }
     );
     test("expect not to get match results", async (): Promise<void> => {
-      const { featureValues } = await getTrainingData(/^20[0-9][0-8].*/);
+      const { featureValues } = await getTrainingData(new Date("1971-12-17T03:24:00"), new Date("1972-12-17T03:24:00"));
       expect(featureValues.length).toBe(0);
       expect(errorSpy).toHaveBeenCalled();
     });
