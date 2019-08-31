@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-common-interfaces",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "Common TS interfaces shared between node and front end modules",
   "keywords": [
     "epl",
@@ -56,7 +56,9 @@
         "error",
         2
       ],
-      "@typescript-eslint/ban-ts-ignore": [ "off"]
+      "@typescript-eslint/ban-ts-ignore": [
+        "off"
+      ]
     },
     "extends": [
       "plugin:@typescript-eslint/recommended"
@@ -91,6 +93,6 @@
     "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose"
   },
   "dependencies": {
-    "@gvhinks/epl-constants": "^1.5.1"
+    "@gvhinks/epl-constants": "^1.6.0"
   }
 }

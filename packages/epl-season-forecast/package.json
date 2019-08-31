@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-season-forecast",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "Create a prediction from the fixtures for the season",
   "keywords": [
     "lerna",
@@ -48,9 +48,9 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "@gvhinks/epl-common-interfaces": "^1.5.1",
-    "@gvhinks/epl-constants": "^1.5.1",
-    "@gvhinks/epl-utilities": "^1.1.0",
+    "@gvhinks/epl-common-interfaces": "^1.6.0",
+    "@gvhinks/epl-constants": "^1.6.0",
+    "@gvhinks/epl-utilities": "^1.6.0",
     "@tensorflow/tfjs": "1.2.8",
     "isomorphic-fetch": "^2.2.1"
   },
@@ -90,7 +90,9 @@
         "error",
         2
       ],
-      "@typescript-eslint/ban-ts-ignore": [ "off"]
+      "@typescript-eslint/ban-ts-ignore": [
+        "off"
+      ]
     },
     "extends": [
       "plugin:@typescript-eslint/recommended"

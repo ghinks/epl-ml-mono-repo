@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-utilities",
-  "version": "1.1.0",
+  "version": "1.6.0",
   "description": "utilities used for EPL model testing",
   "keywords": [
     "epl",
@@ -46,8 +46,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "@gvhinks/epl-common-interfaces": "^1.5.1",
-    "@gvhinks/epl-constants": "^1.5.1",
+    "@gvhinks/epl-common-interfaces": "^1.6.0",
+    "@gvhinks/epl-constants": "^1.6.0",
     "@tensorflow/tfjs": "1.2.8"
   },
   "babel": {
@@ -89,7 +89,9 @@
         "error",
         2
       ],
-      "@typescript-eslint/ban-ts-ignore": [ "off"]
+      "@typescript-eslint/ban-ts-ignore": [
+        "off"
+      ]
     },
     "extends": [
       "plugin:@typescript-eslint/recommended"
