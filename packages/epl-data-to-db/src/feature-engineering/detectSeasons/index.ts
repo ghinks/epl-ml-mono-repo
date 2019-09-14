@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb";
 import { url, dbName } from "@gvhinks/epl-constants";
 import historicalMatchAggQuery from "./historicalMatchAggQuery";
+import { Season } from "@gvhinks/epl-common-interfaces";
 
 const getNextGameFrom = async (client: MongoClient, from?: Date): Promise<Date> => {
   const query: object[] = [];
@@ -31,12 +32,6 @@ const getNextGameFrom = async (client: MongoClient, from?: Date): Promise<Date> 
   const nextGame = result[0].firstGame;
   return nextGame;
 };
-
-interface Season {
-  startDate: Date;
-  endDate: Date;
-  seasonNumber: number;
-}
 
 const getNextSeason = async (client: MongoClient, lastSeasonNum: number, startDate: Date): Promise<Season> => {
   const estSeasonEnd = new Date(startDate.getTime());
@@ -109,4 +104,12 @@ const calculateSeasonDates = async(): Promise<Season[]> => {
   return seasons;
 };
 
-export { calculateSeasonDates, getNextSeason }
+const getSeasonGamePlayedIn = (date: Date, seasons: Season[]): number => {
+  return seasons.reduce((a, c) => {
+    if (date >= c.startDate && date <= c.endDate) {
+      return c.seasonNumber;
+    }
+    return a;
+  }, 0);
+};
+export { calculateSeasonDates, getSeasonGamePlayedIn }

@@ -41,4 +41,10 @@ interface PredictResult {
   result: number[];
 };
 
-export { Forecast, Fixture, PredictResult, FixturePrediction, StandardResult };
+// which season in the league
+interface Season {
+  startDate: Date;
+  endDate: Date;
+  seasonNumber: number;
+}
+export { Forecast, Fixture, PredictResult, FixturePrediction, StandardResult, Season };
