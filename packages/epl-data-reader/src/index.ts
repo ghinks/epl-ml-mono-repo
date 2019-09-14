@@ -1,10 +1,9 @@
 import { findDataFiles, readMatchResult } from "./findJsonFiles";
 import { MatchResult} from "./matchResult";
-import { StandardResult } from "./standardResult";
 import * as csv from "csvtojson"
 import "core-js/fn/array/flat-map";
 import getFixtures from "./fixtures";
-import { Fixture } from "@gvhinks/epl-common-interfaces";
+import { Fixture, StandardResult } from "@gvhinks/epl-common-interfaces";
 
 const getJSONTenYearData = async (dataPath = `${__dirname}/../data/historicalData`): Promise<StandardResult[]> => {
   console.log(__dirname);

@@ -1,3 +1,15 @@
+/*
+    This is the standardized data result that is extracted from multiple data
+    sets.
+ */
+interface StandardResult {
+  Date: Date;
+  HomeTeam: string;
+  AwayTeam: string;
+  Referee: string;
+  FTR: string;
+};
+
 interface Forecast {
   position: number;
   team: string;
@@ -29,4 +41,4 @@ interface PredictResult {
   result: number[];
 };
 
-export { Forecast, Fixture, PredictResult, FixturePrediction };
+export { Forecast, Fixture, PredictResult, FixturePrediction, StandardResult };
