@@ -29,7 +29,7 @@ const getNextGameFrom = async (client: MongoClient, from?: Date): Promise<Date> 
   };
   query.push(projection);
   const result = await historicalMatchAggQuery(client, dbName, query);
-  const nextGame = result[0].firstGame;
+  const nextGame = result.length != 0 ? result[0].firstGame: null;
   return nextGame;
 };
 
@@ -67,9 +67,9 @@ const getNextSeason = async (client: MongoClient, lastSeasonNum: number, startDa
 async function* getSeasons(client: MongoClient): AsyncIterable<Season> {
   let startDate: Date = await getNextGameFrom(client);
   const today = new Date();
-  let seasonNumber = 1;
+  let seasonNumber = 0;
   let prevSeason: Season = null;
-  while (startDate < today) {
+  while (startDate && startDate < today) {
     const upcomingSeason = await getNextSeason(client, seasonNumber, startDate);
     seasonNumber++;
     if (upcomingSeason.endDate) {

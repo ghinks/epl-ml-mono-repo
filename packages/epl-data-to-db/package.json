@@ -63,7 +63,8 @@
             "node": "10.0.0"
           }
         }
-      ]
+      ],
+      "@babel/preset-typescript"
     ],
     "plugins": [
       "@babel/plugin-transform-runtime"
@@ -117,19 +118,7 @@
   "jest": {
     "verbose": true,
     "collectCoverage": true,
-    "testMatch": [
-      "**/*.test.ts"
-    ],
-    "coverageReporters": [
-      "text",
-      "html"
-    ],
-    "testEnvironment": "node",
-    "preset": "ts-jest",
-    "globals": {
-      "ts-jest": {
-        "diagnostics": false
-      }
-    }
+    "testMatch": ["**/**/*.test.ts"],
+    "testEnvironment": "node"
   }
 }
