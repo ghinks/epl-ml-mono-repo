@@ -1,6 +1,9 @@
 # `@gvhinks/epl-data-reader`
 
+## Data Sources
 Data is provided via a [zip](https://datahub.io/sports-data/english-premier-league#data)
+
+Secondary data for early league games from [kaggle](https://www.kaggle.com/shubhmamp/english-premier-league-match-data)
 
 ## Purpose
 The data is stored statically in the data folder in the form of raw json. This module's 

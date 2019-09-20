@@ -1,5 +1,6 @@
-import writeToDB, { renameHistoricalProps, MatchData, writeFutureFixtures } from "./index";
-import { MatchResult, Fixture, StandardResult } from "@gvhinks/epl-data-reader";
+import writeToDB, { renameHistoricalProps, writeFutureFixtures } from "./index";
+import { MatchResult, StandardResult } from "@gvhinks/epl-data-reader";
+import { Fixture, MatchData } from "@gvhinks/epl-common-interfaces";
 import * as mongodb from "mongodb";
 jest.mock("mongodb");
 

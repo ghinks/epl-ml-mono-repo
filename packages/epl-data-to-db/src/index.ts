@@ -1,15 +1,8 @@
 import { MongoClient } from "mongodb";
-import { StandardResult } from "@gvhinks/epl-data-reader";
+import { StandardResult, MatchData } from "@gvhinks/epl-common-interfaces";
 import { Fixture } from "@gvhinks/epl-common-interfaces";
 import { url, dbName, historicalMatches, fixtures as fixturesCollection } from "@gvhinks/epl-constants";
-
-export interface MatchData {
-  Date: Date;
-  homeTeam: string;
-  awayTeam: string;
-  referee: string;
-  fullTimeResult: string;
-}
+import updateFeatures from "./feature-engineering"
 
 const renameHistoricalProps = (games: StandardResult[]): MatchData[] => {
   return games.map(
@@ -18,7 +11,8 @@ const renameHistoricalProps = (games: StandardResult[]): MatchData[] => {
       awayTeam: g.AwayTeam,
       fullTimeResult: g.FTR,
       homeTeam: g.HomeTeam,
-      referee: g.Referee
+      referee: g.Referee,
+      seasonNumber: undefined
     })
   );
 };
@@ -56,4 +50,4 @@ const writeFutureFixtures = async (fixtures: Fixture[]): Promise<boolean> => {
     return false;
   }
 };
-export { writeHistoricalData as default, renameHistoricalProps, writeFutureFixtures };
+export { writeHistoricalData as default, renameHistoricalProps, writeFutureFixtures, updateFeatures };

@@ -47,4 +47,14 @@ interface Season {
   endDate: Date;
   seasonNumber: number;
 }
-export { Forecast, Fixture, PredictResult, FixturePrediction, StandardResult, Season };
+
+// what goes into the DB/persisting storage
+interface MatchData {
+  Date: Date;
+  homeTeam: string;
+  awayTeam: string;
+  referee: string;
+  fullTimeResult: string;
+  seasonNumber?: number;
+}
+export { Forecast, Fixture, PredictResult, FixturePrediction, StandardResult, Season, MatchData };
