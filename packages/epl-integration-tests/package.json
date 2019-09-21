@@ -46,7 +46,7 @@
     "prettier": "1.17.1",
     "rimraf": "3.0.0",
     "ts-jest": "24.1.0",
-    "typescript": "3.5.3"
+    "typescript": "3.6.3"
   },
   "babel": {
     "include": [
