@@ -35,7 +35,7 @@ const getNextGameFrom = async (client: MongoClient, from?: Date): Promise<Date> 
 
 const getNextSeason = async (client: MongoClient, lastSeasonNum: number, startDate: Date): Promise<Season> => {
   const estSeasonEnd = new Date(startDate.getTime());
-  estSeasonEnd.setMonth(estSeasonEnd.getMonth()+11);
+  estSeasonEnd.setMonth(estSeasonEnd.getMonth()+10);
   const query = {
     $match: {
       Date: { $gte: startDate , $lte: estSeasonEnd}

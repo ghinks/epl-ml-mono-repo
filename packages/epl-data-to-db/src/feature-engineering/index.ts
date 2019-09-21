@@ -28,7 +28,6 @@ const updateFeatures = async (): Promise<number[]> => {
   try {
     client = await mongodb.MongoClient.connect(url, { useNewUrlParser: true });
     for await (const update of updateSeason(client)) {
-      console.log(update.matchedCount);
       updateResults.push(update.matchedCount);
     }
   } catch (e) {
