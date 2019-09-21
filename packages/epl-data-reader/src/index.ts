@@ -19,13 +19,20 @@ const getJSONTenYearData = async (dataPath = `${__dirname}/../data/historicalDat
     const dataProms: Promise<MatchResult[]>[] = files.map((f): Promise<MatchResult[]> => readMatchResult(f));
     const matcheArrs: MatchResult[][] = await Promise.all([...dataProms]);
     const matches: MatchResult[] = matcheArrs.flatMap(<T> (a: T): T => a);
-    const standardMatches: StandardResult[] = matches.map((m: MatchResult): StandardResult => ({
-      Date: new Date(m.Date),
-      HomeTeam: m.HomeTeam,
-      AwayTeam: m.AwayTeam,
-      Referee: m.Referee,
-      FTR: m.FTR
-    }));
+    const standardMatches: StandardResult[] = matches.map((m: MatchResult): StandardResult => {
+      const slashDateRegex =  /(\d{2})\/(\d{2})\/(\d{4})/;
+      const dateCnvMtch = m.Date.match(slashDateRegex);
+      if (dateCnvMtch) {
+        m.Date = `${dateCnvMtch[3]}-${dateCnvMtch[2]}-${dateCnvMtch[1]}`
+      }
+      return {
+        Date: new Date(m.Date),
+        HomeTeam: m.HomeTeam,
+        AwayTeam: m.AwayTeam,
+        Referee: m.Referee,
+        FTR: m.FTR
+      }
+    });
     return standardMatches;
 
   } catch (e) {

@@ -23,7 +23,7 @@ const writeHistoricalData = async (games: StandardResult[]): Promise<boolean> =>
       useNewUrlParser: true
     });
     const db = await client.db(dbName);
-    if(db.length) await db.dropCollection(historicalMatches);
+    await db.dropCollection(historicalMatches);
     const matches = await client.db(dbName).createCollection(historicalMatches);
     await matches.insertMany(renameHistoricalProps(games));
     client.close();
@@ -40,7 +40,7 @@ const writeFutureFixtures = async (fixtures: Fixture[]): Promise<boolean> => {
       useNewUrlParser: true
     });
     const db = await client.db(dbName);
-    if(db.length) await db.dropCollection(fixturesCollection);
+    await db.dropCollection(fixturesCollection);
     const futureMatches = await client.db(dbName).createCollection(fixturesCollection);
     await futureMatches.insertMany(fixtures);
     client.close();
