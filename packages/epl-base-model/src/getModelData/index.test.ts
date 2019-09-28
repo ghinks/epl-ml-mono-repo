@@ -36,7 +36,9 @@ describe("Data Retrieval", (): void => {
                     Promise.resolve([
                       {
                         homeTeam: "team1",
-                        fullTimeResult: "H"
+                        awayTeam: "team2",
+                        fullTimeResult: "H",
+                        seasonNumber: 1
                       }
                     ])
                 })
@@ -81,15 +83,14 @@ describe("Data Retrieval", (): void => {
     });
     test("expect to get results for all teams", async (): Promise<void> => {
       const { featureValues, labelValues } = await getTrainingData();
-      expect(featureValues.length).toBeGreaterThan(0);
       expect(labelValues.length).toBeGreaterThan(0);
+      expect(featureValues.length).toBeGreaterThan(0);
     });
     test("expect to get winning match results for team1", async (): Promise<void> => {
       const { featureValues, labelValues } = await getTrainingData();
       expect(labelValues.length).toBeGreaterThan(0);
-      expect(labelValues[0]).toMatchObject([1, 0, 0]);
-      expect(featureValues.length).toBeGreaterThan(0);
-      expect(featureValues[0][0][0]).toBe(1);
+      expect(labelValues[0]).toMatchObject([1, 0, 0, 1]);
+      expect(featureValues).toMatchObject([1, 0, 0, 1, 1])
     });
   });
   describe("Failing Tests", (): void => {

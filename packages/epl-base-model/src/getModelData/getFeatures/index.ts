@@ -3,13 +3,14 @@
 export interface Features {
   homeTeam: number[];
   awayTeam: number[];
+  seasonNumber: number;
 };
 
-const flattenFeatures =  (rawFeatures: Features[]): number[][][] => {
-  const flattenPropsToArray = <T>(o: T[]): number[][][] => o.reduce((a, c): number[][] => {
-    return [...a, [...Object.values(c)]];
+// The values of the tensor. Can be nested array of numbers, or a flat array, or a TypedArray.
+const flattenFeatures =  (rawFeatures: Features[]): number[] => {
+  const featureArray: number[] = rawFeatures.reduce((a: number[], c: Features): number[] => {
+    return [...a, ...c.homeTeam, ...c.awayTeam, c.seasonNumber];
   }, []);
-  const featureArray: number[][][]= flattenPropsToArray(rawFeatures);
   return featureArray;
 };
 

@@ -7,13 +7,13 @@ const createModel = async (): Promise<tf.Sequential> => {
   const model: tf.Sequential = tf.sequential({
     name: "predict"
   });
-  model.add(tf.layers.dense({inputShape: [2,numAllTimeTeams], units: 3, useBias: true, name:"teams_layer"}));
+  model.add(tf.layers.dense({inputShape: [numAllTimeTeams, numAllTimeTeams, 1], units: 3, useBias: true, name:"teams_layer"}));
   model.add(tf.layers.flatten());
   model.add(tf.layers.dense({units: 3, useBias: true, name: "results_layer"}));
   model.compile({optimizer: tf.train.adam(0.001), loss: 'meanSquaredError'});
   const { labelValues, featureValues } = await getTrainingData();
-  const numTeamsInLeague: number = (featureValues[0][0]).length;
-  const featureTensors = tf.tensor3d(featureValues, [featureValues.length, 2, numTeamsInLeague], 'int32');
+  // const numTeamsInLeague: number = (featureValues[0][0]).length;
+  const featureTensors = tf.tensor3d(featureValues, [ numAllTimeTeams, numAllTimeTeams, 1], 'int32');
   const labelTensors = tf.tensor2d(labelValues, [labelValues.length, 3], 'int32');
   const fitArgs = {
     batchSize: 500,

@@ -27,7 +27,7 @@
     "@babel/plugin-transform-regenerator": "7.4.5",
     "@babel/plugin-transform-runtime": "7.5.5",
     "@babel/preset-env": "7.5.5",
-    "@babel/preset-typescript": "7.3.3",
+    "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "7.5.5",
     "@types/node": "11.13.20",
     "@typescript-eslint/eslint-plugin": "2.0.0",
@@ -54,6 +54,9 @@
     "mongodb": "^3.1.13"
   },
   "babel": {
+    "include": [
+      "src/**/*.ts"
+    ],
     "presets": [
       [
         "@babel/preset-env",
@@ -62,7 +65,8 @@
             "node": "10.0.0"
           }
         }
-      ]
+      ],
+      "@babel/preset-typescript"
     ],
     "plugins": [
       "@babel/plugin-transform-runtime"
@@ -120,14 +124,8 @@
     "verbose": true,
     "collectCoverage": true,
     "testMatch": [
-      "**/*.test.ts"
+      "**/**/*.test.ts"
     ],
-    "testEnvironment": "node",
-    "preset": "ts-jest",
-    "globals": {
-      "ts-jest": {
-        "diagnostics": false
-      }
-    }
+    "testEnvironment": "node"
   }
 }

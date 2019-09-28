@@ -1,5 +1,5 @@
 import * as mongodb from "mongodb";
-import { MatchData } from "@gvhinks/epl-data-to-db";
+import { MatchData } from "@gvhinks/epl-common-interfaces";
 import flattenLabels, { Labels } from "./getLabels";
 import flattenFeatures, { Features } from "./getFeatures";
 import { url, dbName, historicalMatches } from "@gvhinks/epl-constants";
@@ -8,7 +8,7 @@ import getNames from "./getTeams"
 // export interface BaseResult extends Features, Labels {};
 export interface TrainingData {
   labelValues: number[][];
-  featureValues: number[][][];
+  featureValues: number[];
 }
 
 const getCollection = (client: mongodb.MongoClient): mongodb.Collection =>
@@ -53,13 +53,19 @@ const getTrainingData = async (fromDate: Date = new Date(2000, 1,1), toDate: Dat
     const labelValues: number[][] = flattenLabels(rawLabels);
 
     const rawFeatures: Features[] = results.map(
-      (r): Features => ({
-        homeTeam: teams.get(r.homeTeam),
-        awayTeam: teams.get(r.awayTeam)
-      })
+      (r): Features => {
+        const homeTeam = teams.get(r.homeTeam);
+        const awayTeam = teams.get(r.awayTeam);
+        const seasonNumber = r.seasonNumber;
+        return {
+          homeTeam,
+          awayTeam,
+          seasonNumber
+        }
+      }
     );
 
-    const featureValues: number[][][] = flattenFeatures(rawFeatures);
+    const featureValues: number[] = flattenFeatures(rawFeatures);
     return {
       labelValues,
       featureValues,
