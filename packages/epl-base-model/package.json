@@ -29,7 +29,7 @@
     "@babel/preset-env": "7.6.2",
     "@babel/preset-typescript": "7.6.0",
     "@babel/register": "7.6.2",
-    "@types/node": "11.13.20",
+    "@types/node": "11.13.22",
     "@typescript-eslint/eslint-plugin": "2.2.0",
     "@typescript-eslint/parser": "2.2.0",
     "cross-env": "5.2.1",
