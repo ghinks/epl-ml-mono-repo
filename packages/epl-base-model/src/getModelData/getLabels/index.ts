@@ -2,7 +2,6 @@ export interface Labels {
   homeWin: number;
   awayWin: number;
   draw: number;
-  seasonNumber: number;
 }
 
 // this is a property to array transformation

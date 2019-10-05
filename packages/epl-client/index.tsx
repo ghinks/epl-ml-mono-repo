@@ -9,24 +9,28 @@ import { getOneHotEncoding, standardize } from "@gvhinks/epl-utilities";
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 
-
+const numFeatureCols = 87;
 
 console.log('Hello from tsx!')
 
+async function oneGameTest(model: tf.LayersModel, before) {
+  const Chelsea = getOneHotEncoding("Chelsea");
+  const WestHam = getOneHotEncoding("West Ham");
+  // TODO remove hard coded season
+  const testData = tf.tensor2d([...Chelsea, ...WestHam, 19], [1, numFeatureCols], "int32");
+  const prediction = model.predict(testData);
+  const result = await prediction.data();
+  console.log(window.performance.now() - before);
+  const standardResult: number[] = standardize(result);
+  console.log(standardResult);
+}
 
 const carryOutModelExperiment = async (): Promise<void> => {
   try {
     const before = window.performance.now();
     const model: tf.LayersModel = await loadModel();
     console.log(window.performance.now() - before);
-    const Chelsea = getOneHotEncoding("Chelsea");
-    const WestHam = getOneHotEncoding("West Ham");
-    const testData = tf.tensor3d([ ...Chelsea, ...WestHam], [1,2,43], 'int32');
-    const prediction = model.predict(testData);
-    const result = await prediction.data();
-    console.log(window.performance.now() - before);
-    const standardResult: number[] = standardize(result);
-    console.log(standardResult);
+    await oneGameTest(model, before);
 
     const fixtures: Fixture[] = await getFixtures();
     const predictions: FixturePrediction[] = await getPredictions(fixtures, model);

@@ -45,8 +45,7 @@ const getTrainingData = async (fromDate: Date = new Date(2000, 1,1), toDate: Dat
       (r): Labels => ({
         homeWin: isHomeWin(r),
         awayWin: isAwayWin(r),
-        draw: isDraw(r),
-        seasonNumber: r.seasonNumber
+        draw: isDraw(r)
       })
     );
 
