@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-data-to-db",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "take EPL match results and write to a DB",
   "main": "dist/index.js",
   "repository": {
@@ -44,11 +44,11 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "@gvhinks/epl-common-interfaces": "^1.6.0",
-    "@gvhinks/epl-constants": "^1.6.0",
-    "@gvhinks/epl-data-reader": "^1.6.0",
-    "@gvhinks/epl-season-forecast": "^1.6.0",
-    "@gvhinks/epl-utilities": "^1.6.0",
+    "@gvhinks/epl-common-interfaces": "^1.7.0",
+    "@gvhinks/epl-constants": "^1.7.0",
+    "@gvhinks/epl-data-reader": "^1.7.0",
+    "@gvhinks/epl-season-forecast": "^1.7.0",
+    "@gvhinks/epl-utilities": "^1.7.0",
     "mongodb": "^3.1.13"
   },
   "babel": {

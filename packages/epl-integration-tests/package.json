@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-integration-tests",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "",
   "main": "dist/index.js",
   "repository": {
@@ -17,13 +17,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@gvhinks/epl-base-model": "^1.6.0",
-    "@gvhinks/epl-common-interfaces": "^1.6.0",
-    "@gvhinks/epl-constants": "^1.6.0",
-    "@gvhinks/epl-data-reader": "^1.6.0",
-    "@gvhinks/epl-data-to-db": "^1.6.0",
-    "@gvhinks/epl-season-forecast": "^1.6.0",
-    "@gvhinks/epl-utilities": "^1.6.0"
+    "@gvhinks/epl-base-model": "^1.7.0",
+    "@gvhinks/epl-common-interfaces": "^1.7.0",
+    "@gvhinks/epl-constants": "^1.7.0",
+    "@gvhinks/epl-data-reader": "^1.7.0",
+    "@gvhinks/epl-data-to-db": "^1.7.0",
+    "@gvhinks/epl-season-forecast": "^1.7.0",
+    "@gvhinks/epl-utilities": "^1.7.0"
   },
   "devDependencies": {
     "@babel/cli": "7.6.2",
