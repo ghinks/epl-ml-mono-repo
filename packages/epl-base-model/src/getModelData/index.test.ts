@@ -35,8 +35,8 @@ describe("Data Retrieval", (): void => {
                   toArray: (): Promise<TeamResult[]> =>
                     Promise.resolve([
                       {
-                        homeTeam: "team1",
-                        awayTeam: "team2",
+                        homeTeam: mockedTeamNames[0],
+                        awayTeam: mockedTeamNames[1],
                         fullTimeResult: "H",
                         seasonNumber: 1
                       }
@@ -89,7 +89,7 @@ describe("Data Retrieval", (): void => {
     test("expect to get winning match results for team1", async (): Promise<void> => {
       const { featureValues, labelValues } = await getTrainingData();
       expect(labelValues.length).toBeGreaterThan(0);
-      expect(labelValues[0]).toMatchObject([1, 0, 0, 1]);
+      expect(labelValues[0]).toMatchObject([1, 0, 0]);
       expect(featureValues).toMatchObject([1, 0, 0, 1, 1])
     });
   });

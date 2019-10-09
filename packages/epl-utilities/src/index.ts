@@ -3,6 +3,7 @@ import teamsArray from "./teamNames";
 import { PredictResult } from "@gvhinks/epl-common-interfaces";
 import { numAllTimeTeams } from "@gvhinks/epl-constants";
 
+const numFeatureCols = 2 * numAllTimeTeams + 1;
 
 // type for a predictive test function
 type AsyncPredResult = () => Promise<PredictResult>;
@@ -28,32 +29,43 @@ const standardize = (prediction: number[]): number[] => {
 // create on prediction result by running the features
 // which are hot encoded through the model
 const createPredictionResult = async (model: tf.Sequential,
-  hotEncodedNames: number[][],
+  hotEncodedFeatures: number[],
   teamNames: Map<string, string>,
   testLabelValues: number[]): Promise<PredictResult> => {
-  const testData = tf.tensor3d([...hotEncodedNames[0], ...hotEncodedNames[1]], [1, 2, numAllTimeTeams], "int32");
+  const testData = tf.tensor2d(hotEncodedFeatures, [1, numFeatureCols], "int32");
   const prediction = model.predict(testData);
   // @ts-ignore
   const result: number[] = await prediction.data();
-  return {
-    homeTeam: teamNames.get(`${hotEncodedNames[0]}`),
-    awayTeam: teamNames.get(`${hotEncodedNames[1]}`),
+  const predictRes = {
+    homeTeam: teamNames.get(`${hotEncodedFeatures.slice(0, numAllTimeTeams)}`),
+    awayTeam: teamNames.get(`${hotEncodedFeatures.slice(numAllTimeTeams, 2 * numAllTimeTeams)}`),
     standardizedResult: standardize(result),
     actualResult: testLabelValues,
     comparison: `${standardize(result)}` === `${testLabelValues}`,
     result
   };
+  return predictRes;
 };
 
 // create an array of test prediction functions that once
 // executed would produce a prediction
 const createArrPrdFuncReqs = (model: tf.Sequential,
-  testFeatures: number[][][],
+  flatTestFeatures: number[],
   teamNames: Map<string, string>,
   testLabels: number[][]): AsyncPredResult[] => {
-  const mytests = testFeatures.map((hotEncodedNames, i): AsyncPredResult => {
+
+  // break down the flat array of test features into chunks that containt the
+  // correct number of columns to be consumed. Currently we have
+  // homeTeam, awayTeam, seasonNumber
+
+  const testFeatures: number[][] = [];
+  const numSlices = flatTestFeatures.length/numFeatureCols;
+  for (let i = 0; i < numSlices; i +=1) {
+    testFeatures.push(flatTestFeatures.splice(0,numFeatureCols));
+  }
+  const mytests = testFeatures.map((hotEncodedFeatures, i): AsyncPredResult => {
     const predictionTest = async (): Promise<PredictResult> => {
-      return await createPredictionResult(model, hotEncodedNames, teamNames, testLabels[i]);
+      return await createPredictionResult(model, hotEncodedFeatures, teamNames, testLabels[i]);
     }
     return predictionTest;
   });
