@@ -5,7 +5,8 @@
     "resolveJsonModule": true,
     "module": "CommonJS",
     "declaration": true,
-    "target": "esnext"
+    "target": "esnext",
+    "skipLibCheck": true
   },
   "include": [
     "./src/**/*"
