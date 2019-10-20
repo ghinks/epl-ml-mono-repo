@@ -72,7 +72,7 @@ describe("Model Creation from test data", (): void => {
       let total = 0;
       let matches = 0;
       matchResults.forEach((r): void => {
-        console.log(r);
+        // console.log(r);
         total += 1;
         if (r.comparison) {
           matches++;
