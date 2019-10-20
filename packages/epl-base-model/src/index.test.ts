@@ -1,13 +1,12 @@
 import createModel from "./index";
 import * as tf from "@tensorflow/tfjs-node";
 import getModelData, { TrainingData } from "./getModelData";
-import * as fs from 'fs';
+import { promises as fsProm } from 'fs';
 import * as path from 'path';
 import { createArrPrdFuncReqs, createTeamNameLookup, PredictResult, getOneHotEncoding } from "@gvhinks/epl-utilities";
 import { numAllTimeTeams } from "@gvhinks/epl-constants";
 
 jest.mock("./getModelData");
-const fsProm = fs.promises;
 
 describe("Model Creation from test data", (): void => {
   const LONG_TIMEOUT: number = 5 * 60 * 1000;
