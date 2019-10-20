@@ -1,6 +1,6 @@
 {
   "name": "@gvhinks/epl-common-interfaces",
-  "version": "1.7.0",
+  "version": "2.0.0",
   "description": "Common TS interfaces shared between node and front end modules",
   "keywords": [
     "epl",
@@ -93,6 +93,6 @@
     "postbuild": "babel dist --out-dir dist --extensions \".js\" --verbose"
   },
   "dependencies": {
-    "@gvhinks/epl-constants": "^1.7.0"
+    "@gvhinks/epl-constants": "^2.0.0"
   }
 }
