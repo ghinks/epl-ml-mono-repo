@@ -2,8 +2,8 @@ import * as tf from "@tensorflow/tfjs-node";
 import getTrainingData, { TrainingData, getNames } from "./getModelData";
 import save from "./saveModel";
 import { numAllTimeTeams } from "@gvhinks/epl-constants";
-import { promises as fsProm } from 'fs';
-import * as path from 'path';
+// import { promises as fsProm } from 'fs';
+// import * as path from 'path';
 // const fsProm = fs.promises;
 
 const createModel = async (): Promise<tf.Sequential> => {
