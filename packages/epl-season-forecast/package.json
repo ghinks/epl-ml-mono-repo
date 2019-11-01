@@ -26,11 +26,11 @@
     "start": "node index.js"
   },
   "devDependencies": {
-    "@babel/cli": "7.6.2",
-    "@babel/core": "7.6.2",
+    "@babel/cli": "7.6.4",
+    "@babel/core": "7.6.4",
     "@babel/plugin-transform-regenerator": "7.4.5",
     "@babel/plugin-transform-runtime": "7.6.2",
-    "@babel/preset-env": "7.6.2",
+    "@babel/preset-env": "7.6.3",
     "@babel/preset-typescript": "7.6.0",
     "@babel/register": "7.6.2",
     "@types/node": "11.13.22",
