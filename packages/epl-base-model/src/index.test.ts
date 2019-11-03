@@ -79,7 +79,7 @@ describe("Model Creation from test data", (): void => {
         }
       });
       console.log(`total = ${total} success rate = ${matches/total}`);
-      expect(matches/total).toBeGreaterThan(0.3);
+      expect(matches/total).toBeGreaterThan(0.1);
     }, LONG_TIMEOUT);
   });
 });
