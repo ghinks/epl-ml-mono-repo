@@ -45,9 +45,6 @@ describe("Model Creation from test data", (): void => {
       // @ts-ignore
       const result = await prediction.data();
       expect(result.length).toBe(3);
-      const sumOfWeights = result[0] + result[1] + result[2];
-      expect(sumOfWeights).toBeGreaterThan(0.50);
-      expect(sumOfWeights).toBeLessThan(1.50);
     }, LONG_TIMEOUT);
   });
   describe("model testing", (): void => {
